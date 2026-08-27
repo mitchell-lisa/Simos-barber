@@ -82,6 +82,19 @@ body {
   background: currentColor;
 }
 
+/* The animated mark, with a still fallback when motion is unwelcome. */
+.mark-still {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mark-live {
+    display: none;
+  }
+  .mark-still {
+    display: block;
+  }
+}
+
 .grain::after {
   content: "";
   position: absolute;

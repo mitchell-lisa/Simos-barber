@@ -140,12 +140,16 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
-        <a href="#top" className="flex items-baseline gap-2.5" aria-label={b.fullName}>
-          <span className="display text-2xl text-cream sm:text-[1.75rem]">
-            {b.name}
-          </span>
+        <a href="#top" className="flex items-center gap-3" aria-label={b.fullName}>
+          <img
+            src="/media/logo.webp"
+            alt=""
+            width={48}
+            height={48}
+            className="h-11 w-11 shrink-0 sm:h-12 sm:w-12"
+          />
           <span className="label hidden text-gold sm:block">
-            of Wayne, Pa.
+            240 Lancaster Ave
           </span>
         </a>
 
@@ -189,7 +193,7 @@ export function Header() {
       {open && (
         <div className="fixed inset-0 z-50 flex flex-col bg-ink md:hidden">
           <div className="flex items-center justify-between px-5 py-4">
-            <span className="display text-2xl text-cream">{b.name}</span>
+            <img src="/media/logo.webp" alt="" width={44} height={44} className="h-11 w-11" />
             <button
               onClick={() => setOpen(false)}
               className="flex h-11 w-11 items-center justify-center text-cream"
@@ -272,7 +276,7 @@ export function Footer() {
             alt={`${b.fullName} logo`}
             width={104}
             height={104}
-            className="h-24 w-24 rounded-full"
+            className="h-24 w-24"
           />
 
           <div className="space-y-1.5">

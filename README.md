@@ -50,18 +50,33 @@ text is sent. Add the Twilio vars in Vercel → Settings → Environment Variabl
 Twilio needs an account plus 10DLC/toll-free registration, which takes a few days to approve —
 until then the click-to-call button is the instant path to John's phone.
 
-## Media
+## The mark
+
+The landing page is the shop's own logo with the barber pole that forms the "i" in Simo's actually
+turning. `tools/build-logo.py` generates it from the owner's logo file and writes:
+
+- `public/media/logo-live.webp` — animated, 20 frames, used on the landing page
+- `public/media/logo.webp` — still frame, used in the header, footer and reduced-motion fallback
+- `app/icon.png` — the favicon
+
+How the animation works: the pole's stripes are diagonal, so sliding the stripe pattern along y reads
+as rotation. The pattern repeats every 83px along `phase = y + 0.67x`, so shifting by exactly one
+period across 20 frames loops seamlessly. The cylinder's shading depends only on x, so it's sampled
+off the original logo and held still while the stripes move under it — that's what keeps it looking
+like the same badge rather than a cartoon.
+
+Two things the script also fixes: it cuts inside the white sticker ring on the source file, and it
+lifts the black point so the badge's near-black sits on the page ink instead of floating as a grey
+disc. Point `SRC` at a new file and re-run if John supplies better artwork.
+
+## Other media
 
 Everything in `public/media/` was shot at the shop:
 
-- `pole.mp4` / `pole-poster.jpg` — the pole out front, hero background
+- `pole.mp4` / `pole-poster.jpg` — the real pole out front, behind the opening countdown
 - `clock.webp` — the oak barber shop clock on the wall
 - `patent-pole.webp` — framed Koken 1916 barber pole patent
 - `patent-clipper.webp` — framed White 1919 hair clipper patent
-- `logo.webp` — the shop's logo, lifted from Instagram at low resolution
-
-**Replace `logo.webp` with the real file from John** before this goes live — the current one is a
-256px crop off an Instagram profile picture.
 
 ## Local development
 
