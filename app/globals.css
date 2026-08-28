@@ -24,6 +24,12 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Fieldsets default to min-inline-size: min-content, so a horizontal scroller
+   inside one stretches the whole page instead of scrolling. */
+fieldset {
+  min-inline-size: 0;
+}
+
 body {
   background: var(--color-ink);
   color: var(--color-cream);
@@ -82,16 +88,66 @@ body {
   background: currentColor;
 }
 
-/* The animated mark, with a still fallback when motion is unwelcome. */
-.mark-still {
-  display: none;
+/* ── The turning pole ──────────────────────────────────────────────────────
+   The badge is served with the pole's glass punched out (logo-shell.webp).
+   This layer sits behind that hole and carries the stripes.
+
+   The stripes run along phase = y + 0.67x and repeat every 83 source px, so
+   the gradient axis is perpendicular to them (146.2deg) and sliding the layer
+   down by exactly one vertical period lands the pattern back on itself — a
+   seamless loop, and the same illusion of rotation a real pole works by.
+   Every number below is derived in tools/build-logo.py; change them together. */
+.pole-glass {
+  position: absolute;
+  overflow: hidden;
+}
+.pole-glass::before {
+  content: "";
+  position: absolute;
+  inset: -70% -25%;
+  background: repeating-linear-gradient(
+    146.2deg,
+    #8e2722 0 6.4275%,
+    #e8e5df 6.4275% 12.855%,
+    #244774 12.855% 19.2825%,
+    #e8e5df 19.2825% 25.71%
+  );
+  animation: pole-turn 1.6s linear infinite;
+}
+/* Cylinder shading, sampled off the original badge: dark at both edges with a
+   specular streak a third of the way in. Held still while the stripes move. */
+.pole-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to right,
+      transparent 22%,
+      rgba(255, 255, 255, 0.15) 31%,
+      transparent 41%
+    ),
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.32) 10%,
+      rgba(0, 0, 0, 0.1) 21%,
+      rgba(0, 0, 0, 0) 32%,
+      rgba(0, 0, 0, 0.05) 47%,
+      rgba(0, 0, 0, 0.17) 62%,
+      rgba(0, 0, 0, 0.35) 78%,
+      rgba(0, 0, 0, 0.53) 92%,
+      rgba(0, 0, 0, 0.58)
+    );
+}
+@keyframes pole-turn {
+  to {
+    transform: translateY(-29.06%);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .mark-live {
-    display: none;
-  }
-  .mark-still {
-    display: block;
+  .pole-glass::before {
+    animation: none;
   }
 }
 

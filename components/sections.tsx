@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { business as b } from "@/lib/business";
+import { Badge } from "./badge";
 import { InstagramIcon, PhoneIcon, PinIcon, Reveal } from "./site";
+import { hoursSummary } from "@/lib/schedule";
 
 /* ───────────────────────── hero ──────────────────────────────────────────── */
 
@@ -18,21 +20,7 @@ export function Hero() {
         {b.fullName} — barbershop at {b.address.oneLine}
       </h1>
 
-      <img
-        className="mark-live w-[min(78vw,27rem)]"
-        src="/media/logo-live.webp"
-        alt={`${b.fullName} — ${b.motto}`}
-        width={520}
-        height={520}
-        fetchPriority="high"
-      />
-      <img
-        className="mark-still w-[min(78vw,27rem)]"
-        src="/media/logo.webp"
-        alt={`${b.fullName} — ${b.motto}`}
-        width={520}
-        height={520}
-      />
+      <Badge turning priority className="w-[min(78vw,27rem)]" />
 
       <div className="rule-ornament mt-8 w-full max-w-md">
         <span className="label whitespace-nowrap text-gold">
@@ -47,16 +35,16 @@ export function Hero() {
         </span>
       </p>
 
-      <div className="mt-8 flex w-full max-w-md flex-col gap-3 sm:w-auto sm:flex-row">
+      <div className="mt-8 flex w-full max-w-md flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
         <a
           href="#book"
-          className="label flex items-center justify-center bg-gold px-8 py-4 text-ink transition-colors hover:bg-cream"
+          className="label flex items-center justify-center whitespace-nowrap bg-gold px-8 py-4 text-ink transition-colors hover:bg-cream"
         >
-          Book a chair
+          Book an appointment
         </a>
         <a
           href={`tel:${b.phone.e164}`}
-          className="label flex items-center justify-center gap-2.5 border border-white/25 px-8 py-4 text-cream transition-colors hover:border-gold hover:text-gold"
+          className="label flex items-center justify-center gap-2.5 whitespace-nowrap border border-white/25 px-8 py-4 text-cream transition-colors hover:border-gold hover:text-gold"
         >
           <PhoneIcon className="h-4 w-4" />
           {b.phone.display}
@@ -153,7 +141,7 @@ export function Shop() {
           </h2>
           <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-cream-dim sm:text-base">
             <p>
-              Simo&apos;s is {b.barber.firstName}&apos;s shop — his name on the
+              Simo&apos;s is {b.barbers[0].shortName}&apos;s shop — his name on the
               door, his hands on the clippers. There&apos;s no front desk, no
               rotation, no getting whoever happens to be free. You sit in his
               chair, and he cuts your hair.
@@ -261,8 +249,8 @@ export function Details() {
               <img
                 src="/media/patent-pole.webp"
                 alt="Framed print of Walter F. Koken's 1916 barber pole patent, hanging in the shop"
-                width={560}
-                height={790}
+                width={720}
+                height={1101}
                 className="w-full bg-ink-2 object-cover"
                 loading="lazy"
               />
@@ -278,8 +266,8 @@ export function Details() {
               <img
                 src="/media/patent-clipper.webp"
                 alt="Framed print of Fred G. White's 1919 hair clipper patent, hanging in the shop"
-                width={560}
-                height={742}
+                width={720}
+                height={1062}
                 className="w-full bg-ink-2 object-cover"
                 loading="lazy"
               />
@@ -321,9 +309,16 @@ export function Visit() {
             <dl className="mt-12 space-y-8">
               <div>
                 <dt className="label text-gold">Hours</dt>
-                <dd className="mt-2.5 text-[15px] leading-relaxed text-cream-dim">
-                  Posted here the week the shop opens. Until then, call or send a
-                  request and {b.barber.firstName} will get back to you.
+                <dd className="mt-3 space-y-1.5">
+                  {hoursSummary().map((row) => (
+                    <div
+                      key={row.days}
+                      className="flex justify-between gap-6 border-b border-white/8 pb-1.5 text-[15px] last:border-0"
+                    >
+                      <span className="text-cream">{row.days}</span>
+                      <span className="text-cream-dim">{row.hours}</span>
+                    </div>
+                  ))}
                 </dd>
               </div>
               <div>
