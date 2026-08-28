@@ -1,18 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Sans, Source_Serif_4 } from "next/font/google";
+import { Archivo, Bodoni_Moda } from "next/font/google";
 import { business } from "@/lib/business";
 import "./globals.css";
 
-const serif = Source_Serif_4({
+const bodoni = Bodoni_Moda({
   subsets: ["latin"],
-  weight: ["400", "600"],
-  variable: "--font-source-serif",
+  weight: ["400", "500"],
+  variable: "--font-bodoni",
   display: "swap",
 });
 
-const sans = Instrument_Sans({
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-instrument-sans",
+  weight: ["400", "500", "600"],
+  variable: "--font-archivo",
   display: "swap",
 });
 
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f7f5f0",
+  themeColor: "#0b0a09",
 };
 
 function LocalBusinessSchema() {
@@ -82,7 +83,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="en" className={`${bodoni.variable} ${archivo.variable}`}>
       <body>
         {children}
         <LocalBusinessSchema />

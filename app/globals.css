@@ -1,40 +1,41 @@
 @import "tailwindcss";
+@import "./pattern.css";
 
 @theme {
-  /* Warm printed stock rather than a black screen. The badge is a black stamp
-     and reads best on paper; it also keeps the shop's own artwork as the only
-     dark mass on the page. */
-  --color-paper: #f7f5f0;
-  --color-card: #ffffff;
-  --color-ink: #17140f;
-  --color-ink-2: #4f4941;
-  --color-ink-3: #7c746a;
-  --color-rule: #ddd7cb;
-  --color-rule-soft: #eae5db;
-  /* One accent, taken from the red in the pole. Used for the primary action
-     and almost nothing else. */
-  --color-accent: #8e2722;
-  --color-accent-dark: #6f1d19;
+  /* Direction 01 — Chair & Mirror. Warm near-black rather than a cold grey,
+     bone rather than white, and a single brass accent that appears on the
+     booking action and almost nowhere else. */
+  --color-ink: #0b0a09;
+  --color-ink-2: #131110;
+  --color-ink-3: #1c1917;
+  --color-hair: #2a2521;
+  --color-hair-2: #3a332c;
+  --color-bone: #ece7de;
+  --color-bone-2: #a79f93;
+  --color-bone-3: #786f64;
+  --color-brass: #b0873f;
+  --color-brass-2: #cba25a;
 
-  --font-display: var(--font-source-serif), Georgia, "Times New Roman", serif;
-  --font-body: var(--font-instrument-sans), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-bodoni), "Didot", Georgia, serif;
+  --font-body: var(--font-archivo), system-ui, -apple-system, sans-serif;
 }
 
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
   }
 
   body {
-    background: var(--color-paper);
-    color: var(--color-ink);
+    background: var(--color-ink);
+    color: var(--color-bone);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
-  /* Fieldsets default to min-inline-size: min-content, so a horizontal scroller
-     inside one stretches the page instead of scrolling. */
+  /* Fieldsets default to min-inline-size: min-content, so a horizontal
+     scroller inside one stretches the page instead of scrolling. */
   fieldset {
     min-inline-size: 0;
   }
@@ -49,16 +50,19 @@
   }
 
   ::selection {
-    background: var(--color-ink);
-    color: var(--color-paper);
+    background: var(--color-brass);
+    color: var(--color-ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-brass-2);
     outline-offset: 2px;
   }
 
   @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
     *,
     *::before,
     *::after {
@@ -69,19 +73,35 @@
 }
 
 @layer components {
-  /* Editorial serif, set large and tight. Headings only. */
+  /* The display face carries the whole personality: high-contrast Didone,
+     set large and tight, used for headlines only. */
   .display {
     font-family: var(--font-display);
     font-weight: 400;
-    letter-spacing: -0.018em;
-    line-height: 1.05;
+    letter-spacing: -0.015em;
+    line-height: 1.02;
   }
 
-  /* The small tracked register used on the shop's own sign. */
+  /* Small tracked register, the way a shop sign sets its secondary line. */
   .label {
     text-transform: uppercase;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.18em;
     font-size: 0.6875rem;
     font-weight: 500;
+  }
+
+  /* Brass hairline with a diamond, used to separate major sections. */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    color: var(--color-hair-2);
+  }
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: currentColor;
   }
 }

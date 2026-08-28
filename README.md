@@ -63,28 +63,32 @@ few days to approve.
 
 ## Design
 
-Warm printed stock rather than a black screen. The shop's badge is a black stamp
-and reads best on paper, and keeping the page light leaves his own artwork as the
-only dark mass on it. One accent — the oxblood red taken out of the pole — carries
-the primary action and almost nothing else.
+**Direction: Chair & Mirror**, drawn from the two references the owner picked
+(heritagebarberco.com, barberandco.us). Both lead with photography on a dark
+ground, repeat one booking action down the whole page, and mark sections with
+the tools of the trade — so this does the same.
 
-Source Serif 4 for headings, Instrument Sans for everything functional, hairline
-rules instead of cards and shadows. No gradients, no scroll animation, no
-countdown, no grain overlay: that combination is the house style of generated
-sites and it was making a real business look synthetic.
+- **Palette comes from the shop itself.** The room at 240 Lancaster is papered
+  in Art Deco gold fans on near-black with brass mirror frames, so the site is
+  warm near-black, bone, and a single brass accent. The brass appears on the
+  booking action and almost nowhere else.
+- **Type:** Bodoni Moda for headlines only, set large and tight; Archivo for
+  everything functional.
+- **The wallpaper is redrawn, not photographed.** `tools/build-pattern.py`
+  rebuilds the fan motif as a seamless SVG — a fan of rays on a half-offset
+  lozenge lattice — and writes it to `app/pattern.css` as a data URI. It is
+  about a kilobyte, crisp at any size, and tintable. Applied through `.deco`
+  behind the hero, the booking panel and the footer at 5–7% opacity.
+  (The photograph of the real wall is unusable: plastic still on the mirrors,
+  wires across the floor.)
+- **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
+- **Photographs are graded** to sit on ink rather than punch holes in it.
 
-`tools/build-logo.py` produces `public/media/logo.webp` and the favicon from the
-owner's logo file. It cuts inside the white sticker ring on the source and
-repaints the pole's glass from measured geometry — the source badge is only 37px
-across there, and the redraw is noticeably crisper at the sizes the site uses.
-Point `SRC` at a new file and re-run if John supplies better artwork.
-
-**A note on CSS layers:** `@import "tailwindcss"` puts utilities in a cascade
-layer, so any unlayered rule in `globals.css` beats them regardless of
-specificity. Base resets live in `@layer base` and `.display`/`.label` in
-`@layer components` for exactly that reason — an unlayered `button { color:
-inherit }` silently overrode `text-paper` and turned the selected date chip
-black-on-black.
+`tools/build-logo.py` is retired: the owner supplied clean high-resolution
+artwork, so `tools/` now holds the pattern generator and the logo is processed
+once. The caption baked into his file was removed by hue (the neutral white
+text goes, the warm gold arc behind it stays), then the artwork was
+un-multiplied off its black ground so it composites on any background.
 
 ## Preview mode
 

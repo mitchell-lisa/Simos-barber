@@ -1,32 +1,91 @@
 import { business as b } from "@/lib/business";
 import { hoursSummary } from "@/lib/schedule";
 
-/* ───────────────────────── icons ─────────────────────────────────────────── */
+/* ───────────────────────── icons ─────────────────────────────────────────
+   Drawn rather than borrowed. Both reference shops mark sections with the
+   tools of the trade, so these are the tools, not generic UI glyphs.        */
 
-export function PhoneIcon({ className = "" }: { className?: string }) {
+type IconProps = { className?: string };
+const stroke = {
+  stroke: "currentColor",
+  strokeWidth: 1.4,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  fill: "none",
+};
+
+export function ScissorsIcon({ className = "" }: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+    <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
+      <circle cx="8" cy="24.5" r="3.5" {...stroke} />
+      <circle cx="24" cy="24.5" r="3.5" {...stroke} />
+      <path d="M10.4 22.1 25 4M21.6 22.1 7 4" {...stroke} />
+    </svg>
+  );
+}
+
+export function RazorIcon({ className = "" }: IconProps) {
+  return (
+    <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
+      {/* open straight razor: blade, then the folded handle */}
+      <path d="M6 21 22.5 4.5 27 9 10.5 25.5Z" {...stroke} />
+      <path d="M6 21 3 26.5 7.5 29l3.5-3.5" {...stroke} />
+    </svg>
+  );
+}
+
+export function CombIcon({ className = "" }: IconProps) {
+  return (
+    <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
+      <path d="M3.5 7.5h25v4a2 2 0 0 1-2 2h-21a2 2 0 0 1-2-2z" {...stroke} />
+      <path d="M8 13.5v7M13 13.5v10M18 13.5v10M23 13.5v10M27.5 13.5v7" {...stroke} />
+    </svg>
+  );
+}
+
+export function PoleIcon({ className = "" }: IconProps) {
+  return (
+    <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
+      <circle cx="16" cy="4" r="2.2" {...stroke} />
+      <rect x="10" y="6.6" width="12" height="3" rx="0.8" {...stroke} />
+      <rect x="11.6" y="9.6" width="8.8" height="12.8" {...stroke} />
+      <path d="M11.6 20.4 20.4 14.6M11.6 16.2 20.4 10.4" {...stroke} />
+      <rect x="10" y="22.4" width="12" height="3" rx="0.8" {...stroke} />
+    </svg>
+  );
+}
+
+export function PhoneIcon({ className = "" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path
         d="M6.5 3h3l1.5 4-2 1.5a12 12 0 006.5 6.5l1.5-2 4 1.5v3a2 2 0 01-2.2 2A17 17 0 014.5 5.2 2 2 0 016.5 3z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
+        {...stroke}
       />
     </svg>
   );
 }
 
-export function InstagramIcon({ className = "" }: { className?: string }) {
+export function InstagramIcon({ className = "" }: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
-      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.5" />
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5" {...stroke} />
+      <circle cx="12" cy="12" r="4" {...stroke} />
       <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" />
     </svg>
   );
 }
 
-export function Badge({ className = "" }: { className?: string }) {
+export function PinIcon({ className = "" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path d="M12 21s7-6.1 7-11a7 7 0 10-14 0c0 4.9 7 11 7 11z" {...stroke} />
+      <circle cx="12" cy="10" r="2.5" {...stroke} />
+    </svg>
+  );
+}
+
+export function Badge({ className = "" }: IconProps) {
   return (
     <img
       src="/media/logo.webp"
@@ -38,13 +97,34 @@ export function Badge({ className = "" }: { className?: string }) {
   );
 }
 
+/* ───────────────────────── shared button ─────────────────────────────────
+   One brass action, everywhere. Both references repeat their booking button
+   down the whole page rather than hiding it in a single section.            */
+
+export function BookButton({
+  className = "",
+  children = "Book an appointment",
+}: {
+  className?: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <a
+      href="#book"
+      className={`label inline-flex items-center justify-center bg-brass px-7 py-4 text-ink transition-colors hover:bg-brass-2 ${className}`}
+    >
+      {children}
+    </a>
+  );
+}
+
 /* ───────────────────────── preview disclosure ────────────────────────────── */
 
 export function PreviewNotice() {
   if (!b.preview.active) return null;
   return (
-    <div className="border-b border-rule bg-ink text-paper">
-      <p className="mx-auto max-w-6xl px-6 py-2 text-center text-[11px] leading-relaxed sm:px-8">
+    <div className="bg-ink-3">
+      <p className="mx-auto max-w-6xl px-5 py-2 text-center text-[11px] leading-relaxed text-bone-2 sm:px-8">
         Private preview built by {b.preview.builtBy} for {b.fullName} — not yet
         the shop&apos;s official website.
       </p>
@@ -61,42 +141,60 @@ const NAV = [
 ];
 
 export function Header() {
+  const today = hoursSummary()[0];
   return (
-    <header className="sticky top-0 z-40 border-b border-rule bg-paper/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center gap-5 px-6 py-4 sm:px-8">
-        <a href="#top" className="flex items-center gap-3" aria-label={b.fullName}>
-          <Badge className="h-9 w-9 shrink-0" />
-          <span className="display hidden text-lg text-ink sm:block">
-            {b.fullName}
-          </span>
-        </a>
-
-        <nav className="ml-auto hidden items-center gap-8 md:flex">
-          {NAV.map((n) => (
-            <a
-              key={n.href}
-              href={n.href}
-              className="text-sm text-ink-2 underline-offset-4 transition-colors hover:text-ink hover:underline"
-            >
-              {n.label}
-            </a>
-          ))}
+    <>
+      {/* A shop puts its phone and its hours on the door, not three clicks in. */}
+      <div className="hidden border-b border-hair bg-ink-2 md:block">
+        <div className="mx-auto flex max-w-6xl items-center gap-6 px-8 py-2.5">
+          <p className="text-xs text-bone-3">
+            {today.days} {today.hours}
+          </p>
+          <p className="ml-auto text-xs text-bone-3">{b.address.oneLine}</p>
           <a
             href={`tel:${b.phone.e164}`}
-            className="text-sm text-ink-2 transition-colors hover:text-ink"
+            className="inline-flex items-center gap-2 text-xs text-bone transition-colors hover:text-brass-2"
           >
+            <PhoneIcon className="h-3.5 w-3.5" />
             {b.phone.display}
           </a>
-        </nav>
-
-        <a
-          href="#book"
-          className="ml-auto shrink-0 bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-dark md:ml-0"
-        >
-          Book
-        </a>
+        </div>
       </div>
-    </header>
+
+      <header className="sticky top-0 z-40 border-b border-hair bg-ink/95 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center gap-5 px-5 py-3.5 sm:px-8">
+          <a href="#top" className="flex items-center gap-3" aria-label={b.fullName}>
+            <Badge className="h-11 w-11 shrink-0" />
+            <span className="display hidden text-xl text-bone sm:block">
+              {b.fullName}
+            </span>
+          </a>
+
+          <nav className="ml-auto hidden items-center gap-9 md:flex">
+            {NAV.map((n) => (
+              <a
+                key={n.href}
+                href={n.href}
+                className="label text-bone-2 transition-colors hover:text-bone"
+              >
+                {n.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="ml-auto flex items-center gap-2 md:ml-0">
+            <a
+              href={`tel:${b.phone.e164}`}
+              className="flex h-11 w-11 items-center justify-center border border-hair-2 text-bone transition-colors hover:border-brass hover:text-brass-2 md:hidden"
+              aria-label={`Call ${b.phone.display}`}
+            >
+              <PhoneIcon className="h-4 w-4" />
+            </a>
+            <BookButton className="px-5 py-3 sm:px-7 sm:py-3.5">Book</BookButton>
+          </div>
+        </div>
+      </header>
+    </>
   );
 }
 
@@ -104,25 +202,26 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer className="border-t border-rule bg-card">
-      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8">
+    <footer className="relative overflow-hidden border-t border-hair bg-ink-2">
+      <div className="deco pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden="true" />
+      <div className="relative mx-auto max-w-6xl px-5 py-16 sm:px-8">
         <div className="grid gap-12 md:grid-cols-3">
           <div>
-            <Badge className="h-16 w-16" />
-            <p className="display mt-5 text-xl text-ink">{b.fullName}</p>
-            <p className="mt-1 text-sm text-ink-3">{b.motto}</p>
+            <Badge className="h-20 w-20" />
+            <p className="display mt-5 text-2xl text-bone">{b.fullName}</p>
+            <p className="mt-2 text-sm italic text-brass">{b.motto}</p>
           </div>
 
-          <div className="space-y-1.5 text-sm">
-            <p className="label mb-3 text-ink-3">Find us</p>
-            <p className="text-ink-2">{b.address.street}</p>
-            <p className="text-ink-2">
+          <div className="space-y-2 text-sm">
+            <p className="label mb-4 text-bone-3">Find us</p>
+            <p className="text-bone-2">{b.address.street}</p>
+            <p className="text-bone-2">
               {b.address.city}, {b.address.state} {b.address.zip}
             </p>
             <p className="pt-2">
               <a
                 href={`tel:${b.phone.e164}`}
-                className="text-ink underline decoration-rule underline-offset-4 hover:decoration-ink"
+                className="text-bone transition-colors hover:text-brass-2"
               >
                 {b.phone.display}
               </a>
@@ -132,29 +231,30 @@ export function Footer() {
                 href={b.social.instagram.url}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 text-ink-2 hover:text-ink"
+                className="inline-flex items-center gap-2 text-bone-2 transition-colors hover:text-bone"
               >
                 <InstagramIcon className="h-4 w-4" />
-                Instagram
+                {b.social.instagram.handle}
               </a>
             </p>
           </div>
 
           <div className="text-sm">
-            <p className="label mb-3 text-ink-3">Hours</p>
-            <dl className="space-y-1.5">
+            <p className="label mb-4 text-bone-3">Hours</p>
+            <dl className="space-y-2">
               {hoursSummary().map((row) => (
                 <div key={row.days} className="flex justify-between gap-6">
-                  <dt className="text-ink-2">{row.days}</dt>
-                  <dd className="text-ink-3">{row.hours}</dd>
+                  <dt className="text-bone-2">{row.days}</dt>
+                  <dd className="text-bone-3">{row.hours}</dd>
                 </div>
               ))}
             </dl>
+            <BookButton className="mt-7 w-full" />
           </div>
         </div>
 
-        <div className="mt-14 border-t border-rule-soft pt-6">
-          <p className="text-[11px] leading-relaxed text-ink-3">
+        <div className="mt-14 border-t border-hair pt-6">
+          <p className="text-[11px] leading-relaxed text-bone-3">
             {b.preview.active ? (
               <>
                 This is a private preview built by {b.preview.builtBy} to show

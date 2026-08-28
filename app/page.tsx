@@ -1,4 +1,12 @@
-import { Details, Masthead, Services, Shop, Visit } from "@/components/sections";
+import { Booking } from "@/components/booking";
+import {
+  Details,
+  Hero,
+  Services,
+  Shop,
+  TrustStrip,
+  Visit,
+} from "@/components/sections";
 import { Footer, Header, PreviewNotice } from "@/components/site";
 
 export default function Page() {
@@ -7,9 +15,11 @@ export default function Page() {
       <PreviewNotice />
       <Header />
       <main>
-        <Masthead />
-        <Shop />
+        <Hero />
+        <TrustStrip />
         <Services />
+        <Booking />
+        <Shop />
         <Details />
         <Visit />
       </main>
