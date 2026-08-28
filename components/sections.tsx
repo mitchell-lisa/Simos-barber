@@ -19,13 +19,32 @@ export function Hero() {
     <section id="top" className="relative overflow-hidden border-b border-hair">
       {/* The shop's own wallpaper, redrawn — barely there, but it is his room. */}
       <div className="deco pointer-events-none absolute inset-0 opacity-[0.05]" aria-hidden="true" />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-16 lg:py-28">
+
+      {/* His pole, dissolved into the page: full bleed behind the type on a
+          phone, running off the right edge on a wide screen. */}
+      <div
+        className="mesh-hero pointer-events-none absolute inset-0 lg:left-auto lg:w-[46%]"
+        aria-hidden="true"
+      >
+        <video
+          className="h-full w-full object-cover opacity-25 brightness-[0.62] contrast-[1.05] saturate-[0.85] lg:opacity-80"
+          src="/media/pole.mp4"
+          poster="/media/pole-poster.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+      </div>
+
+      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[minmax(0,38rem)_1fr] lg:py-32">
         <div className="min-w-0">
           <p className="label text-brass">
             {b.address.street} · {b.address.city}, Pennsylvania
           </p>
 
-          <h1 className="display mt-6 text-[3.25rem] text-bone sm:text-7xl lg:text-[5.25rem]">
+          <h1 className="display mt-6 text-[3.25rem] text-bone sm:text-[4.5rem] lg:text-[4.75rem]">
             Sit down.
             <br />
             Take your time.
@@ -51,26 +70,6 @@ export function Hero() {
           <NextAvailable />
         </div>
 
-        {/* His own footage. A wide interior photograph would sit better here —
-            that is the one asset the shop still needs to supply. */}
-        <figure className="relative hidden lg:block">
-          <div className="border border-hair-2 p-2">
-            <video
-              className="aspect-[9/16] w-full object-cover brightness-[0.82] contrast-[1.08] saturate-[0.92]"
-              src="/media/pole.mp4"
-              poster="/media/pole-poster.jpg"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-label="The barber pole lit outside the shop on Lancaster Avenue"
-            />
-          </div>
-          <figcaption className="mt-3 text-center text-xs text-bone-3">
-            The pole, out front on Lancaster Ave.
-          </figcaption>
-        </figure>
       </div>
     </section>
   );
@@ -168,8 +167,27 @@ export function Services() {
 
 export function Shop() {
   return (
-    <section id="shop" className="border-b border-hair bg-ink-2">
-      <div className="mx-auto grid max-w-6xl items-center gap-14 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-2 lg:gap-20">
+    <section
+      id="shop"
+      className="relative overflow-hidden border-b border-hair bg-ink-2"
+    >
+      {/* The clock runs off the right edge and fades into the wall behind the
+          type, rather than sitting in a box with a label under it. */}
+      <div
+        className="mesh-left pointer-events-none absolute inset-x-0 bottom-0 h-[42%] lg:inset-y-0 lg:left-auto lg:h-auto lg:w-[48%]"
+        aria-hidden="true"
+      >
+        <img
+          src="/media/clock.webp"
+          alt=""
+          width={620}
+          height={572}
+          className="h-full w-full object-cover opacity-30 brightness-[0.6] contrast-[1.06] saturate-[0.85] lg:opacity-85"
+          loading="lazy"
+        />
+      </div>
+
+      <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[minmax(0,30rem)_1fr] lg:gap-20">
         <div className="lg:max-w-md">
           <p className="label text-brass">The Shop</p>
           <h2 className="display mt-5 text-5xl text-bone sm:text-6xl">
@@ -204,82 +222,54 @@ export function Shop() {
           </div>
         </div>
 
-        <figure>
-          <div className="border border-hair-2 p-3">
-            <img
-              src="/media/clock.webp"
-              alt="A handmade oak barber shop clock on the wall inside Simo's"
-              width={620}
-              height={572}
-              className="w-full brightness-[0.82] contrast-[1.08] saturate-[0.92]"
-              loading="lazy"
-            />
-          </div>
-          <figcaption className="mt-4 text-xs leading-relaxed text-bone-3">
-            A handmade oak shop clock, on the wall inside.
-          </figcaption>
-        </figure>
       </div>
     </section>
   );
 }
 
-/* ───────────────────────── on the wall ───────────────────────────────────── */
-
-const PRINTS = [
-  {
-    src: "/media/patent-pole.webp",
-    w: 720,
-    h: 1101,
-    alt: "Walter F. Koken's 1916 barber pole patent drawing",
-    title: "Barber Pole",
-    meta: "W. F. Koken · No. 1,178,732 · April 11, 1916",
-  },
-  {
-    src: "/media/patent-clipper.webp",
-    w: 720,
-    h: 1062,
-    alt: "Fred G. White's 1919 hair clipper patent drawing",
-    title: "Hair Clipper",
-    meta: "F. G. White · No. 1,311,935 · August 5, 1919",
-  },
-];
+/* ───────────────────────── the trade ─────────────────────────────────────── */
 
 export function Details() {
   return (
-    <section className="border-b border-hair">
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-        <div className="mx-auto max-w-lg text-center">
-          <p className="label text-brass">On the wall</p>
-          <h2 className="display mt-5 text-5xl text-bone sm:text-6xl">
-            The trade, framed
-          </h2>
-          <p className="mt-6 text-[15px] leading-relaxed text-bone-2">
-            Hanging in the shop: the original patent drawings for the two
-            objects every barber still works with.
-          </p>
-        </div>
+    <section className="relative overflow-hidden border-b border-hair">
+      {/* Koken's pole and White's clipper, used as the ground the section is
+          written on. The drawings are his, on his wall — they read better as
+          the wall than as two exhibits with catalogue cards. */}
+      <div className="absolute inset-0 grid grid-cols-2" aria-hidden="true">
+        <img
+          src="/media/patent-pole.webp"
+          alt=""
+          className="mesh-band h-full w-full object-cover object-top opacity-55"
+          loading="lazy"
+        />
+        <img
+          src="/media/patent-clipper.webp"
+          alt=""
+          className="mesh-band h-full w-full object-cover object-top opacity-55"
+          loading="lazy"
+        />
+      </div>
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-ink via-ink/75 to-ink"
+        aria-hidden="true"
+      />
+      {/* Pools the ground behind the type so the drawings stay readable at the
+          edges without fighting the words, and hides the seam between them. */}
+      <div
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-ink)_0%,rgb(11_10_9_/_0.82)_38%,transparent_72%)]"
+        aria-hidden="true"
+      />
 
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 sm:gap-12">
-          {PRINTS.map((p) => (
-            <figure key={p.src}>
-              <div className="border border-hair-2 p-3 sm:p-4">
-                <img
-                  src={p.src}
-                  alt={p.alt}
-                  width={p.w}
-                  height={p.h}
-                  className="w-full"
-                  loading="lazy"
-                />
-              </div>
-              <figcaption className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <span className="display text-xl text-bone">{p.title}</span>
-                <span className="text-xs text-bone-3">{p.meta}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+      <div className="relative mx-auto max-w-6xl px-5 py-28 text-center sm:px-8 sm:py-36">
+        <p className="label text-brass">Since 1916</p>
+        <h2 className="display mx-auto mt-6 max-w-2xl text-5xl text-bone sm:text-6xl">
+          The trade hasn&apos;t changed much.
+        </h2>
+        <p className="mx-auto mt-7 max-w-md text-[15px] leading-relaxed text-bone-2">
+          Koken patented the pole in 1916. White patented the clipper three
+          years later. Both drawings hang on the wall at Simo&apos;s, and both
+          tools are still the job.
+        </p>
       </div>
     </section>
   );

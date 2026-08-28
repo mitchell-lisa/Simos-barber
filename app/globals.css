@@ -90,6 +90,56 @@
     font-weight: 500;
   }
 
+  /* Media is bled into the page rather than framed. A gradient mask dissolves
+     the edge so a photograph ends in the ground instead of stopping at a
+     border with a caption under it. */
+  .mesh-hero {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0.85) 0%,
+      rgb(0 0 0 / 0.45) 55%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0.85) 0%,
+      rgb(0 0 0 / 0.45) 55%,
+      transparent 100%
+    );
+  }
+  @media (min-width: 1024px) {
+    .mesh-hero {
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        rgb(0 0 0 / 0.35) 38%,
+        #000 88%
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        rgb(0 0 0 / 0.35) 38%,
+        #000 88%
+      );
+    }
+  }
+
+  .mesh-left {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+  }
+  @media (min-width: 1024px) {
+    .mesh-left {
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / 0.4) 34%, #000 72%);
+      mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / 0.4) 34%, #000 72%);
+    }
+  }
+
+  .mesh-band {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 26%, #000 74%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 26%, #000 74%, transparent);
+  }
+
   /* Brass hairline with a diamond, used to separate major sections. */
   .divider {
     display: flex;

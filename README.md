@@ -82,7 +82,13 @@ the tools of the trade — so this does the same.
   (The photograph of the real wall is unusable: plastic still on the mirrors,
   wires across the floor.)
 - **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
-- **Photographs are graded** to sit on ink rather than punch holes in it.
+- **Photographs are bled, not framed.** Nothing sits in a bordered box with a
+  caption underneath — the pole runs off the right edge of the hero, the clock
+  off the right edge of The Shop, and the two patent drawings are the ground the
+  "Since 1916" section is written on. Each is dissolved with a gradient
+  `mask-image` (`.mesh-hero`, `.mesh-left`, `.mesh-band` in `globals.css`) and
+  graded down so it ends in the page instead of stopping at a border. Alt text
+  carries what the captions used to say.
 
 `tools/build-logo.py` is retired: the owner supplied clean high-resolution
 artwork, so `tools/` now holds the pattern generator and the logo is processed
