@@ -16,12 +16,12 @@ export default function Page() {
       <Header />
       <main className="grain relative">
         <Hero />
+        <Booking />
         <OpeningStrip />
         <Shop />
         <Services />
         <Details />
         <Visit />
-        <Booking />
       </main>
       <Footer />
       <StickyBar />

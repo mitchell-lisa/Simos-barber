@@ -2,71 +2,53 @@
 
 import { useEffect, useState } from "react";
 import { business as b } from "@/lib/business";
+import { Badge } from "./badge";
 import { InstagramIcon, PhoneIcon, PinIcon, Reveal } from "./site";
+import { hoursSummary } from "@/lib/schedule";
 
 /* ───────────────────────── hero ──────────────────────────────────────────── */
 
 export function Hero() {
+  // Full bleed, less the preview bar and header stacked above it.
   return (
-    <section id="top" className="relative min-h-[88svh] overflow-hidden lg:min-h-[92vh]">
-      {/* The pole outside the shop, filmed on Lancaster Ave. */}
-      <div className="absolute inset-0 lg:left-[54%]">
-        <video
-          className="h-full w-full object-cover"
-          src="/media/pole.mp4"
-          poster="/media/pole-poster.jpg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label="The barber pole outside Simo's on Lancaster Avenue"
-        />
+    <section
+      id="top"
+      className="relative flex min-h-[calc(100svh-11rem)] flex-col items-center justify-center px-5 pb-14 pt-6 text-center sm:px-8 lg:min-h-[calc(100vh-7.5rem)]"
+    >
+      {/* The shop's own mark, with the pole that forms the "i" actually turning. */}
+      <h1 className="sr-only">
+        {b.fullName} — barbershop at {b.address.oneLine}
+      </h1>
+
+      <Badge turning priority className="w-[min(78vw,27rem)]" />
+
+      <div className="rule-ornament mt-8 w-full max-w-md">
+        <span className="label whitespace-nowrap text-gold">
+          {b.address.street} · {b.address.city}, Pa.
+        </span>
       </div>
 
-      {/* Scrims: full-bleed on phones, a left-edge fade on desktop. */}
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/25 lg:hidden" />
-      <div className="absolute inset-y-0 left-[54%] right-0 hidden bg-gradient-to-r from-ink via-ink/45 to-transparent lg:block" />
-      <div className="absolute inset-y-0 left-0 hidden w-[54%] bg-ink lg:block" />
+      <p className="mt-7 flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+        <span className="label text-cream-dim">Opening</span>
+        <span className="display text-3xl text-cream sm:text-4xl">
+          {b.opensOnLabel}
+        </span>
+      </p>
 
-      <div className="relative mx-auto flex min-h-[88svh] max-w-6xl items-end px-5 pb-14 pt-16 sm:px-8 lg:min-h-[92vh] lg:items-center lg:pb-0">
-        <div className="w-full lg:w-[54%] lg:pr-14">
-          <p className="label text-gold">Wayne, Pennsylvania · Est. 2026</p>
-
-          <h1 className="mt-5">
-            <span className="display block text-[22vw] text-cream sm:text-[7.5rem] lg:text-[8.5rem]">
-              Simo&apos;s
-            </span>
-            <span className="script -mt-1 block text-[7vw] text-gold sm:text-4xl lg:text-[2.75rem]">
-              of Wayne, Pa.
-            </span>
-          </h1>
-
-          <div className="rule-ornament mt-7 max-w-sm">
-            <span className="label whitespace-nowrap text-gold">{b.motto}</span>
-          </div>
-
-          <p className="mt-7 max-w-md text-[15px] leading-relaxed text-cream-dim sm:text-base">
-            A traditional barbershop on Lancaster Avenue. Clippers, shears and a
-            straight razor — and a barber who takes the time to get it right.
-          </p>
-
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <a
-              href="#book"
-              className="label flex items-center justify-center bg-gold px-7 py-4 text-ink transition-colors hover:bg-cream"
-            >
-              Request the first chair
-            </a>
-            <a
-              href={`tel:${b.phone.e164}`}
-              className="label flex items-center justify-center gap-2.5 border border-white/25 px-7 py-4 text-cream transition-colors hover:border-gold hover:text-gold"
-            >
-              <PhoneIcon className="h-4 w-4" />
-              {b.phone.display}
-            </a>
-          </div>
-        </div>
+      <div className="mt-8 flex w-full max-w-md flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row">
+        <a
+          href="#book"
+          className="label flex items-center justify-center whitespace-nowrap bg-gold px-8 py-4 text-ink transition-colors hover:bg-cream"
+        >
+          Book an appointment
+        </a>
+        <a
+          href={`tel:${b.phone.e164}`}
+          className="label flex items-center justify-center gap-2.5 whitespace-nowrap border border-white/25 px-8 py-4 text-cream transition-colors hover:border-gold hover:text-gold"
+        >
+          <PhoneIcon className="h-4 w-4" />
+          {b.phone.display}
+        </a>
       </div>
     </section>
   );
@@ -98,32 +80,47 @@ export function OpeningStrip() {
   const open = t !== null && t.d === 0 && t.h === 0 && t.m === 0;
 
   return (
-    <section className="border-y border-gold-dim/35 bg-ink-2">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-5 px-5 py-8 text-center sm:px-8 md:flex-row md:justify-between md:text-left">
-        <div>
-          <p className="label text-gold">{open ? "Now open" : "Doors open"}</p>
-          <p className="display mt-2 text-3xl text-cream sm:text-4xl">
-            {open ? "Come on in" : b.opensOnLabel}
-          </p>
-        </div>
+    <section className="relative flex min-h-[60svh] items-center overflow-hidden border-y border-gold-dim/35 lg:min-h-[68vh]">
+      {/* The real pole outside the shop, filmed on Lancaster Ave. */}
+      <video
+        className="absolute inset-0 h-full w-full object-cover"
+        src="/media/pole.mp4"
+        poster="/media/pole-poster.jpg"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="none"
+        aria-label="The barber pole lit outside Simo's on Lancaster Avenue"
+      />
+      <div className="absolute inset-0 bg-ink/72" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/70" />
+
+      <div className="relative mx-auto w-full max-w-6xl px-5 py-16 text-center sm:px-8">
+        <p className="label text-gold">{open ? "Now open" : "Doors open"}</p>
+        <p className="display mt-3 text-4xl text-cream sm:text-5xl">
+          {open ? "Come on in" : b.opensOnLabel}
+        </p>
 
         {/* Rendered only after mount — no server/client clock mismatch. */}
         {t && !open && (
-          <div className="flex items-start gap-7 sm:gap-10">
+          <div className="mt-9 flex items-start justify-center gap-9 sm:gap-14">
             {[
               { v: t.d, l: "Days" },
               { v: t.h, l: "Hours" },
               { v: t.m, l: "Minutes" },
             ].map((x) => (
-              <div key={x.l} className="text-center">
-                <span className="display block text-4xl tabular-nums text-cream sm:text-5xl">
+              <div key={x.l}>
+                <span className="display block text-5xl tabular-nums text-cream sm:text-6xl">
                   {String(x.v).padStart(2, "0")}
                 </span>
-                <span className="label mt-1.5 block text-cream-dim">{x.l}</span>
+                <span className="label mt-2 block text-cream-dim">{x.l}</span>
               </div>
             ))}
           </div>
         )}
+
+        <p className="script mt-10 text-xl text-gold sm:text-2xl">{b.motto}</p>
       </div>
     </section>
   );
@@ -144,7 +141,7 @@ export function Shop() {
           </h2>
           <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-cream-dim sm:text-base">
             <p>
-              Simo&apos;s is {b.barber.firstName}&apos;s shop — his name on the
+              Simo&apos;s is {b.barbers[0].shortName}&apos;s shop — his name on the
               door, his hands on the clippers. There&apos;s no front desk, no
               rotation, no getting whoever happens to be free. You sit in his
               chair, and he cuts your hair.
@@ -252,8 +249,8 @@ export function Details() {
               <img
                 src="/media/patent-pole.webp"
                 alt="Framed print of Walter F. Koken's 1916 barber pole patent, hanging in the shop"
-                width={560}
-                height={790}
+                width={720}
+                height={1101}
                 className="w-full bg-ink-2 object-cover"
                 loading="lazy"
               />
@@ -269,8 +266,8 @@ export function Details() {
               <img
                 src="/media/patent-clipper.webp"
                 alt="Framed print of Fred G. White's 1919 hair clipper patent, hanging in the shop"
-                width={560}
-                height={742}
+                width={720}
+                height={1062}
                 className="w-full bg-ink-2 object-cover"
                 loading="lazy"
               />
@@ -312,9 +309,16 @@ export function Visit() {
             <dl className="mt-12 space-y-8">
               <div>
                 <dt className="label text-gold">Hours</dt>
-                <dd className="mt-2.5 text-[15px] leading-relaxed text-cream-dim">
-                  Posted here the week the shop opens. Until then, call or send a
-                  request and {b.barber.firstName} will get back to you.
+                <dd className="mt-3 space-y-1.5">
+                  {hoursSummary().map((row) => (
+                    <div
+                      key={row.days}
+                      className="flex justify-between gap-6 border-b border-white/8 pb-1.5 text-[15px] last:border-0"
+                    >
+                      <span className="text-cream">{row.days}</span>
+                      <span className="text-cream-dim">{row.hours}</span>
+                    </div>
+                  ))}
                 </dd>
               </div>
               <div>

@@ -4,26 +4,28 @@ import { business } from "@/lib/business";
 /**
  * Booking requests.
  *
- * Nothing is stored. The request is turned into one notification and sent on.
- * Delivery is tried in order, and the first configured channel wins:
+ * Nothing is stored. A request becomes one notification and is sent on.
+ * Channels are tried in order and the first one configured wins:
  *
- *   1. SMS via Twilio   — env: TWILIO_SID, TWILIO_TOKEN, TWILIO_FROM
- *   2. Email via Resend — env: RESEND_API_KEY, NOTIFY_EMAIL (+ optional NOTIFY_FROM)
- *   3. Nothing configured — the request is logged and the caller is told
- *      delivery is not live yet. This is the preview default.
+ *   1. Email via Resend — env: RESEND_API_KEY  (+ NOTIFY_EMAIL, NOTIFY_FROM)
+ *   2. SMS via Twilio   — env: TWILIO_SID, TWILIO_TOKEN, TWILIO_FROM
+ *   3. Nothing configured — the request is logged and the caller is still told
+ *      it went through. This is the preview default.
  *
- * NOTIFY_PHONE overrides the number in lib/business.ts when set.
+ * NOTIFY_EMAIL should be John's address once we have it. Until it is set,
+ * requests fall back to `booking.fallbackEmail` so none are lost.
  */
 
 export const runtime = "nodejs";
 
-type Payload = Record<string, unknown>;
-
 const str = (v: unknown, max = 400) =>
   typeof v === "string" ? v.trim().slice(0, max) : "";
 
+const esc = (s: string) =>
+  s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]!);
+
 export async function POST(req: Request) {
-  let body: Payload;
+  let body: Record<string, unknown>;
   try {
     body = await req.json();
   } catch {
@@ -35,14 +37,15 @@ export async function POST(req: Request) {
 
   const name = str(body.name, 80);
   const phone = str(body.phone, 40);
+  const barber = str(body.barber, 60);
   const service = str(body.service, 60);
-  const day = str(body.day, 20);
-  const time = str(body.time, 30);
+  const dayLabel = str(body.dayLabel, 40);
+  const timeLabel = str(body.timeLabel, 20);
   const notes = str(body.notes, 600);
 
-  if (!name || !phone || !service) {
+  if (!name || !phone || !service || !dayLabel || !timeLabel) {
     return NextResponse.json(
-      { error: "Please add your name, mobile number and what you need." },
+      { error: "Please add your name, mobile number, service and a time." },
       { status: 422 },
     );
   }
@@ -53,18 +56,61 @@ export async function POST(req: Request) {
     );
   }
 
-  const to = process.env.NOTIFY_PHONE ?? business.booking.notifyPhone;
-  const message = [
-    `New booking request — ${business.name}`,
-    `${name} · ${phone}`,
-    `${service}`,
-    day ? `Preferred: ${day}${time ? ` · ${time}` : ""}` : time ? `Preferred: ${time}` : "",
+  const lines = [
+    `${dayLabel} at ${timeLabel}`,
+    `${service} with ${barber}`,
+    `${name} — ${phone}`,
     notes ? `Notes: ${notes}` : "",
-  ]
-    .filter(Boolean)
-    .join("\n");
+  ].filter(Boolean);
 
-  // 1 — SMS
+  const subject = `Booking — ${name}, ${dayLabel} ${timeLabel}`;
+  const text = `New appointment request for ${business.name}\n\n${lines.join("\n")}\n`;
+
+  // 1 — Email
+  const { RESEND_API_KEY, NOTIFY_EMAIL, NOTIFY_FROM } = process.env;
+  const to = NOTIFY_EMAIL || business.booking.notifyEmail || business.booking.fallbackEmail;
+
+  if (RESEND_API_KEY && to) {
+    try {
+      const res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: NOTIFY_FROM || "Simo's Booking <onboarding@resend.dev>",
+          to: [to],
+          subject,
+          text,
+          html:
+            `<h2 style="font-family:system-ui;margin:0 0 16px">New appointment request</h2>` +
+            `<table style="font-family:system-ui;font-size:15px;border-collapse:collapse">` +
+            [
+              ["When", `${dayLabel} at ${timeLabel}`],
+              ["Service", service],
+              ["Barber", barber],
+              ["Name", name],
+              ["Mobile", phone],
+              ...(notes ? [["Notes", notes]] : []),
+            ]
+              .map(
+                ([k, v]) =>
+                  `<tr><td style="padding:6px 18px 6px 0;color:#666">${k}</td>` +
+                  `<td style="padding:6px 0"><strong>${esc(v)}</strong></td></tr>`,
+              )
+              .join("") +
+            `</table>`,
+        }),
+      });
+      if (res.ok) return NextResponse.json({ ok: true, via: "email" });
+      console.error("resend", res.status, await res.text());
+    } catch (err) {
+      console.error("resend", err);
+    }
+  }
+
+  // 2 — SMS
   const { TWILIO_SID, TWILIO_TOKEN, TWILIO_FROM } = process.env;
   if (TWILIO_SID && TWILIO_TOKEN && TWILIO_FROM) {
     try {
@@ -76,7 +122,11 @@ export async function POST(req: Request) {
             Authorization: `Basic ${Buffer.from(`${TWILIO_SID}:${TWILIO_TOKEN}`).toString("base64")}`,
             "Content-Type": "application/x-www-form-urlencoded",
           },
-          body: new URLSearchParams({ To: to, From: TWILIO_FROM, Body: message }),
+          body: new URLSearchParams({
+            To: process.env.NOTIFY_PHONE || business.phone.e164,
+            From: TWILIO_FROM,
+            Body: text,
+          }),
         },
       );
       if (res.ok) return NextResponse.json({ ok: true, via: "sms" });
@@ -86,32 +136,7 @@ export async function POST(req: Request) {
     }
   }
 
-  // 2 — Email
-  const { RESEND_API_KEY, NOTIFY_EMAIL, NOTIFY_FROM } = process.env;
-  if (RESEND_API_KEY && NOTIFY_EMAIL) {
-    try {
-      const res = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${RESEND_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from: NOTIFY_FROM ?? "Simo's Booking <onboarding@resend.dev>",
-          to: [NOTIFY_EMAIL],
-          subject: `Booking request — ${name} · ${service}`,
-          text: message,
-          reply_to: NOTIFY_EMAIL,
-        }),
-      });
-      if (res.ok) return NextResponse.json({ ok: true, via: "email" });
-      console.error("resend", res.status, await res.text());
-    } catch (err) {
-      console.error("resend", err);
-    }
-  }
-
   // 3 — Preview: no channel wired yet.
-  console.log("[booking request — no delivery channel configured]\n" + message);
+  console.log(`[booking request — no delivery channel configured]\n${text}`);
   return NextResponse.json({ ok: true, via: "none" });
 }
