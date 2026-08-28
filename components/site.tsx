@@ -90,8 +90,8 @@ export function Badge({ className = "" }: IconProps) {
     <img
       src="/media/logo.webp"
       alt={`${b.fullName} — ${b.motto}`}
-      width={520}
-      height={520}
+      width={256}
+      height={256}
       className={className}
     />
   );
