@@ -23,8 +23,10 @@ Rules baked into that file:
 
 ## Booking
 
-The whole point of the site. `components/booking.tsx` walks five steps on one page — barber,
-service, day, time, details — and posts to `app/api/book/route.ts`.
+The whole point of the site. It sits beside the masthead, above the fold on desktop.
+`components/booking.tsx` takes service, day, time and details and posts to
+`app/api/book/route.ts`. The barber picker only appears once `barbers` has more
+than one entry — with a single chair it just says who you're booking with.
 
 `lib/schedule.ts` derives availability from `business.hours` alone:
 
@@ -59,29 +61,30 @@ requests fall back to `booking.fallbackEmail` in `lib/business.ts` so none are l
 SMS is written and waiting but needs a Twilio account plus 10DLC registration, which takes a
 few days to approve.
 
-## The turning pole
+## Design
 
-The landing page is the shop's own badge with the barber pole that forms the "i" in Simo's
-actually turning.
+Warm printed stock rather than a black screen. The shop's badge is a black stamp
+and reads best on paper, and keeping the page light leaves his own artwork as the
+only dark mass on it. One accent — the oxblood red taken out of the pole — carries
+the primary action and almost nothing else.
 
-`tools/build-logo.py` generates two files from the owner's logo:
+Source Serif 4 for headings, Instrument Sans for everything functional, hairline
+rules instead of cards and shadows. No gradients, no scroll animation, no
+countdown, no grain overlay: that combination is the house style of generated
+sites and it was making a real business look synthetic.
 
-- `public/media/logo.webp` — the whole badge, transparent outside the disc
-- `public/media/logo-shell.webp` — the same badge with the pole's **glass punched out**
+`tools/build-logo.py` produces `public/media/logo.webp` and the favicon from the
+owner's logo file. It cuts inside the white sticker ring on the source and
+repaints the pole's glass from measured geometry — the source badge is only 37px
+across there, and the redraw is noticeably crisper at the sizes the site uses.
+Point `SRC` at a new file and re-run if John supplies better artwork.
 
-`components/badge.tsx` stacks the shell over a CSS stripe layer showing through the hole. The
-stripes run along `phase = y + 0.67x` and repeat every 83 source px, so the gradient axis sits
-perpendicular to them (146.2°) and sliding the layer down by exactly one vertical period lands
-the pattern back on itself — a seamless loop, and the same illusion a real pole works by. The
-cylinder shading is a separate static overlay sampled off the original artwork, which is what
-keeps it reading as the badge rather than a cartoon.
-
-Doing the motion in CSS rather than baking frames keeps it sharp at any size, cut the asset
-from ~170KB to ~40KB, and makes speed and direction a one-line change in `globals.css`.
-
-`tools/build-logo.py` prints the hole's position as percentages; those numbers live in
-`components/badge.tsx` as `HOLE` and must be updated together. Point `SRC` at a new file and
-re-run if John supplies better artwork.
+**A note on CSS layers:** `@import "tailwindcss"` puts utilities in a cascade
+layer, so any unlayered rule in `globals.css` beats them regardless of
+specificity. Base resets live in `@layer base` and `.display`/`.label` in
+`@layer components` for exactly that reason — an unlayered `button { color:
+inherit }` silently overrode `text-paper` and turned the selected date chip
+black-on-black.
 
 ## Preview mode
 
@@ -89,7 +92,7 @@ re-run if John supplies better artwork.
 
 1. `noindex, nofollow` in metadata and `Disallow: /` in `robots.txt`, so the preview can never
    compete with or be mistaken for the shop in search.
-2. Shows the dismissible disclosure bar at the top.
+2. Shows the disclosure bar at the top.
 3. Shows the full disclosure paragraph in the footer.
 4. Tells anyone using the booking form that requests reach MJL, not the shop.
 
@@ -99,7 +102,7 @@ Flip it to `false` only when the site moves to Simo's own domain with John's go-
 
 Everything in `public/media/` is from the shop:
 
-- `pole.mp4` / `pole-poster.jpg` — the real pole out front, behind the opening countdown
+- `pole.mp4` / `pole-poster.jpg` — the real pole out front, in The Shop
 - `clock.webp` — the oak barber shop clock on the wall
 - `patent-pole.webp` — Koken's 1916 barber pole patent, framed in the shop
 - `patent-clipper.webp` — White's 1919 hair clipper patent, framed in the shop

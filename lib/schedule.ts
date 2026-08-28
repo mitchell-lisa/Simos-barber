@@ -139,19 +139,23 @@ export function slotsOn(iso: string): string[] {
 
 /** Hours grouped into runs, so the Visit panel reads "Mon–Sat 9–6". */
 export function hoursSummary(): { days: string; hours: string }[] {
+  // Monday first, the way a shop sign reads.
+  const order = [1, 2, 3, 4, 5, 6, 0];
   const rows: { days: string; hours: string }[] = [];
   let i = 0;
-  while (i < 7) {
-    const h = b.hours[i];
+  while (i < order.length) {
+    const h = b.hours[order[i]];
     let j = i;
     while (
-      j + 1 < 7 &&
-      JSON.stringify(b.hours[j + 1]) === JSON.stringify(h)
+      j + 1 < order.length &&
+      JSON.stringify(b.hours[order[j + 1]]) === JSON.stringify(h)
     ) {
       j++;
     }
     const days =
-      i === j ? DAY_LONG[i] : `${DAY_SHORT[i]}–${DAY_SHORT[j]}`;
+      i === j
+        ? DAY_LONG[order[i]]
+        : `${DAY_SHORT[order[i]]}–${DAY_SHORT[order[j]]}`;
     rows.push({
       days,
       hours: h ? `${displayTime(h.open)} – ${displayTime(h.close)}` : "Closed",

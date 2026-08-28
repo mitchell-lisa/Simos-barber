@@ -3,16 +3,11 @@ Build the Simo's badge assets from the owner's logo file.
 
 Outputs
   public/media/logo.webp        the whole badge, transparent outside the disc
-  public/media/logo-shell.webp  the same badge with the pole's glass punched out
   app/icon.png                  favicon
 
-The landing page stacks logo-shell.webp over a CSS-animated stripe layer, so the
-barber pole that forms the "i" in Simo's turns. Doing the motion in CSS instead
-of baking frames keeps it sharp at any size, cuts the asset from ~170KB to ~35KB,
-and makes the speed and direction a one-line change.
-
-This script prints the hole's position as percentages of the rendered badge —
-those numbers live in components/pole.tsx and must be updated together.
+The pole's glass is repainted from measured geometry rather than upscaled — the
+source badge is only 37px across there, and the redraw is noticeably crisper at
+the sizes the site uses it.
 """
 
 import os
@@ -26,7 +21,6 @@ OUT = "public/media"
 # ── geometry measured off the source file ────────────────────────────────────
 CX, CY = 359.29, 337.35    # centre of the disc (least-squares fit to the ring)
 R_DISC = 252               # the white sticker ring starts at ~256
-R_FADE = 231               # emblem artwork ends here; fade the dead band out
 
 # The pole's glass, bounded by the chrome rails at x≈258 and x≈298.
 GX0, GX1 = 260, 297
@@ -79,7 +73,9 @@ def main():
 
     yy, xx = np.mgrid[0:h, 0:w]
     rr = np.sqrt((xx - CX) ** 2 + (yy - CY) ** 2)
-    disc = 1.0 - smoothstep(float(R_FADE), float(R_DISC), rr)
+    # Hard edge with a single pixel of antialiasing: on a light page the badge
+    # reads as a crisp black stamp, so a soft fade would just look blurred.
+    disc = 1.0 - smoothstep(float(R_DISC) - 1.0, float(R_DISC), rr)
 
     x0, y0 = int(CX - R_DISC), int(CY - R_DISC)
     crop = (x0, y0, x0 + 2 * R_DISC + 1, y0 + 2 * R_DISC + 1)
@@ -96,18 +92,6 @@ def main():
     full = emit(disc, f"{OUT}/logo.webp", 90)
     full.resize((64, 64), Image.LANCZOS).save("app/icon.png", optimize=True)
     print(f"{'app/icon.png':34} {os.path.getsize('app/icon.png'):>7,} B")
-
-    # Punch the glass out for the animated version.
-    hole = disc.copy()
-    hole[GY0:GY1, GX0:GX1] = 0.0
-    emit(hole, f"{OUT}/logo-shell.webp", 92)
-
-    print("\n// components/pole.tsx — hole position, % of the badge box")
-    print(f"const HOLE = {{ left: {(GX0 - crop[0]) / side * 100:.3f}, "
-          f"top: {(GY0 - crop[1]) / side * 100:.3f}, "
-          f"width: {gw / side * 100:.3f}, height: {gh / side * 100:.3f} }};")
-    print(f"// glass box {gw}x{gh} source px, stripe period {PERIOD} px "
-          f"along phase = y + {SLOPE}x")
 
 
 if __name__ == "__main__":
