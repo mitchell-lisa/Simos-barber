@@ -14,3 +14,4 @@ out
 /x[0-9]*/
 /canvas/
 /y[0-9]*/
+tsconfig.tsbuildinfo
