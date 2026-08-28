@@ -1,33 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { Big_Shoulders, Instrument_Serif, Inter } from "next/font/google";
+import { Archivo, Bodoni_Moda } from "next/font/google";
 import { business } from "@/lib/business";
 import "./globals.css";
 
-const bigShoulders = Big_Shoulders({
+const bodoni = Bodoni_Moda({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  variable: "--font-big-shoulders",
+  weight: ["400", "500"],
+  variable: "--font-bodoni",
   display: "swap",
 });
 
-const instrument = Instrument_Serif({
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["italic"],
-  variable: "--font-instrument",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600"],
+  variable: "--font-archivo",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: business.seo.title,
   description: business.seo.description,
-  // A preview must never compete with, or be mistaken for, the real business in search.
+  // A preview must never compete with, or be mistaken for, the real business.
   robots: business.preview.active
     ? { index: false, follow: false }
     : { index: true, follow: true },
@@ -40,11 +33,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0b",
+  themeColor: "#0b0a09",
 };
 
 function LocalBusinessSchema() {
-  // Only facts we actually hold. No hours, no rating — the shop has not opened.
   const schema = {
     "@context": "https://schema.org",
     "@type": "BarberShop",
@@ -59,6 +51,21 @@ function LocalBusinessSchema() {
       postalCode: business.address.zip,
       addressCountry: "US",
     },
+    openingHoursSpecification: business.hours
+      .map((h, i) =>
+        h
+          ? {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: [
+                "Sunday", "Monday", "Tuesday", "Wednesday",
+                "Thursday", "Friday", "Saturday",
+              ][i],
+              opens: h.open,
+              closes: h.close,
+            }
+          : null,
+      )
+      .filter(Boolean),
     sameAs: [business.social.instagram.url],
     priceRange: "$$",
   };
@@ -76,10 +83,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${bigShoulders.variable} ${instrument.variable} ${inter.variable}`}
-    >
+    <html lang="en" className={`${bodoni.variable} ${archivo.variable}`}>
       <body>
         {children}
         <LocalBusinessSchema />

@@ -2,29 +2,28 @@ import { Booking } from "@/components/booking";
 import {
   Details,
   Hero,
-  OpeningStrip,
   Services,
   Shop,
+  TrustStrip,
   Visit,
 } from "@/components/sections";
-import { Footer, Header, PreviewBanner, StickyBar } from "@/components/site";
+import { Footer, Header, PreviewNotice } from "@/components/site";
 
 export default function Page() {
   return (
     <>
-      <PreviewBanner />
+      <PreviewNotice />
       <Header />
-      <main className="grain relative">
+      <main>
         <Hero />
-        <OpeningStrip />
-        <Shop />
+        <TrustStrip />
         <Services />
+        <Booking />
+        <Shop />
         <Details />
         <Visit />
-        <Booking />
       </main>
       <Footer />
-      <StickyBar />
     </>
   );
 }

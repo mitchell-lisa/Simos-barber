@@ -7,3 +7,9 @@ out
 /shots*/
 /media/
 /shot.mjs
+/final/
+/v[0-9]*/
+/probe.mjs
+/w[0-9]*/
+/x[0-9]*/
+/canvas/
