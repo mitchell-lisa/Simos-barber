@@ -10,6 +10,7 @@ import {
   RazorIcon,
   ScissorsIcon,
 } from "./site";
+import { VagaroWidget } from "./vagaro";
 
 /* ───────────────────────── hero ──────────────────────────────────────────── */
 
@@ -95,20 +96,31 @@ export function Book() {
           directly. First chairs available {b.opensOnLabel}.
         </p>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <BookButton>Book with {b.booking.provider}</BookButton>
-          <a
-            href={`tel:${b.phone.e164}`}
-            className="label inline-flex items-center justify-center gap-2.5 border border-hair-2 px-7 py-4 text-bone transition-colors hover:border-brass hover:text-brass-2"
-          >
-            <PhoneIcon className="h-4 w-4" />
-            {b.phone.display}
-          </a>
-        </div>
-
-        <p className="mx-auto mt-8 max-w-sm text-[13px] leading-relaxed text-bone-3">
-          Booking opens right here — you won&apos;t leave the page.
-        </p>
+        {b.booking.embedHtml ? (
+          <>
+            <div className="mx-auto mt-12 max-w-3xl border border-hair-2 shadow-2xl shadow-black/40">
+              <VagaroWidget html={b.booking.embedHtml} />
+            </div>
+            <a
+              href={`tel:${b.phone.e164}`}
+              className="mt-8 inline-flex items-center justify-center gap-2.5 text-sm text-bone-2 transition-colors hover:text-bone"
+            >
+              <PhoneIcon className="h-4 w-4" />
+              Rather just call? {b.phone.display}
+            </a>
+          </>
+        ) : (
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <BookButton>Book with {b.booking.provider}</BookButton>
+            <a
+              href={`tel:${b.phone.e164}`}
+              className="label inline-flex items-center justify-center gap-2.5 border border-hair-2 px-7 py-4 text-bone transition-colors hover:border-brass hover:text-brass-2"
+            >
+              <PhoneIcon className="h-4 w-4" />
+              {b.phone.display}
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -167,79 +179,6 @@ export function TrustStrip() {
             </div>
           );
         })}
-      </div>
-    </section>
-  );
-}
-
-/* ───────────────────────── services ──────────────────────────────────────── */
-
-const GROUP_ICONS: Record<string, typeof ScissorsIcon> = {
-  Cuts: ScissorsIcon,
-  "Shaves & Beards": RazorIcon,
-  Kids: ScissorsIcon,
-  Detail: CombIcon,
-};
-
-/**
- * His actual menu, set the way a barbershop sets a menu — name, what it is,
- * price on the right — rather than as a grid of feature cards. Eighteen
- * services will not fit in cards, and a price list is what people came for.
- */
-export function Services() {
-  return (
-    <section id="services" className="border-b border-hair">
-      <div className="mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-28">
-        <div className="text-center">
-          <p className="label text-brass">In the chair</p>
-          <h2 className="display mt-5 text-5xl text-bone sm:text-6xl">Services</h2>
-          <p className="mx-auto mt-6 max-w-md text-[15px] leading-relaxed text-bone-2">
-            Cuts, straight-razor work, and everything in between. Where a price
-            isn&apos;t listed, ask when you book.
-          </p>
-        </div>
-
-        <div className="mt-16 space-y-14">
-          {b.serviceGroups.map((group) => {
-            const Icon = GROUP_ICONS[group.name] ?? ScissorsIcon;
-            return (
-              <div key={group.name}>
-                <div className="flex items-center gap-3 border-b border-hair pb-4">
-                  <Icon className="h-6 w-6 shrink-0 text-brass" />
-                  <h3 className="label text-bone-2">{group.name}</h3>
-                </div>
-
-                <dl className="divide-y divide-hair">
-                  {group.items.map((s) => (
-                    <div
-                      key={s.name}
-                      className="flex items-baseline justify-between gap-6 py-5"
-                    >
-                      <div className="min-w-0">
-                        <dt className="display text-xl text-bone sm:text-2xl">
-                          {s.name}
-                        </dt>
-                        <dd className="mt-1.5 max-w-xl text-sm leading-relaxed text-bone-2">
-                          {s.blurb}
-                        </dd>
-                      </div>
-                      {/* Nothing renders when he has not set a price. */}
-                      {s.price !== null && (
-                        <p className="display shrink-0 text-xl text-brass-2 sm:text-2xl">
-                          ${s.price}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-16 text-center">
-          <BookButton />
-        </div>
       </div>
     </section>
   );

@@ -2,16 +2,12 @@
 
 import { business as b } from "@/lib/business";
 
-/** Fired when any booking action is pressed; BookingDialog listens for it. */
-export const BOOK_EVENT = "simos:book";
-
 /**
  * One brass action, repeated down the page.
  *
- * It is a real link to his Vagaro page, so it works with no JavaScript, opens
- * in a new tab from the middle-click / cmd-click people expect of a link, and
- * is crawlable. When the dialog is available the click is intercepted and the
- * booking widget opens over the page instead.
+ * It is a real link to his Vagaro page, so it works with JavaScript off, opens
+ * in a new tab on cmd/middle-click, and is crawlable. When the widget is
+ * embedded the click is intercepted and scrolls to it instead.
  */
 export function BookButton({
   className = "",
@@ -20,7 +16,7 @@ export function BookButton({
   className?: string;
   children?: React.ReactNode;
 }) {
-  const hasDialog = b.booking.embedHtml !== null;
+  const embedded = b.booking.embedHtml !== null;
 
   return (
     <a
@@ -28,12 +24,13 @@ export function BookButton({
       target="_blank"
       rel="noreferrer"
       onClick={
-        hasDialog
+        embedded
           ? (e) => {
-              // Let cmd/ctrl/middle-click through to the real Vagaro page.
               if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+              const el = document.getElementById("book");
+              if (!el) return; // no widget on the page — let the link do its job
               e.preventDefault();
-              window.dispatchEvent(new Event(BOOK_EVENT));
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
             }
           : undefined
       }

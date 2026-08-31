@@ -121,7 +121,7 @@ export function PreviewNotice() {
 
 const NAV = [
   { label: "The Shop", href: "#shop" },
-  { label: "Services", href: "#services" },
+  { label: "Book", href: "#book" },
   { label: "Visit", href: "#visit" },
 ];
 

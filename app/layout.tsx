@@ -72,6 +72,29 @@ function LocalBusinessSchema() {
       )
       .filter(Boolean),
     sameAs: [business.social.instagram.url, business.booking.url],
+    // The service menu is no longer printed on the page — the Vagaro widget
+    // shows it, and text inside an iframe is invisible to a crawler. Keeping it
+    // here means Google still gets the full menu, in his own wording, at zero
+    // cost to the page. Prices only where he has actually set one.
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Services",
+      itemListElement: business.serviceGroups.map((group) => ({
+        "@type": "OfferCatalog",
+        name: group.name,
+        itemListElement: group.items.map((s) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: s.name,
+            description: s.blurb,
+          },
+          ...(s.price !== null
+            ? { price: s.price, priceCurrency: "USD" }
+            : {}),
+        })),
+      })),
+    },
     // Tells Google where appointments are actually taken, which is what a
     // "Book" button in a local result hangs off.
     potentialAction: {
