@@ -1,103 +1,115 @@
-# Simo's of Wayne, Pa.
+# Simo's Barbering
 
-Barbershop at **240 Lancaster Ave, Wayne, PA 19087**. Opening **Tuesday, September 1, 2026**.
-Built by MJL Collective. The site exists to get appointments booked.
+Barbershop at **240 Lancaster Ave, Wayne, PA 19087**. Opened **Tuesday, September 1, 2026**.
+Built by MJL Collective. Lives at **simosbarbering.com**.
 
 Next.js 15 (App Router) · React 19 · TypeScript · Tailwind v4 · Vercel. No CMS, no database,
-no UI kit, no animation library.
+no UI kit, no animation library, no icon pack. Static, and no environment variables to run.
 
 ---
 
 ## The one file that matters
 
-**`lib/business.ts`** holds every business fact — name, phone, address, opening date, hours,
-barbers, services, preview flags. Change it there and it changes everywhere: page copy, the
-booking grid, the hours panel, the schema markup, the footer.
+**`lib/business.ts`** holds every business fact — name, phone, address, hours, barbers, the
+service menu, the rating, the booking config. Change it there and it changes everywhere: page
+copy, the hours panel, the schema markup, the footer.
 
 Rules baked into that file:
 
-- If a fact is unknown it is `null`, and the component renders nothing. No guesses.
-- `barbers` is an array. Add a second entry and the booking form grows a barber picker on its
-  own — nothing else needs touching.
-- `hours` is indexed 0 = Sunday. It drives both the Visit panel and every bookable slot.
+- If a fact is unknown it is `null`, and the component renders nothing. **No guesses.** Hours were
+  once assumed to be Mon–Sat 9–6; he is open seven days and every day was wrong.
+- `hours` is indexed 0 = Sunday.
+- Service `price` is `null` wherever Vagaro has none set. **Never print `$0.00`.** Only Classic
+  Cut ($50) and Beard Trim ($20) have real prices.
+- `signName` is what the painted sign and the logo say ("Simo's of Wayne, Pa."), which differs
+  from the business name. It exists so the logo's alt text describes the actual image.
 
 ## Booking
 
-**John takes appointments in Vagaro.** Every booking action on the site — the header button,
-the hero, the Book section, Services, The Shop, Visit, the footer — is the same `BookButton`
-pointing at `business.booking.url`, which opens `vagaro.com/simosbarbering` in a new tab.
+**John takes appointments in Vagaro, and the Vagaro widget is the services section.** It is
+embedded in the Book section, directly under the trust strip, and it is the main content of the
+page.
 
-There is deliberately **no booking form and no `/api/book` route**. The site used to carry its
-own form that emailed requests to MJL, built when John had no booking software. Now that he has
-a real calendar, a second intake path is not a feature, it is a defect: a customer who "books"
-here would not appear in Vagaro, and would arrive to a chair that was never held for them. One
-calendar, and it is his.
+There is deliberately **no booking form and no `/api/book` route**. The site used to carry a form
+that emailed requests to MJL, built when John had no booking software. A second intake path
+against a real calendar is not a feature, it is a defect: a customer who "books" here would never
+appear in Vagaro and would arrive to a chair nobody held. One calendar, and it is his. (If a
+future client has no booking software, the form and notification route are in git history at
+`2bf81c6`.)
 
-`lib/schedule.ts` is now only `hoursSummary()` and `displayTime()` — it renders the hours in
-`business.hours` and computes no availability, because the site cannot verify availability it
-does not own.
+`components/vagaro.tsx` injects `business.booking.embedHtml` and **re-creates any `<script>` it
+carries** — React will not execute one that arrives through `innerHTML`. The embed code is
+generated inside John's Vagaro account (Settings → Booking Widget → "In Website" → Copy Code); it
+is tied to his business ID and cannot be written by hand.
 
-If a future client has no booking software, the form and the notification route are in git
-history at commit `2bf81c6` and can be lifted back out.
+`components/book-button.tsx` is a real link to his Vagaro page — it works with JavaScript off,
+opens a new tab on cmd/middle-click, and is crawlable — and intercepts the click to scroll to the
+embedded widget.
 
-**Local SEO:** the `BarberShop` JSON-LD carries a `ReserveAction` pointing at Vagaro, which is
-what a "Book" button in a Google local result hangs off, and Vagaro is listed in `sameAs`.
-There is no `priceRange` — a guessed `$$` is a claim about his pricing we cannot support.
+`lib/schedule.ts` is only `hoursSummary()` and `displayTime()`. The site computes no availability
+it cannot verify.
+
+**A visible services list used to sit above the widget and was removed** — it was the same
+eighteen services twice, 64% of the page. Because crawlers cannot read text inside an iframe, the
+full menu now lives in the JSON-LD as a `hasOfferCatalog`, in his own wording. Google gets the
+menu; the page costs nothing to show it.
+
+## Reputation
+
+**5.0 from 78 reviews**, shown in the trust strip, attributed to Vagaro and linked. Deliberately
+**not** in the JSON-LD as `aggregateRating` — that markup is for reviews a site collects itself,
+and misusing it risks a rich-result penalty. There is no `priceRange` either: a guessed `$$` is a
+claim about his pricing we cannot support.
 
 ## Design
 
 **Direction: Chair & Mirror**, drawn from the two references the owner picked
-(heritagebarberco.com, barberandco.us). Both lead with photography on a dark
-ground, repeat one booking action down the whole page, and mark sections with
-the tools of the trade — so this does the same.
+(heritagebarberco.com, barberandco.us).
 
-- **Palette comes from the shop itself.** The room at 240 Lancaster is papered
-  in Art Deco gold fans on near-black with brass mirror frames, so the site is
-  warm near-black, bone, and a single brass accent. The brass appears on the
-  booking action and almost nowhere else.
-- **Type:** Bodoni Moda for headlines only, set large and tight; Archivo for
-  everything functional.
-- **The wallpaper is redrawn, not photographed.** `tools/build-pattern.py`
-  rebuilds the fan motif as a seamless SVG — a fan of rays on a half-offset
-  lozenge lattice — and writes it to `app/pattern.css` as a data URI. It is
-  about a kilobyte, crisp at any size, and tintable. Applied through `.deco`
-  behind the hero, the booking panel and the footer at 5–7% opacity.
-  (The photograph of the real wall is unusable: plastic still on the mirrors,
-  wires across the floor.)
+- **Palette comes from the shop itself.** The room at 240 Lancaster is papered in Art Deco gold
+  fans on near-black with brass mirror frames, so the site is warm near-black, bone, and a single
+  brass accent used on the booking action and almost nowhere else.
+- **Type:** Bodoni Moda for headlines only, set large and tight; Archivo for everything functional.
+- **The wallpaper is redrawn, not photographed.** `tools/build-pattern.py` rebuilds the fan motif
+  as a seamless SVG and writes it to `app/pattern.css` as a data URI — about a kilobyte, crisp at
+  any size, tintable. Applied through `.deco` at 5–7% opacity.
 - **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
-- **Photographs are bled, not framed.** Nothing sits in a bordered box with a
-  caption underneath — the pole runs off the right edge of the hero, the clock
-  off the right edge of The Shop, and the two patent drawings are the ground the
-  "Since 1916" section is written on. Each is dissolved with a gradient
-  `mask-image` (`.mesh-hero`, `.mesh-left`, `.mesh-band` in `globals.css`) and
-  graded down so it ends in the page instead of stopping at a border. Alt text
-  carries what the captions used to say.
-
-`tools/build-logo.py` is retired: the owner supplied clean high-resolution
-artwork, so `tools/` now holds the pattern generator and the logo is processed
-once. The caption baked into his file was removed by hue (the neutral white
-text goes, the warm gold arc behind it stays), then the artwork was
-un-multiplied off its black ground so it composites on any background.
-
-## Preview mode
-
-`business.preview.active === true` currently does four things:
-
-1. `noindex, nofollow` in metadata and `Disallow: /` in `robots.txt`, so the preview can never
-   compete with or be mistaken for the shop in search.
-2. Shows the disclosure bar at the top.
-3. Shows the full disclosure paragraph in the footer.
-
-Flip it to `false` only when the site moves to Simo's own domain with John's go-ahead.
+- **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The pole
+  runs off the right edge of the hero, the clock off the right edge of The Shop, and the two
+  patent drawings are the ground "Since 1916" is written on. Each is dissolved with a gradient
+  `mask-image` (`.mesh-hero`, `.mesh-left`, `.mesh-band` in `globals.css`).
 
 ## Media
 
-Everything in `public/media/` is from the shop:
+Everything in `public/media/` is from the shop.
 
-- `pole.mp4` / `pole-poster.jpg` — the real pole out front, in The Shop
-- `clock.webp` — the oak barber shop clock on the wall
-- `patent-pole.webp` — Koken's 1916 barber pole patent, framed in the shop
-- `patent-clipper.webp` — White's 1919 hair clipper patent, framed in the shop
+| File | What it is |
+|---|---|
+| `pole.webp` | The pole out front, turning — **animated WebP, 226KB** |
+| `pole-still.webp` | One frame of it, served under `prefers-reduced-motion` |
+| `clock.webp` | The oak barber shop clock on the wall |
+| `patent-pole.webp` | Koken's 1916 barber pole patent, framed in the shop |
+| `patent-clipper.webp` | White's 1919 hair clipper patent, framed in the shop |
+| `logo.webp` | His mark, 256px — sized to what it is drawn at, not what was supplied |
+
+**Why the pole is an animated image and not a `<video>`.** A video has to satisfy an autoplay
+policy: muted, `playsInline`, and even then iOS Low Power Mode and Safari's per-site autoplay
+setting will refuse it, leaving a frozen poster frame. An animated image has no policy to satisfy
+and no JavaScript. The cost is size, and format matters enormously here — the same 4.4s clip:
+
+| Format | Size |
+|---|---|
+| MP4 (what it was) | 79 KB |
+| **Animated WebP (what it is)** | **226 KB** |
+| GIF, reduced to 12fps / 420px | 4.1 MB |
+| GIF, full quality | 12 MB |
+
+A GIF was the obvious ask and the wrong format — 50× the video for a decorative background that
+renders at 25% opacity on a phone. The WebP is trimmed to 3s, 360px, 12fps, which is invisible
+behind `brightness-[0.62]` at that opacity.
+
+Since an animated image cannot be paused, `prefers-reduced-motion` is honoured with a `<picture>`
+`<source>` that swaps in the still frame. No JavaScript.
 
 ## Local development
 
@@ -107,12 +119,14 @@ npm run dev      # http://localhost:3000
 npm run build    # must pass before deploying
 ```
 
-## Still to confirm with John
+## Deployment
 
-- Spelling of his full name (currently "John Simonton", taken from his Instagram handle)
-- That (484) 678-9232 is the number he wants public
-- Real service menu and pricing — the six services listed are a proposal, not his menu
-- Whether the shop is "Simo's of Wayne, Pa." (the sign) or "Simo's Barbering" (his Vagaro
-  listing) — right now a customer meets two different names
-- That Mon–Sat 9–6 matches what he set in Vagaro
-- Photos of the interior, the chair, and finished cuts
+GitHub → Vercel, production branch **must** be set to the branch being pushed, or every deploy
+lands as a preview and has to be promoted by hand.
+
+## Still open with John
+
+- Prices for the sixteen services showing $0.00 in Vagaro
+- Shop photos — the hero and The Shop still carry the footage shot before opening
+- Whether he is solo, or staff should be added to `business.barbers`
+- A Google Business Profile, which he still does not have

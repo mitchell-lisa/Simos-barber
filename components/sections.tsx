@@ -26,16 +26,25 @@ export function Hero() {
         className="mesh-hero pointer-events-none absolute inset-0 lg:left-auto lg:w-[46%]"
         aria-hidden="true"
       >
-        <video
-          className="h-full w-full object-cover opacity-25 brightness-[0.62] contrast-[1.05] saturate-[0.85] lg:opacity-80"
-          src="/media/pole.mp4"
-          poster="/media/pole-poster.jpg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-        />
+        {/* An animated image rather than a <video>: it plays on every browser
+            and every phone with no autoplay policy to satisfy — no muted /
+            playsInline dance, no Low Power Mode exception, no JavaScript.
+            Anyone whose OS asks for reduced motion gets a still frame, since
+            an animated image cannot be paused. */}
+        <picture className="block h-full w-full">
+          <source
+            srcSet="/media/pole-still.webp"
+            media="(prefers-reduced-motion: reduce)"
+          />
+          <img
+            src="/media/pole.webp"
+            alt=""
+            width={360}
+            height={640}
+            decoding="async"
+            className="h-full w-full object-cover opacity-25 brightness-[0.62] contrast-[1.05] saturate-[0.85] lg:opacity-80"
+          />
+        </picture>
       </div>
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[minmax(0,38rem)_1fr] lg:py-32">
