@@ -163,7 +163,7 @@ export const business = {
     //
     // While this is null the Book section shows the button instead and every
     // booking action opens Vagaro in a new tab, so the site works either way.
-    embedHtml: null as string | null,
+    embedHtml: `<div id='frameTitle' class='embedded-widget-title' style='font-size: 23px; color: #333;font-family:Arial, Helvetica, sans-serif; line-height:24px; padding: 18px 10px 8px; text-align: center; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;'></div>\n<div class="vagaro" style="width:250px; padding:0; border:0; margin:0 auto; text-align:center;"><style>.vagaro a {font-size:14px; color:#AAA; text-decoration:none;}</style><a href="https://www.vagaro.com/pro/">Powered by Vagaro</a>&nbsp;<a href="https://www.vagaro.com/pro/salon-software">Salon Software</a>,&nbsp;<a href="https://www.vagaro.com/pro/spa-software">Spa Software</a>&nbsp;&amp;&nbsp;<a href="https://www.vagaro.com/pro/fitness-software">Fitness Software</a><script type="text/javascript" src="https://www.vagaro.com//resources/WidgetEmbeddedLoader/OZqqDpStE3GcT3qmV35y6RuRFXoSlXYO61Cq7fYO61WO4pkUcvCu7gevEhAJDXwOapcUbfY?v=Vv0DYplMCVhKzVlNOTR8Bm7V0zwQmdGcVt1jxTW0z9GW#"><\/script></div>` as string | null,
   },
 
   seo: {
