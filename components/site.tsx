@@ -108,11 +108,17 @@ export function BookButton({
   className?: string;
   children?: React.ReactNode;
 }) {
-  return (
-    <a
-      href="#book"
-      className={`label inline-flex items-center justify-center bg-brass px-7 py-4 text-ink transition-colors hover:bg-brass-2 ${className}`}
-    >
+  // With the widget embedded, every button scrolls to it. Without it, they go
+  // straight out to Vagaro. Either way there is one destination, never two.
+  const embedded = b.booking.embedHtml !== null;
+  const cls = `label inline-flex items-center justify-center bg-brass px-7 py-4 text-ink transition-colors hover:bg-brass-2 ${className}`;
+
+  return embedded ? (
+    <a href="#book" className={cls}>
+      {children}
+    </a>
+  ) : (
+    <a href={b.booking.url} target="_blank" rel="noreferrer" className={cls}>
       {children}
     </a>
   );

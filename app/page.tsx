@@ -1,5 +1,5 @@
-import { Booking } from "@/components/booking";
 import {
+  Book,
   Details,
   Hero,
   Services,
@@ -18,7 +18,7 @@ export default function Page() {
         <Hero />
         <TrustStrip />
         <Services />
-        <Booking />
+        <Book />
         <Shop />
         <Details />
         <Visit />

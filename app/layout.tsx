@@ -66,8 +66,24 @@ function LocalBusinessSchema() {
           : null,
       )
       .filter(Boolean),
-    sameAs: [business.social.instagram.url],
-    priceRange: "$$",
+    sameAs: [business.social.instagram.url, business.booking.url],
+    // Tells Google where appointments are actually taken, which is what a
+    // "Book" button in a local result hangs off.
+    potentialAction: {
+      "@type": "ReserveAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: business.booking.url,
+        inLanguage: "en-US",
+        actionPlatform: [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform",
+        ],
+      },
+      result: { "@type": "Reservation", name: "Book an appointment" },
+    },
+    // No priceRange until John gives us his menu — a guessed "$$" is a claim
+    // about his pricing that we cannot support.
   };
   return (
     <script

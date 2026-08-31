@@ -23,43 +23,26 @@ Rules baked into that file:
 
 ## Booking
 
-The whole point of the site. It sits beside the masthead, above the fold on desktop.
-`components/booking.tsx` takes service, day, time and details and posts to
-`app/api/book/route.ts`. The barber picker only appears once `barbers` has more
-than one entry — with a single chair it just says who you're booking with.
+**John takes appointments in Vagaro.** Every booking action on the site — the header button,
+the hero, the Book section, Services, The Shop, Visit, the footer — is the same `BookButton`
+pointing at `business.booking.url`, which opens `vagaro.com/simosbarbering` in a new tab.
 
-`lib/schedule.ts` derives availability from `business.hours` alone:
+There is deliberately **no booking form and no `/api/book` route**. The site used to carry its
+own form that emailed requests to MJL, built when John had no booking software. Now that he has
+a real calendar, a second intake path is not a feature, it is a defect: a customer who "books"
+here would not appear in Vagaro, and would arrive to a chair that was never held for them. One
+calendar, and it is his.
 
-- Everything is computed in **America/New_York**, never the visitor's timezone. Someone booking
-  from another state sees John's clock.
-- Dates are plain `YYYY-MM-DD` strings and times plain `HH:MM`, so no Date object crosses a
-  timezone boundary and daylight saving can't shift a slot.
-- Slots run from open to close at `booking.slotMinutes` (30), last start one slot before close.
-- Today drops anything inside `booking.leadTimeMinutes` (60), so nobody books a slot fifteen
-  minutes out while John is mid-cut.
-- Nothing before `opensOn` is bookable.
+`lib/schedule.ts` is now only `hoursSummary()` and `displayTime()` — it renders the hours in
+`business.hours` and computes no availability, because the site cannot verify availability it
+does not own.
 
-**What this is not:** a live calendar. Nothing is stored, so a slot stays selectable until John
-replies. The form says that in as many words, and the confirmation screen repeats it. Real
-booked-slot blocking needs a database — worth adding once he's actually turning people away.
+If a future client has no booking software, the form and the notification route are in git
+history at commit `2bf81c6` and can be lifted back out.
 
-### Where a request goes
-
-`app/api/book/route.ts` turns a request into one notification. Channels are tried in order and
-the first configured one wins:
-
-| Channel | Environment variables |
-|---|---|
-| Email (Resend) | `RESEND_API_KEY`, `NOTIFY_EMAIL`, optional `NOTIFY_FROM` |
-| SMS (Twilio) | `TWILIO_SID`, `TWILIO_TOKEN`, `TWILIO_FROM`, optional `NOTIFY_PHONE` |
-| None | nothing set — logged, and the visitor is still told it went through |
-
-**To go live:** get a Resend API key (free tier is fine), set `RESEND_API_KEY` and
-`NOTIFY_EMAIL` in Vercel → Settings → Environment Variables. Until `NOTIFY_EMAIL` is set,
-requests fall back to `booking.fallbackEmail` in `lib/business.ts` so none are lost.
-
-SMS is written and waiting but needs a Twilio account plus 10DLC registration, which takes a
-few days to approve.
+**Local SEO:** the `BarberShop` JSON-LD carries a `ReserveAction` pointing at Vagaro, which is
+what a "Book" button in a Google local result hangs off, and Vagaro is listed in `sameAs`.
+There is no `priceRange` — a guessed `$$` is a claim about his pricing we cannot support.
 
 ## Design
 
@@ -104,7 +87,6 @@ un-multiplied off its black ground so it composites on any background.
    compete with or be mistaken for the shop in search.
 2. Shows the disclosure bar at the top.
 3. Shows the full disclosure paragraph in the footer.
-4. Tells anyone using the booking form that requests reach MJL, not the shop.
 
 Flip it to `false` only when the site moves to Simo's own domain with John's go-ahead.
 
@@ -129,7 +111,8 @@ npm run build    # must pass before deploying
 
 - Spelling of his full name (currently "John Simonton", taken from his Instagram handle)
 - That (484) 678-9232 is the number he wants public
-- **His email address**, for `NOTIFY_EMAIL`
 - Real service menu and pricing — the six services listed are a proposal, not his menu
-- That Mon–Sat 9–6 is right, and how he wants holidays handled
+- Whether the shop is "Simo's of Wayne, Pa." (the sign) or "Simo's Barbering" (his Vagaro
+  listing) — right now a customer meets two different names
+- That Mon–Sat 9–6 matches what he set in Vagaro
 - Photos of the interior, the chair, and finished cuts
