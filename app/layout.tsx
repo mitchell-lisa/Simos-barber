@@ -18,8 +18,10 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(business.url),
   title: business.seo.title,
   description: business.seo.description,
+  alternates: { canonical: "/" },
   // A preview must never compete with, or be mistaken for, the real business.
   robots: business.preview.active
     ? { index: false, follow: false }
@@ -27,6 +29,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: business.seo.title,
     description: business.seo.description,
+    url: business.url,
+    siteName: business.fullName,
     type: "website",
     locale: "en_US",
   },
@@ -41,6 +45,7 @@ function LocalBusinessSchema() {
     "@context": "https://schema.org",
     "@type": "BarberShop",
     name: business.fullName,
+    url: business.url,
     slogan: business.motto,
     telephone: business.phone.display,
     address: {

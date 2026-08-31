@@ -1,5 +1,5 @@
 /**
- * SIMO'S OF WAYNE, PA — business configuration
+ * SIMO'S BARBERING, WAYNE PA — business configuration
  *
  * This is the ONLY file that holds business facts. Change it here, it changes
  * everywhere — the page copy, the booking grid, the schema markup, the footer.
@@ -15,9 +15,19 @@ export const business = {
   id: "simos-of-wayne",
 
   // ── Identity ──────────────────────────────────────────────────────────────
+  // The business is "Simo's Barbering" — the name on his Vagaro listing and on
+  // the domain. One name across the site, Vagaro, Instagram and (once it
+  // exists) Google, because inconsistent naming actively hurts local search.
   name: "Simo's",
-  fullName: "Simo's of Wayne, Pa.",
+  fullName: "Simo's Barbering",
+  // The painted sign and the logo artwork still read "Simo's of Wayne, Pa."
+  // That is what the mark says, so it is what the mark's alt text says.
+  signName: "Simo's of Wayne, Pa.",
   motto: "We Serve You",
+
+  // ── Domain ────────────────────────────────────────────────────────────────
+  domain: "simosbarbering.com",
+  url: "https://simosbarbering.com",
 
   // ── Opening ───────────────────────────────────────────────────────────────
   opensOn: "2026-09-01T09:00:00-04:00",
@@ -150,10 +160,6 @@ export const business = {
   booking: {
     provider: "Vagaro",
     url: "https://www.vagaro.com/simosbarbering",
-    // The name on his Vagaro listing, which differs from the name on the shop
-    // sign — worth reconciling with him before this goes on a real domain.
-    listingName: "Simo's Barbering",
-
     // Vagaro's embedded booking widget, so people book without leaving.
     //
     // John generates this himself: Vagaro → Settings → Booking Widget →
@@ -167,16 +173,18 @@ export const business = {
   },
 
   seo: {
-    title: "Simo's of Wayne, Pa. — Book a Barber on Lancaster Ave",
+    title: "Simo's Barbering — Barbershop in Wayne, PA",
     description:
-      "Book a chair at Simo's, a traditional barbershop at 240 Lancaster Ave in Wayne, Pennsylvania. Haircuts, beard work and straight-razor shaves. Walk-ins welcome, open seven days.",
+      "Simo's Barbering is a traditional barbershop at 240 Lancaster Ave in Wayne, Pennsylvania. Haircuts, beard work and straight-razor shaves with John Simonton. Walk-ins welcome, open seven days. Book online.",
   },
 
   // ── Preview mode ──────────────────────────────────────────────────────────
   preview: {
-    // While true: noindex, disclosure banner, and the booking form says plainly
-    // that requests reach MJL rather than the shop.
-    active: true,
+    // Turned OFF 2026-08-31. John has seen the site, approved it, sent his own
+    // Vagaro booking code, and the business now owns simosbarbering.com — so
+    // this is the shop's real website, not a speculative preview. Off means:
+    // indexable, no disclosure bar, no disclosure paragraph.
+    active: false,
     builtBy: "Mitchell Lisa",
     builtByEmail: "meetme@cornerof.com",
   },

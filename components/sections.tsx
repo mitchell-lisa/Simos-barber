@@ -285,16 +285,15 @@ export function Shop() {
         <div className="lg:max-w-md">
           <p className="label text-brass">The Shop</p>
           <h2 className="display mt-5 text-5xl text-bone sm:text-6xl">
-            One barber,
+            His name
             <br />
-            one chair.
+            on the door.
           </h2>
           <div className="mt-8 space-y-5 text-[1.0625rem] leading-relaxed text-bone-2">
             <p>
               Simo&apos;s is {b.barbers[0].shortName}&apos;s shop — his name on
-              the door, his hands on the clippers. No front desk, no rotation,
-              no getting whoever happens to be free. You sit in his chair, and
-              he cuts your hair.
+              the door and his hands on the clippers, with {b.reviews.count} five-star
+              reviews behind him before he ever opened it.
             </p>
             <p>
               The room is on Lancaster Avenue in Wayne, with the pole lit out
