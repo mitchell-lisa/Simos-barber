@@ -10,7 +10,6 @@ import {
   RazorIcon,
   ScissorsIcon,
 } from "./site";
-import { VagaroWidget } from "./vagaro";
 
 /* ───────────────────────── hero ──────────────────────────────────────────── */
 
@@ -96,31 +95,20 @@ export function Book() {
           directly. First chairs available {b.opensOnLabel}.
         </p>
 
-        {b.booking.embedHtml ? (
-          <>
-            <div className="mx-auto mt-12 max-w-3xl border border-hair-2 shadow-2xl shadow-black/40">
-              <VagaroWidget html={b.booking.embedHtml} />
-            </div>
-            <a
-              href={`tel:${b.phone.e164}`}
-              className="mt-8 inline-flex items-center justify-center gap-2.5 text-sm text-bone-2 transition-colors hover:text-bone"
-            >
-              <PhoneIcon className="h-4 w-4" />
-              Rather just call? {b.phone.display}
-            </a>
-          </>
-        ) : (
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <BookButton>Book on {b.booking.provider}</BookButton>
-            <a
-              href={`tel:${b.phone.e164}`}
-              className="label inline-flex items-center justify-center gap-2.5 border border-hair-2 px-7 py-4 text-bone transition-colors hover:border-brass hover:text-brass-2"
-            >
-              <PhoneIcon className="h-4 w-4" />
-              {b.phone.display}
-            </a>
-          </div>
-        )}
+        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <BookButton>Book with {b.booking.provider}</BookButton>
+          <a
+            href={`tel:${b.phone.e164}`}
+            className="label inline-flex items-center justify-center gap-2.5 border border-hair-2 px-7 py-4 text-bone transition-colors hover:border-brass hover:text-brass-2"
+          >
+            <PhoneIcon className="h-4 w-4" />
+            {b.phone.display}
+          </a>
+        </div>
+
+        <p className="mx-auto mt-8 max-w-sm text-[13px] leading-relaxed text-bone-3">
+          Booking opens right here — you won&apos;t leave the page.
+        </p>
       </div>
     </section>
   );
