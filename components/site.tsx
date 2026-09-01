@@ -120,6 +120,7 @@ export function PreviewNotice() {
 /* ───────────────────────── header ────────────────────────────────────────── */
 
 const NAV = [
+  { label: "Menu", href: "#menu" },
   { label: "The Shop", href: "#shop" },
   { label: "Book", href: "#book" },
   { label: "Visit", href: "#visit" },
@@ -147,12 +148,17 @@ export function Header() {
       </div>
 
       <header className="sticky top-0 z-40 border-b border-hair bg-ink/95 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center gap-5 px-5 py-3.5 sm:px-8">
-          <a href="#top" className="flex items-center gap-3" aria-label={b.fullName}>
-            <Badge className="h-11 w-11 shrink-0" />
-            <span className="display hidden text-xl text-bone sm:block">
-              {b.fullName}
-            </span>
+        <div className="mx-auto flex max-w-6xl items-center gap-5 px-5 py-2.5 sm:px-8">
+          <a href="#top" className="flex items-center" aria-label={b.fullName}>
+            {/* His wordmark, the pole for the I — the same lettering as the
+                painted door. The round emblem lives in the footer. */}
+            <img
+              src="/media/wordmark.webp"
+              alt={b.signName}
+              width={1000}
+              height={556}
+              className="h-16 w-auto sm:h-20"
+            />
           </a>
 
           <nav className="ml-auto hidden items-center gap-9 md:flex">

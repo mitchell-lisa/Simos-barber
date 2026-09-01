@@ -1,66 +1,85 @@
 """
 Redraw the shop's wallpaper as a seamless SVG.
 
-The room at 240 Lancaster is papered in an Art Deco fan — gold rays on near
-black, tessellated so each fan's apex sits between the two fans below it. The
-photograph of it is unusable (plastic still on the mirrors, wires on the floor),
-but the geometry is simple enough to rebuild: a fan of straight rays from a
-point, plus a solid centre leaf, laid on a half-offset grid.
+The room at 240 Lancaster is papered in an Art Deco sunburst — gold on near
+black. Measured from a straight-on photograph of it (2026-09-01):
+
+  * The wall is a lattice of thick gold diagonals forming diamonds that are
+    very nearly a square stood on its corner — a touch taller than wide.
+  * Each diamond holds a fan of thinner rays from its bottom corner. The ray
+    tips are evenly spaced along the diamond's two upper edges: six rays a
+    side at one-seventh steps, plus a centre ray to the top corner; the
+    seventh step is the lattice line itself. So the rays crowd together at
+    the top and open out toward the sides, and the widest gap sits against
+    the diagonal.
+  * The rays are about a hundredth of the diamond's width; the lattice lines
+    about twice that. Nothing is filled — no leaf, no solid apex — the rays
+    just merge where they meet.
+  * The top corner of every diamond is the bottom corner of the one above, so
+    each column of fans stacks point to point, and the columns are offset by
+    half a diamond.
 
 Rebuilding rather than tiling the photo means it is crisp at any size, weighs
-about a kilobyte, and can be tinted to any brass the page needs.
+a few kilobytes, and can be tinted to any brass the page needs.
 
 Writes the finished pattern to app/pattern.css as a base64 data URI.
 """
 
 import base64
-import math
 
-W, ROW = 110.0, 150.0      # one cell: a tall lozenge, as on the wall
-H = ROW * 2                # tile holds two rows so the half-offset repeats
-RAYS = 13                  # rays per fan
-SPREAD = 0.98              # how wide the fan opens, as a fraction of the cell
+W = 180.0                  # one diamond, which is also the tile width
+H = 190.0                  # a touch taller than wide, as on the wall
+SIDE_RAYS = 6              # rays each side of the centre ray
+STEPS = SIDE_RAYS + 1      # tip spacing along an upper edge; step 7 is the lattice
+RAY_W, LATTICE_W = 1.9, 3.4
 GOLD = "#b0873f"
 
 
+def seg(x1: float, y1: float, x2: float, y2: float) -> str:
+    return f'<line x1="{x1:.2f}" y1="{y1:.2f}" x2="{x2:.2f}" y2="{y2:.2f}"/>'
+
+
 def fan(cx: float, cy: float) -> list[str]:
-    """One fan: rays from an apex, plus the solid leaf up its middle."""
+    """The rays of one diamond, from its bottom corner (cx, cy)."""
+    top = (cx, cy - H)
     parts = []
-    for i in range(RAYS):
-        t = (i / (RAYS - 1)) * 2 - 1                     # -1 … 1
-        # Ray tips trace the lozenge: full height at the centre, half height
-        # at the left and right vertices. Straight edges, not a scallop.
-        drop = 1.0 - abs(t) * 0.5
-        x = cx + t * (W / 2) * SPREAD
-        y = cy - ROW * drop
-        parts.append(
-            f'<line x1="{cx:.2f}" y1="{cy:.2f}" x2="{x:.2f}" y2="{y:.2f}"/>'
-        )
-    tip, waist = cy - ROW * 0.92, cy - ROW * 0.46
-    parts.append(
-        f'<path d="M{cx:.2f} {cy:.2f}'
-        f'L{cx - 5.2:.2f} {waist:.2f}L{cx:.2f} {tip:.2f}'
-        f'L{cx + 5.2:.2f} {waist:.2f}Z" fill="{GOLD}" stroke="none"/>'
-    )
+    for k in range(-SIDE_RAYS, SIDE_RAYS + 1):
+        f = abs(k) / STEPS
+        side = (cx + (W / 2 if k > 0 else -W / 2), cy - H / 2)
+        tip = (top[0] + f * (side[0] - top[0]), top[1] + f * (side[1] - top[1]))
+        parts.append(seg(cx, cy, *tip))
     return parts
 
 
 def build() -> str:
-    body: list[str] = []
-    # Two rows, the upper offset half a cell from the lower, with the
-    # neighbours either side drawn in so the tile repeats without a seam.
-    for cx in (0.0, W, -W):
-        body += fan(cx, H)          # lower row, apexes on the tile edge
-    for cx in (-W / 2, W / 2, W * 1.5):
-        body += fan(cx, ROW)        # upper row, offset by half a cell
+    # Every diamond that touches the tile: the one that sits inside it, the
+    # two either side (offset half a cell), and the three above whose rays
+    # reach down into the tile's top corners. The viewBox clips the rest.
+    apexes = [
+        (W / 2, H), (0.0, H / 2), (W, H / 2),
+        (W / 2, 2 * H), (0.0, 1.5 * H), (W, 1.5 * H),
+    ]
+    rays: list[str] = []
+    for cx, cy in apexes:
+        rays += fan(cx, cy)
+
+    # The lattice: the diamond inside the tile, whose four edges continue as
+    # the edges of its neighbours. Each segment ends exactly on the tile
+    # boundary, where the next tile's segment picks it up on the same line.
+    lattice = [
+        seg(0, H / 2, W / 2, 0),
+        seg(W / 2, 0, W, H / 2),
+        seg(W, H / 2, W / 2, H),
+        seg(W / 2, H, 0, H / 2),
+    ]
 
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W:g}" height="{H:g}" '
         f'viewBox="0 0 {W:g} {H:g}">'
-        f'<g stroke="{GOLD}" stroke-width="1.6" fill="none" '
-        f'stroke-linecap="round">'
-        + "".join(body)
-        + "</g></svg>"
+        f'<g stroke="{GOLD}" fill="none">'
+        f'<g stroke-width="{RAY_W}">' + "".join(rays) + "</g>"
+        f'<g stroke-width="{LATTICE_W}">' + "".join(lattice) + "</g>"
+        "</g></svg>"
     )
 
 
@@ -69,12 +88,12 @@ def main() -> None:
     uri = "data:image/svg+xml;base64," + base64.b64encode(svg.encode()).decode()
 
     css = f"""/* Generated by tools/build-pattern.py — do not edit by hand.
-   The Art Deco fan from the shop's own wallpaper, redrawn so it stays crisp
-   at any size. Applied through .deco, which controls only opacity and scale. */
+   The Art Deco sunburst from the shop's own wallpaper, redrawn so it stays
+   crisp at any size. Applied through .deco, which controls only opacity. */
 .deco {{
   background-image: url("{uri}");
   background-repeat: repeat;
-  background-size: 110px 300px;
+  background-size: {W:g}px {H:g}px;
 }}
 """
     with open("app/pattern.css", "w") as f:
@@ -84,10 +103,10 @@ def main() -> None:
     with open("/tmp/pattern-preview.html", "w") as f:
         f.write(
             '<body style="margin:0;background:#0b0a09">'
-            f'<div style="height:420px;background:url({uri}) repeat;'
-            'background-size:110px 300px"></div>'
-            f'<div style="height:220px;opacity:.14;background:url({uri}) repeat;'
-            'background-size:180px 491px"></div></body>'
+            f'<div style="height:560px;background:url({uri}) repeat;'
+            f'background-size:{W:g}px {H:g}px"></div>'
+            f'<div style="height:200px;opacity:.06;background:url({uri}) repeat;'
+            f'background-size:{W:g}px {H:g}px"></div></body>'
         )
 
 

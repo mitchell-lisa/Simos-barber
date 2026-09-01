@@ -10,6 +10,16 @@
  */
 
 export type DayHours = { open: string; close: string } | null;
+export type BarberPhoto = { src: string; alt: string; width: number; height: number };
+export type MenuLine = {
+  name: string;
+  /** Small parenthetical after the name, as the door has it. */
+  sub?: string;
+  blurb: string | null;
+  price: number | null;
+  /** Painted in red on the door rather than cream. */
+  accent?: boolean;
+};
 
 export const business = {
   id: "simos-of-wayne",
@@ -79,6 +89,15 @@ export const business = {
       name: "John Simonton",
       shortName: "John",
       role: "Owner · Master Barber",
+      // His own photo, taken in the shop 2026-09-01 — comb and shears in
+      // hand, the tin ceiling behind him. Rotated upright and stripped of
+      // the phone's location data before it went in. Null renders nothing.
+      photo: {
+        src: "/media/john.webp",
+        alt: "John Simonton, comb and shears in hand, in the shop at 240 Lancaster Ave",
+        width: 1000,
+        height: 1333,
+      } as BarberPhoto | null,
     },
   ],
 
@@ -89,30 +108,34 @@ export const business = {
   //
   // `price` is null wherever Vagaro shows $0.00, meaning he has not set one.
   // Null renders nothing. NEVER print $0.00, and never invent a number.
+  //
+  // Prices filled in 2026-09-01 from the menu he painted on the shop door
+  // (see `menu` below) — his own sign, in his own hand, marked "tax incl."
+  // Vagaro still shows $0.00 for most of these; the door is the better source.
   serviceGroups: [
     {
       name: "Cuts",
       items: [
         { name: "Classic Cut", price: 50, blurb: "Precision cut, wash, and style." },
-        { name: "New Classic", price: null, blurb: "Precision cut, wash style, w/aroma therapy, hot towel, and scalp treatment" },
-        { name: "Mainliner", price: null, blurb: "Precision Cut and Beard Trim" },
-        { name: "The Shebang", price: null, blurb: "That's right, the WHOLE one. Inquire with John." },
+        { name: "New Classic", price: 65, blurb: "Precision cut, wash style, w/aroma therapy, hot towel, and scalp treatment" },
+        { name: "Mainliner", price: 60, blurb: "Precision Cut and Beard Trim" },
+        { name: "The Shebang", price: 175, blurb: "That's right, the WHOLE one. Inquire with John." },
       ],
     },
     {
       name: "Shaves & Beards",
       items: [
-        { name: "Shave (beard trim included)", price: null, blurb: "Hot towel, hot lather, straight razor shave. Close and comfortable." },
+        { name: "Shave (beard trim included)", price: 40, blurb: "Hot towel, hot lather, straight razor shave. Close and comfortable." },
         { name: "Beard Trim", price: 20, blurb: "All clipper trimming and detail of any and all facial hair" },
-        { name: "Beard Champ", price: null, blurb: "The ultimate beard experience, for medium and long beards only. We wash, condition, and straighten the beard using our own house-made beard products. Relaxing hot towels and straight razor finish." },
-        { name: "Simo's Custom", price: null, blurb: "Our shave incorporating custom, fresh made shaving products with facial exfoliation, black mask, and clay post-mask. Ultimate relaxation." },
-        { name: "Head Shave", price: null, blurb: "Straight shave with post-mask" },
+        { name: "Beard Champ", price: 55, blurb: "The ultimate beard experience, for medium and long beards only. We wash, condition, and straighten the beard using our own house-made beard products. Relaxing hot towels and straight razor finish." },
+        { name: "Simo's Custom", price: 80, blurb: "Our shave incorporating custom, fresh made shaving products with facial exfoliation, black mask, and clay post-mask. Ultimate relaxation." },
+        { name: "Head Shave", price: 40, blurb: "Straight shave with post-mask" },
       ],
     },
     {
       name: "Kids",
       items: [
-        { name: "Classic Kid's Cut (ages 12 and under)", price: null, blurb: "We absolutely love the young bucks! Precision cut with wash upon request." },
+        { name: "Classic Kid's Cut (ages 12 and under)", price: 40, blurb: "We absolutely love the young bucks! Precision cut with wash upon request." },
         { name: "Brother Bundle (2 kids)", price: null, blurb: "Discounted service" },
         { name: "Brother Bundle (3 kids)", price: null, blurb: "Discounted service" },
         { name: "Brother Bundle (4 kids)", price: null, blurb: "Discounted service" },
@@ -129,6 +152,33 @@ export const business = {
       ],
     },
   ],
+
+  // ── The door ──────────────────────────────────────────────────────────────
+  // The menu as he painted it on the shop's back door, photographed
+  // 2026-09-01: twelve lines, his wording and his prices, "tax incl." This is
+  // what the Menu section draws — not the Vagaro list above, which is longer
+  // and reads like a database. Order and spelling are the door's. A null
+  // price is a line the door prints without one (color and wax are quoted
+  // in the chair). `accent` marks the two prices he painted in red.
+  // Beard Trim's price is hidden behind the door handle in the photo; $20 is
+  // from Vagaro, where it has always been set.
+  menu: {
+    note: "Tax incl.",
+    items: [
+      { name: "Classic Cut", blurb: "Precision cut, wash, style", price: 50 },
+      { name: "New Classic", blurb: "Precision cut, wash, style w/ aroma therapy, hot towel & scalp treatment", price: 65 },
+      { name: "Mainliner", blurb: "Precision cut & beard trim — the ultimate “shape up”. No frills.", price: 60 },
+      { name: "Shave", sub: "beard trim incl.", blurb: "Hot towel, hot lather straight razor shave. Close & comfortable.", price: 40 },
+      { name: "Head Shave", blurb: "Straight “shave” w/ post-mask", price: 40, accent: true },
+      { name: "Simo’s Custom", blurb: "Custom “shave” w/ house made products, aroma therapy, exfoliation, post-mask", price: 80 },
+      { name: "Beard Trim", blurb: "All electric, detailed trimming of any and all facial hair. Super shaver finish.", price: 20 },
+      { name: "Beard Champ", blurb: null, price: 55 },
+      { name: "The Shebang", blurb: "That’s right… the WHOLE one!! Inquire w/ John", price: 175, accent: true },
+      { name: "Classic Kids", sub: "12 & under", blurb: "“Brother bundle” discounts", price: 40 },
+      { name: "Color Services", blurb: null, price: null },
+      { name: "Wax Services", blurb: null, price: null },
+    ] as MenuLine[],
+  },
 
   // ── Reputation ────────────────────────────────────────────────────────────
   // Real and checkable: this is the rating on his own Vagaro listing, read

@@ -1,7 +1,7 @@
 import {
   Book,
-  Details,
   Hero,
+  Menu,
   Shop,
   TrustStrip,
   Visit,
@@ -16,9 +16,9 @@ export default function Page() {
       <main>
         <Hero />
         <TrustStrip />
+        <Menu />
         <Book />
         <Shop />
-        <Details />
         <Visit />
       </main>
       <Footer />

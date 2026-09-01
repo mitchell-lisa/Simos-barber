@@ -18,6 +18,15 @@
 
   --font-display: var(--font-bodoni), "Didot", Georgia, serif;
   --font-body: var(--font-archivo), system-ui, -apple-system, sans-serif;
+  /* The painted door: hand-lettered caps for the names, brush-printed caps
+     for the lines underneath. Only the Menu section uses them. */
+  --font-sign: var(--font-sign), "Fredericka the Great", Georgia, serif;
+  --font-hand: var(--font-hand), "Walter Turncoat", "Comic Sans MS", cursive;
+
+  /* The door's own colours: the cream the descriptions and price ovals are
+     painted in, and the red he used on two of the prices. */
+  --color-cream: #e6dcc3;
+  --color-paint-red: #c2573c;
 }
 
 @layer base {
@@ -125,8 +134,8 @@
   }
 
   .mesh-left {
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 26%);
+    mask-image: linear-gradient(to bottom, transparent, #000 26%);
   }
   @media (min-width: 1024px) {
     .mesh-left {
@@ -135,9 +144,10 @@
     }
   }
 
-  .mesh-band {
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 26%, #000 74%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, #000 26%, #000 74%, transparent);
+  /* A photograph that ends in the page below it. */
+  .mesh-down {
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
   }
 
   /* Brass hairline with a diamond, used to separate major sections. */
