@@ -21,31 +21,22 @@ export function Hero() {
       {/* The shop's own wallpaper, redrawn — barely there, but it is his room. */}
       <div className="deco pointer-events-none absolute inset-0 opacity-[0.05]" aria-hidden="true" />
 
-      {/* His pole, dissolved into the page: full bleed behind the type on a
-          phone, running off the right edge on a wide screen. */}
+      {/* The room, dissolved into the page: full bleed behind the type on a
+          phone, running off the right edge on a wide screen. The chairs,
+          the mirrors, the wallpaper and the black door — "Sit down" is
+          written over the thing it means. */}
       <div
         className="mesh-hero pointer-events-none absolute inset-0 lg:left-auto lg:w-[46%]"
         aria-hidden="true"
       >
-        {/* An animated image rather than a <video>: it plays on every browser
-            and every phone with no autoplay policy to satisfy — no muted /
-            playsInline dance, no Low Power Mode exception, no JavaScript.
-            Anyone whose OS asks for reduced motion gets a still frame, since
-            an animated image cannot be paused. */}
-        <picture className="block h-full w-full">
-          <source
-            srcSet="/media/pole-still.webp"
-            media="(prefers-reduced-motion: reduce)"
-          />
-          <img
-            src="/media/pole.webp"
-            alt=""
-            width={360}
-            height={640}
-            decoding="async"
-            className="h-full w-full object-cover opacity-25 brightness-[0.62] contrast-[1.05] saturate-[0.85] lg:opacity-80"
-          />
-        </picture>
+        <img
+          src="/media/room.webp"
+          alt=""
+          width={1400}
+          height={1419}
+          decoding="async"
+          className="h-full w-full object-cover object-[55%_40%] opacity-30 brightness-[0.6] contrast-[1.05] saturate-[0.85] lg:opacity-85 lg:brightness-[0.72]"
+        />
       </div>
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[minmax(0,38rem)_1fr] lg:py-32">

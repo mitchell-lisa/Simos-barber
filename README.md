@@ -106,8 +106,9 @@ Everything in `public/media/` is from the shop.
 
 | File | What it is |
 |---|---|
-| `pole.webp` | The pole out front, turning — **animated WebP, 226KB** |
-| `pole-still.webp` | One frame of it, served under `prefers-reduced-motion` |
+| `room.webp` | The room, lights on: the chairs, the mirrors, the wallpaper and the black door — the hero, bled off the right edge |
+| `pole.webp` | The pole out front, turning — **animated WebP, 226KB**. Was the hero until the room was photographed; kept, not placed |
+| `pole-still.webp` | One frame of it, for `prefers-reduced-motion` — kept with it |
 | `clock.webp` | The oak barber shop clock on the wall |
 | `patent-pole.webp` | Koken's 1916 barber pole patent, framed in the shop |
 | `patent-clipper.webp` | White's 1919 hair clipper patent, framed in the shop |
@@ -117,7 +118,7 @@ Everything in `public/media/` is from the shop.
 | `tonics.webp` | Two tonics in apothecary pumps on the front sill, flowers behind and the wallpaper below — run off the right edge beside the door menu on wide screens, dissolved on the other three sides |
 | `john.webp` | John, comb and shears in hand, in the shop — his profile picture, 1000×1333, rotated upright and stripped of the phone's GPS data |
 
-**Why the pole is an animated image and not a `<video>`.** A video has to satisfy an autoplay
+**Why the pole is an animated image and not a `<video>`** (it is no longer on the page, but the reasoning holds for any footage that goes back in). A video has to satisfy an autoplay
 policy: muted, `playsInline`, and even then iOS Low Power Mode and Safari's per-site autoplay
 setting will refuse it, leaving a frozen poster frame. An animated image has no policy to satisfy
 and no JavaScript. The cost is size, and format matters enormously here — the same 4.4s clip:
@@ -154,8 +155,10 @@ lands as a preview and has to be promoted by hand.
 - Vagaro still shows $0.00 for most services. The door has prices for ten of them and the site
   now prints those; he should set the same numbers in Vagaro so the widget agrees with the door
 - Color and wax services have no price on the door or in Vagaro
-- Shop photos — the hero still carries the footage shot before opening. The Shop now carries
-  John's own portrait (`business.barbers[0].photo`); the clock is no longer placed on the page
-  but stays in `public/media/`
+- The hero now carries the room and The Shop carries John's portrait
+  (`business.barbers[0].photo`). The pole footage and the clock are no longer placed on the page
+  but stay in `public/media/`
+- The clipper patent framed on the wall is J. K. Priest's of 1894 (No. 516,109). The drawing the
+  site uses is Fred G. White's of 1919. Confirm both hang there, or swap the drawing and the copy
 - Whether he is solo, or staff should be added to `business.barbers`
 - A Google Business Profile, which he still does not have
