@@ -120,6 +120,7 @@ export function PreviewNotice() {
 /* ───────────────────────── header ────────────────────────────────────────── */
 
 const NAV = [
+  { label: "Menu", href: "#menu" },
   { label: "The Shop", href: "#shop" },
   { label: "Book", href: "#book" },
   { label: "Visit", href: "#visit" },

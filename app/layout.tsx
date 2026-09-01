@@ -1,5 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Bodoni_Moda } from "next/font/google";
+import {
+  Archivo,
+  Bodoni_Moda,
+  Fredericka_the_Great,
+  Walter_Turncoat,
+} from "next/font/google";
 import { business } from "@/lib/business";
 import "./globals.css";
 
@@ -14,6 +19,24 @@ const archivo = Archivo({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-archivo",
+  display: "swap",
+});
+
+// The two faces of the painted door menu. Fredericka is the hand-lettered
+// caps the service names are painted in; Walter Turncoat is the quick
+// brush-printed caps of the descriptions underneath. Used in the Menu
+// section only — the rest of the site keeps the Didone and the grotesque.
+const fredericka = Fredericka_the_Great({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-sign",
+  display: "swap",
+});
+
+const walter = Walter_Turncoat({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-hand",
   display: "swap",
 });
 
@@ -127,7 +150,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${bodoni.variable} ${archivo.variable}`}>
+    <html
+      lang="en"
+      className={`${bodoni.variable} ${archivo.variable} ${fredericka.variable} ${walter.variable}`}
+    >
       <body>
         {children}
         <LocalBusinessSchema />

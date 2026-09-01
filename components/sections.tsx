@@ -1,6 +1,7 @@
 import { business as b } from "@/lib/business";
 import { hoursSummary } from "@/lib/schedule";
 import {
+  Badge,
   BookButton,
   CombIcon,
   InstagramIcon,
@@ -77,6 +78,127 @@ export function Hero() {
           </div>
         </div>
 
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────────────── the door ──────────────────────────────────────
+   His menu, as he painted it on the shop's back door. The board is drawn to
+   the door — gold rule inset on black, corner flourishes, hand-lettered
+   names, brush-printed descriptions, prices in painted ovals — and reads
+   from `business.menu`, which is the door line for line. Booking still
+   happens in Vagaro; the button under the board scrolls to the widget.      */
+
+function Fleuron({ className = "" }: { className?: string }) {
+  // The little three-leaf curl he painted in each corner of the rule.
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="none">
+      <path
+        d="M4 20c0-6 3-10 8-12M4 20c6 0 10-3 12-8M12 8c-1-2-1-4 1-5 2 1 2 3 1 5M16 12c2-1 4-1 5 1-1 2-3 2-5 1M8.5 11.5c-1.5-.5-2.5-2-2-3.5 1.5-.5 3 .5 3.5 2"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function Pointer({ className = "" }: { className?: string }) {
+  // The brushed "≻" he uses to start every line.
+  return (
+    <svg viewBox="0 0 24 16" className={className} aria-hidden="true" fill="none">
+      <path
+        d="M2 3l8 5-8 5M9 3l8 5-8 5M16 5l6 3-6 3"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function Menu() {
+  return (
+    <section
+      id="menu"
+      className="relative overflow-hidden border-b border-hair bg-ink-2"
+    >
+      <div className="deco pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden="true" />
+
+      <div className="relative mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+        <div className="text-center">
+          <p className="label text-brass">The Menu</p>
+          <h2 className="display mx-auto mt-5 max-w-xl text-5xl text-bone sm:text-6xl">
+            Painted on the door.
+          </h2>
+          <p className="mx-auto mt-7 max-w-md text-[1.0625rem] leading-relaxed text-bone-2">
+            The prices are the ones on the back door of the shop, in
+            {" "}{b.barbers[0].shortName}&apos;s own hand. Pick one and book it
+            below.
+          </p>
+        </div>
+
+        {/* The door */}
+        <div className="mx-auto mt-14 max-w-[36rem] bg-ink px-3 py-3 shadow-2xl shadow-black/50 sm:px-5 sm:py-5">
+          <div className="relative border-[3px] border-brass/90 px-4 pb-8 pt-9 sm:px-9 sm:pb-11 sm:pt-12">
+            <Fleuron className="absolute -left-2 -top-2 h-7 w-7 text-brass" />
+            <Fleuron className="absolute -right-2 -top-2 h-7 w-7 -scale-x-100 text-brass" />
+            <Fleuron className="absolute -bottom-2 -left-2 h-7 w-7 -scale-y-100 text-brass" />
+            <Fleuron className="absolute -bottom-2 -right-2 h-7 w-7 -scale-x-100 -scale-y-100 text-brass" />
+
+            <div className="relative flex items-end justify-center">
+              <Badge className="h-28 w-28 sm:h-32 sm:w-32" />
+              <span className="hand absolute bottom-1 right-0 text-right text-[0.8rem] leading-tight text-cream">
+                {b.menu.note.split(" ").map((w) => (
+                  <span key={w} className="block">{w}</span>
+                ))}
+              </span>
+            </div>
+
+            <ul className="mt-8 space-y-5 sm:mt-10 sm:space-y-6">
+              {b.menu.items.map((line) => (
+                <li key={line.name} className="flex items-start gap-3 sm:gap-4">
+                  <Pointer className="mt-[0.55em] h-3.5 w-5 shrink-0 text-brass sm:h-4 sm:w-6" />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-baseline justify-between gap-4">
+                      <h3 className="sign text-[1.15rem] tracking-[0.06em] text-brass-2 sm:text-[1.6rem] sm:tracking-[0.1em]">
+                        {line.name}
+                        {line.sub && (
+                          <span className="hand block text-[0.75rem] tracking-wide text-cream sm:ml-2 sm:inline sm:text-[0.85rem]">
+                            ({line.sub})
+                          </span>
+                        )}
+                      </h3>
+                      {line.price !== null && (
+                        <span
+                          className={`oval shrink-0 text-[0.95rem] sm:text-[1.2rem] ${line.accent ? "oval-red" : ""}`}
+                          aria-label={`${line.price} dollars`}
+                        >
+                          {line.price}
+                        </span>
+                      )}
+                    </div>
+                    {line.blurb && (
+                      <p className="hand mt-1 max-w-[26rem] text-[0.78rem] text-cream/85 sm:text-[0.85rem]">
+                        {line.blurb}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-col items-center gap-4 text-center">
+          <BookButton>Book a chair</BookButton>
+          <p className="max-w-sm text-sm text-bone-3">
+            Booking is through {b.booking.provider}. Color and wax are quoted
+            in the chair.
+          </p>
+        </div>
       </div>
     </section>
   );

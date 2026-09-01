@@ -49,10 +49,21 @@ embedded widget.
 `lib/schedule.ts` is only `hoursSummary()` and `displayTime()`. The site computes no availability
 it cannot verify.
 
-**A visible services list used to sit above the widget and was removed** — it was the same
-eighteen services twice, 64% of the page. Because crawlers cannot read text inside an iframe, the
-full menu now lives in the JSON-LD as a `hasOfferCatalog`, in his own wording. Google gets the
-menu; the page costs nothing to show it.
+**The eighteen-line Vagaro services list that used to sit above the widget was removed** — it was
+the same services twice, 64% of the page. Because crawlers cannot read text inside an iframe, the
+full Vagaro menu lives in the JSON-LD as a `hasOfferCatalog`, in his own wording.
+
+**What the page shows instead is the door.** John painted his menu on the shop's back door —
+twelve lines, his wording, his prices, "tax incl." — and the Menu section (`business.menu`,
+above the Book section) reproduces it line for line rather than listing a database. It is the
+one place the site prints prices, and it ends in a button that scrolls to the Vagaro widget.
+Booking is still only ever Vagaro.
+
+`business.menu` and `business.serviceGroups` are two lists on purpose: the door is what
+customers see, the Vagaro list is what Google reads. Where the door prices a service the Vagaro
+list also carries, the price was copied across on 2026-09-01, so the JSON-LD no longer says a
+Mainliner has no price. Beard Trim's price is hidden behind the door handle in the photo; $20 is
+from Vagaro, where it has always been set.
 
 ## Reputation
 
@@ -70,6 +81,12 @@ claim about his pricing we cannot support.
   fans on near-black with brass mirror frames, so the site is warm near-black, bone, and a single
   brass accent used on the booking action and almost nowhere else.
 - **Type:** Bodoni Moda for headlines only, set large and tight; Archivo for everything functional.
+  The Menu section alone adds two more, to match the painted door: Fredericka the Great for the
+  service names (hand-lettered caps, tracked wide, in brass) and Walter Turncoat for the lines
+  under them (a quick brush hand, in the door's cream). Prices sit in `.oval`, a CSS oval with
+  uneven radii tilted four degrees so it reads as painted, not as a pill; the two he painted red
+  are `accent: true`. The flourishes in the corners of the rule and the "≻" that starts each line
+  are drawn, like the other icons.
 - **The wallpaper is redrawn, not photographed.** `tools/build-pattern.py` rebuilds the fan motif
   as a seamless SVG and writes it to `app/pattern.css` as a data URI — about a kilobyte, crisp at
   any size, tintable. Applied through `.deco` at 5–7% opacity.
@@ -127,7 +144,9 @@ lands as a preview and has to be promoted by hand.
 
 ## Still open with John
 
-- Prices for the sixteen services showing $0.00 in Vagaro
+- Vagaro still shows $0.00 for most services. The door has prices for ten of them and the site
+  now prints those; he should set the same numbers in Vagaro so the widget agrees with the door
+- Color and wax services have no price on the door or in Vagaro
 - Shop photos — the hero still carries the footage shot before opening. The Shop now carries
   John's own portrait (`business.barbers[0].photo`); the clock is no longer placed on the page
   but stays in `public/media/`
