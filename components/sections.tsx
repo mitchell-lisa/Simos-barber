@@ -139,7 +139,7 @@ export function Menu() {
           src="/media/tonics.webp"
           alt=""
           width={1000}
-          height={1278}
+          height={1240}
           className="w-full opacity-85 brightness-[0.9] saturate-[0.9]"
           loading="lazy"
         />
