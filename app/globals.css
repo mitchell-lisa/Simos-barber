@@ -144,6 +144,19 @@
     }
   }
 
+  /* A photograph that runs off the right edge and ends in the page on the
+     other three sides. Two gradients, intersected. */
+  .mesh-right {
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, #000 55%),
+      linear-gradient(to bottom, transparent 0%, #000 28%, #000 72%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, #000 55%),
+      linear-gradient(to bottom, transparent 0%, #000 28%, #000 72%, transparent 100%);
+    mask-composite: intersect;
+  }
+
   /* A photograph that ends in the page below it. */
   .mesh-down {
     -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);

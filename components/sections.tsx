@@ -127,6 +127,24 @@ export function Menu() {
     >
       <div className="deco pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden="true" />
 
+      {/* The tonics in the front window — the house-made products the door
+          mentions — run off the right edge beside the board and dissolved into
+          the page on the other three sides. Wide screens only; on a phone
+          the door is the whole story. */}
+      <div
+        className="mesh-right pointer-events-none absolute right-0 top-1/2 hidden w-[36%] -translate-y-1/2 lg:block"
+        aria-hidden="true"
+      >
+        <img
+          src="/media/tonics.webp"
+          alt=""
+          width={1000}
+          height={1278}
+          className="w-full opacity-85 brightness-[0.9] saturate-[0.9]"
+          loading="lazy"
+        />
+      </div>
+
       <div className="relative mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
         <div className="text-center">
           <p className="label text-brass">The Menu</p>
