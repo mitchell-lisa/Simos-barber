@@ -84,7 +84,7 @@ claim about his pricing we cannot support.
   The Menu section alone adds two more, to match the painted door: Fredericka the Great for the
   service names (hand-lettered caps, tracked wide, in brass) and Walter Turncoat for the lines
   under them (a quick brush hand, in the door's cream). Prices sit in `.oval`, a CSS oval with
-  uneven radii tilted four degrees so it reads as painted, not as a pill; the two he painted red
+  uneven radii tilted four degrees so it reads as painted, not as a pill; the three he ringed in red
   are `accent: true`. The flourishes in the corners of the rule and the "≻" that starts each line
   are drawn, like the other icons.
 - **The wallpaper is redrawn, not photographed.** `tools/build-pattern.py` rebuilds the sunburst
@@ -97,7 +97,7 @@ claim about his pricing we cannot support.
 - **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
 - **One photograph per section, at most.** The tonics, the razor and a hot-towel shot once
   flanked the door menu and the booking widget; they layered up and came out (git history has
-  them). Hero: the room. The Shop: John. Visit: the front door.
+  them). Hero: the room. The Shop: John. Visit: the shopfront.
 - **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The pole
   runs off the right edge of the hero, the clock off the right edge of The Shop. Each is dissolved with a gradient `mask-image` (`.mesh-hero`, `.mesh-left`, `.mesh-down` in `globals.css`).
 
@@ -107,13 +107,13 @@ Everything in `public/media/` is from the shop.
 
 | File | What it is |
 |---|---|
-| `room.webp` | The room, lights on: the chairs, the mirrors, the wallpaper and the black door — the hero, bled off the right edge |
+| `room.webp` | The room from the doorway, lights on: the chairs, the mirrors, the wallpaper and the black door — the hero, bled off the right edge |
+| `storefront.webp` | The shopfront from the sidewalk: black frame, leaded transoms, the pole and his sign in the glass — runs down into the Visit section |
 | `pole.webp` | The pole out front, turning — **animated WebP, 226KB**. Was the hero until the room was photographed; kept, not placed |
 | `pole-still.webp` | One frame of it, for `prefers-reduced-motion` — kept with it |
 | `clock.webp` | The oak barber shop clock on the wall |
 | `logo.webp` | His round emblem, 256px — the footer |
-| `entrance.webp` | The front door: stripes painted over the entrance, the downlight, and the 240 — cropped to run down into the Visit section |
-| `wordmark.webp` | His wordmark, the pole for the I — cut out of a photograph of a print with real transparency; the header and the head of the door menu. Replace with the real file when it turns up |
+| `wordmark.webp` | His wordmark, the pole for the I — cut out of a photograph of a print with real transparency; the header. Replace with the real file when it turns up |
 | `john.webp` | John, comb and shears in hand, in the shop — his profile picture, 1000×1333, rotated upright and stripped of the phone's GPS data |
 
 **Why the pole is an animated image and not a `<video>`** (it is no longer on the page, but the reasoning holds for any footage that goes back in). A video has to satisfy an autoplay
