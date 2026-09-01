@@ -157,6 +157,18 @@
     mask-composite: intersect;
   }
 
+  /* Mirror of .mesh-right: runs off the left edge. */
+  .mesh-left-edge {
+    -webkit-mask-image:
+      linear-gradient(to left, transparent 0%, #000 55%),
+      linear-gradient(to bottom, transparent 0%, #000 28%, #000 72%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to left, transparent 0%, #000 55%),
+      linear-gradient(to bottom, transparent 0%, #000 28%, #000 72%, transparent 100%);
+    mask-composite: intersect;
+  }
+
   /* A photograph that ends in the page below it. */
   .mesh-down {
     -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);

@@ -1,7 +1,6 @@
 import { business as b } from "@/lib/business";
 import { hoursSummary } from "@/lib/schedule";
 import {
-  Badge,
   BookButton,
   CombIcon,
   InstagramIcon,
@@ -118,6 +117,22 @@ export function Menu() {
     >
       <div className="deco pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden="true" />
 
+      {/* The straight razor, open, in his hand over the black counter, the
+          brush behind — off the left edge, opposite the tonics. */}
+      <div
+        className="mesh-left-edge pointer-events-none absolute left-0 top-1/2 hidden w-[30%] -translate-y-1/2 lg:block"
+        aria-hidden="true"
+      >
+        <img
+          src="/media/razor.webp"
+          alt=""
+          width={1000}
+          height={1254}
+          className="w-full opacity-75 brightness-[0.7] saturate-[0.8]"
+          loading="lazy"
+        />
+      </div>
+
       {/* The tonics in the front window — the house-made products the door
           mentions — run off the right edge beside the board and dissolved into
           the page on the other three sides. Wide screens only; on a phone
@@ -158,7 +173,15 @@ export function Menu() {
             <Fleuron className="absolute -bottom-2 -right-2 h-7 w-7 -scale-x-100 -scale-y-100 text-brass" />
 
             <div className="relative flex items-end justify-center">
-              <Badge className="h-28 w-28 sm:h-32 sm:w-32" />
+              {/* His wordmark, the pole for the I, as the door has it —
+                  straightened from a print and levelled to the board. */}
+              <img
+                src="/media/wordmark.webp"
+                alt={b.signName}
+                width={1000}
+                height={643}
+                className="w-64 sm:w-80"
+              />
               <span className="hand absolute bottom-1 right-0 text-right text-[0.8rem] leading-tight text-cream">
                 {b.menu.note.split(" ").map((w) => (
                   <span key={w} className="block">{w}</span>
@@ -224,6 +247,22 @@ export function Book() {
       className="relative overflow-hidden border-b border-hair bg-ink-2"
     >
       <div className="deco pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden="true" />
+
+      {/* A chair, taken: hot towel on, under the tin ceiling. Off the left
+          edge beside the widget on wide screens. */}
+      <div
+        className="mesh-left-edge pointer-events-none absolute left-0 top-1/2 hidden w-[28%] -translate-y-1/2 lg:block"
+        aria-hidden="true"
+      >
+        <img
+          src="/media/towel.webp"
+          alt=""
+          width={1000}
+          height={1919}
+          className="w-full opacity-80 brightness-[0.8] saturate-[0.85]"
+          loading="lazy"
+        />
+      </div>
 
       <div className="relative mx-auto max-w-6xl px-5 py-20 text-center sm:px-8 sm:py-28">
         <p className="label text-brass">Appointments</p>
