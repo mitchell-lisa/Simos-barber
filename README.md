@@ -95,6 +95,9 @@ claim about his pricing we cannot support.
   at one-seventh steps along the upper edges. The docstring in the script has the details; rerun
   it after changing anything there.
 - **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
+- **One photograph per section, at most.** The tonics, the razor and a hot-towel shot once
+  flanked the door menu and the booking widget; they layered up and came out (git history has
+  them). Hero: the room. The Shop: John. Since 1916: the iron sign. Visit: the front door.
 - **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The pole
   runs off the right edge of the hero, the clock off the right edge of The Shop, and the two
   patent drawings are the ground "Since 1916" is written on. Each is dissolved with a gradient
@@ -112,13 +115,10 @@ Everything in `public/media/` is from the shop.
 | `clock.webp` | The oak barber shop clock on the wall |
 | `patent-pole.webp` | Koken's 1916 barber pole patent, framed in the shop |
 | `patent-clipper.webp` | White's 1919 hair clipper patent, framed in the shop |
-| `logo.webp` | His mark, 256px — sized to what it is drawn at, not what was supplied |
+| `logo.webp` | His round emblem, 256px — the footer |
 | `entrance.webp` | The front door: stripes painted over the entrance, the downlight, and the 240 — cropped to run down into the Visit section |
 | `sign.webp` | The cast-iron "Haircut and Shave 25¢" sign by the switches, cut out of its wall and lifted to brass so it reads on black |
-| `tonics.webp` | Two tonics in apothecary pumps on the front sill, flowers behind and the wallpaper below — run off the right edge beside the door menu on wide screens, dissolved on the other three sides |
-| `wordmark.webp` | His wordmark, the pole for the I — straightened from a photo of a print and levelled to the page black; heads the door menu. Replace with the real file when it turns up |
-| `razor.webp` | The straight razor open in his hand over the black counter, brush behind — off the left of the door menu on wide screens |
-| `towel.webp` | A client under a hot towel beneath the tin ceiling, from a phone screenshot — off the left of the Book section on wide screens |
+| `wordmark.webp` | His wordmark, the pole for the I — cut out of a photograph of a print with real transparency; the header and the head of the door menu. Replace with the real file when it turns up |
 | `john.webp` | John, comb and shears in hand, in the shop — his profile picture, 1000×1333, rotated upright and stripped of the phone's GPS data |
 
 **Why the pole is an animated image and not a `<video>`** (it is no longer on the page, but the reasoning holds for any footage that goes back in). A video has to satisfy an autoplay

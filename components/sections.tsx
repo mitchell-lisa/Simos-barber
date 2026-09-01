@@ -117,40 +117,6 @@ export function Menu() {
     >
       <div className="deco pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden="true" />
 
-      {/* The straight razor, open, in his hand over the black counter, the
-          brush behind — off the left edge, opposite the tonics. */}
-      <div
-        className="mesh-left-edge pointer-events-none absolute left-0 top-1/2 hidden w-[30%] -translate-y-1/2 lg:block"
-        aria-hidden="true"
-      >
-        <img
-          src="/media/razor.webp"
-          alt=""
-          width={1000}
-          height={1254}
-          className="w-full opacity-75 brightness-[0.7] saturate-[0.8]"
-          loading="lazy"
-        />
-      </div>
-
-      {/* The tonics in the front window — the house-made products the door
-          mentions — run off the right edge beside the board and dissolved into
-          the page on the other three sides. Wide screens only; on a phone
-          the door is the whole story. */}
-      <div
-        className="mesh-right pointer-events-none absolute right-0 top-1/2 hidden w-[36%] -translate-y-1/2 lg:block"
-        aria-hidden="true"
-      >
-        <img
-          src="/media/tonics.webp"
-          alt=""
-          width={1000}
-          height={1240}
-          className="w-full opacity-85 brightness-[0.9] saturate-[0.9]"
-          loading="lazy"
-        />
-      </div>
-
       <div className="relative mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
         <div className="text-center">
           <p className="label text-brass">The Menu</p>
@@ -172,22 +138,19 @@ export function Menu() {
             <Fleuron className="absolute -bottom-2 -left-2 h-7 w-7 -scale-y-100 text-brass" />
             <Fleuron className="absolute -bottom-2 -right-2 h-7 w-7 -scale-x-100 -scale-y-100 text-brass" />
 
-            <div className="relative flex items-end justify-center">
-              {/* His wordmark, the pole for the I, as the door has it —
-                  straightened from a print and levelled to the board. */}
-              <img
-                src="/media/wordmark.webp"
-                alt={b.signName}
-                width={1000}
-                height={643}
-                className="w-64 sm:w-80"
-              />
-              <span className="hand absolute bottom-1 right-0 text-right text-[0.8rem] leading-tight text-cream">
-                {b.menu.note.split(" ").map((w) => (
-                  <span key={w} className="block">{w}</span>
-                ))}
-              </span>
-            </div>
+            {/* His wordmark, the pole for the I, as the door has it — cut out
+                of a photograph of a print. "Tax incl." sits under it, where
+                the door tucks it beside the S. */}
+            <img
+              src="/media/wordmark.webp"
+              alt={b.signName}
+              width={1000}
+              height={556}
+              className="mx-auto w-64 sm:w-80"
+            />
+            <p className="hand mt-1 text-right text-[0.8rem] text-cream">
+              {b.menu.note}
+            </p>
 
             <ul className="mt-8 space-y-5 sm:mt-10 sm:space-y-6">
               {b.menu.items.map((line) => (
@@ -247,22 +210,6 @@ export function Book() {
       className="relative overflow-hidden border-b border-hair bg-ink-2"
     >
       <div className="deco pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden="true" />
-
-      {/* A chair, taken: hot towel on, under the tin ceiling. Off the left
-          edge beside the widget on wide screens. */}
-      <div
-        className="mesh-left-edge pointer-events-none absolute left-0 top-1/2 hidden w-[28%] -translate-y-1/2 lg:block"
-        aria-hidden="true"
-      >
-        <img
-          src="/media/towel.webp"
-          alt=""
-          width={1000}
-          height={1919}
-          className="w-full opacity-80 brightness-[0.8] saturate-[0.85]"
-          loading="lazy"
-        />
-      </div>
 
       <div className="relative mx-auto max-w-6xl px-5 py-20 text-center sm:px-8 sm:py-28">
         <p className="label text-brass">Appointments</p>
