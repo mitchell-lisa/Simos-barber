@@ -97,11 +97,9 @@ claim about his pricing we cannot support.
 - **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
 - **One photograph per section, at most.** The tonics, the razor and a hot-towel shot once
   flanked the door menu and the booking widget; they layered up and came out (git history has
-  them). Hero: the room. The Shop: John. Since 1916: the iron sign. Visit: the front door.
+  them). Hero: the room. The Shop: John. Visit: the front door.
 - **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The pole
-  runs off the right edge of the hero, the clock off the right edge of The Shop, and the two
-  patent drawings are the ground "Since 1916" is written on. Each is dissolved with a gradient
-  `mask-image` (`.mesh-hero`, `.mesh-left`, `.mesh-band` in `globals.css`).
+  runs off the right edge of the hero, the clock off the right edge of The Shop. Each is dissolved with a gradient `mask-image` (`.mesh-hero`, `.mesh-left`, `.mesh-down` in `globals.css`).
 
 ## Media
 
@@ -113,11 +111,8 @@ Everything in `public/media/` is from the shop.
 | `pole.webp` | The pole out front, turning — **animated WebP, 226KB**. Was the hero until the room was photographed; kept, not placed |
 | `pole-still.webp` | One frame of it, for `prefers-reduced-motion` — kept with it |
 | `clock.webp` | The oak barber shop clock on the wall |
-| `patent-pole.webp` | Koken's 1916 barber pole patent, framed in the shop |
-| `patent-clipper.webp` | White's 1919 hair clipper patent, framed in the shop |
 | `logo.webp` | His round emblem, 256px — the footer |
 | `entrance.webp` | The front door: stripes painted over the entrance, the downlight, and the 240 — cropped to run down into the Visit section |
-| `sign.webp` | The cast-iron "Haircut and Shave 25¢" sign by the switches, cut out of its wall and lifted to brass so it reads on black |
 | `wordmark.webp` | His wordmark, the pole for the I — cut out of a photograph of a print with real transparency; the header and the head of the door menu. Replace with the real file when it turns up |
 | `john.webp` | John, comb and shears in hand, in the shop — his profile picture, 1000×1333, rotated upright and stripped of the phone's GPS data |
 
@@ -161,7 +156,5 @@ lands as a preview and has to be promoted by hand.
 - The hero now carries the room and The Shop carries John's portrait
   (`business.barbers[0].photo`). The pole footage and the clock are no longer placed on the page
   but stay in `public/media/`
-- The clipper patent framed on the wall is J. K. Priest's of 1894 (No. 516,109). The drawing the
-  site uses is Fred G. White's of 1919. Confirm both hang there, or swap the drawing and the copy
 - Whether he is solo, or staff should be added to `business.barbers`
 - A Google Business Profile, which he still does not have

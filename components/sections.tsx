@@ -376,66 +376,6 @@ export function Shop() {
   );
 }
 
-/* ───────────────────────── the trade ─────────────────────────────────────── */
-
-export function Details() {
-  return (
-    <section className="relative overflow-hidden border-b border-hair">
-      {/* Koken's pole and White's clipper, used as the ground the section is
-          written on. The drawings are his, on his wall — they read better as
-          the wall than as two exhibits with catalogue cards. */}
-      <div className="absolute inset-0 grid grid-cols-2" aria-hidden="true">
-        <img
-          src="/media/patent-pole.webp"
-          alt=""
-          className="mesh-band h-full w-full object-cover object-top opacity-55"
-          loading="lazy"
-        />
-        <img
-          src="/media/patent-clipper.webp"
-          alt=""
-          className="mesh-band h-full w-full object-cover object-top opacity-55"
-          loading="lazy"
-        />
-      </div>
-      <div
-        className="absolute inset-0 bg-gradient-to-b from-ink via-ink/75 to-ink"
-        aria-hidden="true"
-      />
-      {/* Pools the ground behind the type so the drawings stay readable at the
-          edges without fighting the words, and hides the seam between them. */}
-      <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-ink)_0%,rgb(11_10_9_/_0.82)_38%,transparent_72%)]"
-        aria-hidden="true"
-      />
-
-      <div className="relative mx-auto max-w-6xl px-5 py-24 text-center sm:px-8 sm:py-32">
-        {/* The cast-iron sign inside the door, cut out of its wall and
-            lifted to brass so it reads on black. It hangs over the words
-            the way it hangs over the light switches. */}
-        <img
-          src="/media/sign.webp"
-          alt="Cast-iron sign reading Haircut and Shave, 25 cents"
-          width={900}
-          height={359}
-          className="mx-auto w-64 [mask-image:linear-gradient(to_bottom,#000_72%,transparent)] sm:w-80"
-          loading="lazy"
-        />
-        <p className="label mt-10 text-brass">Since 1916</p>
-        <h2 className="display mx-auto mt-6 max-w-2xl text-5xl text-bone sm:text-6xl">
-          The trade hasn&apos;t changed much.
-        </h2>
-        <p className="mx-auto mt-7 max-w-md text-[15px] leading-relaxed text-bone-2">
-          Koken patented the pole in 1916. White patented the clipper three
-          years later. Both drawings hang on the wall at Simo&apos;s, and both
-          tools are still the job. The iron sign by the door still says a
-          haircut and a shave is a quarter. That part has moved on.
-        </p>
-      </div>
-    </section>
-  );
-}
-
 /* ───────────────────────── visit ─────────────────────────────────────────── */
 
 export function Visit() {

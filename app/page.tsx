@@ -1,6 +1,5 @@
 import {
   Book,
-  Details,
   Hero,
   Menu,
   Shop,
@@ -20,7 +19,6 @@ export default function Page() {
         <Menu />
         <Book />
         <Shop />
-        <Details />
         <Visit />
       </main>
       <Footer />
