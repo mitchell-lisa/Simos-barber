@@ -87,9 +87,13 @@ claim about his pricing we cannot support.
   uneven radii tilted four degrees so it reads as painted, not as a pill; the two he painted red
   are `accent: true`. The flourishes in the corners of the rule and the "≻" that starts each line
   are drawn, like the other icons.
-- **The wallpaper is redrawn, not photographed.** `tools/build-pattern.py` rebuilds the fan motif
-  as a seamless SVG and writes it to `app/pattern.css` as a data URI — about a kilobyte, crisp at
-  any size, tintable. Applied through `.deco` at 5–7% opacity.
+- **The wallpaper is redrawn, not photographed.** `tools/build-pattern.py` rebuilds the sunburst
+  as a seamless SVG and writes it to `app/pattern.css` as a data URI — a few kilobytes, crisp at
+  any size, tintable. Applied through `.deco` at 5–7% opacity. The geometry was measured from a
+  straight-on photograph of the wall on 2026-09-01: a lattice of thick diagonals forming
+  near-square diamonds, each holding thirteen thinner rays from its bottom corner whose tips sit
+  at one-seventh steps along the upper edges. The docstring in the script has the details; rerun
+  it after changing anything there.
 - **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
 - **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The pole
   runs off the right edge of the hero, the clock off the right edge of The Shop, and the two
