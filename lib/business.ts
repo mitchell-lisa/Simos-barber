@@ -10,6 +10,7 @@
  */
 
 export type DayHours = { open: string; close: string } | null;
+export type BarberPhoto = { src: string; alt: string; width: number; height: number };
 
 export const business = {
   id: "simos-of-wayne",
@@ -79,6 +80,15 @@ export const business = {
       name: "John Simonton",
       shortName: "John",
       role: "Owner · Master Barber",
+      // His own photo, taken in the shop 2026-09-01 — comb and shears in
+      // hand, the tin ceiling behind him. Rotated upright and stripped of
+      // the phone's location data before it went in. Null renders nothing.
+      photo: {
+        src: "/media/john.webp",
+        alt: "John Simonton, comb and shears in hand, in the shop at 240 Lancaster Ave",
+        width: 1000,
+        height: 1333,
+      } as BarberPhoto | null,
     },
   ],
 

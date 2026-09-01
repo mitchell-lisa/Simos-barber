@@ -91,6 +91,7 @@ Everything in `public/media/` is from the shop.
 | `patent-pole.webp` | Koken's 1916 barber pole patent, framed in the shop |
 | `patent-clipper.webp` | White's 1919 hair clipper patent, framed in the shop |
 | `logo.webp` | His mark, 256px — sized to what it is drawn at, not what was supplied |
+| `john.webp` | John, comb and shears in hand, in the shop — his profile picture, 1000×1333, rotated upright and stripped of the phone's GPS data |
 
 **Why the pole is an animated image and not a `<video>`.** A video has to satisfy an autoplay
 policy: muted, `playsInline`, and even then iOS Low Power Mode and Safari's per-site autoplay
@@ -127,6 +128,8 @@ lands as a preview and has to be promoted by hand.
 ## Still open with John
 
 - Prices for the sixteen services showing $0.00 in Vagaro
-- Shop photos — the hero and The Shop still carry the footage shot before opening
+- Shop photos — the hero still carries the footage shot before opening. The Shop now carries
+  John's own portrait (`business.barbers[0].photo`); the clock is no longer placed on the page
+  but stays in `public/media/`
 - Whether he is solo, or staff should be added to `business.barbers`
 - A Google Business Profile, which he still does not have

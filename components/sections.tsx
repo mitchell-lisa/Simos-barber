@@ -196,28 +196,13 @@ export function TrustStrip() {
 /* ───────────────────────── the shop ──────────────────────────────────────── */
 
 export function Shop() {
+  const john = b.barbers[0];
   return (
     <section
       id="shop"
       className="relative overflow-hidden border-b border-hair bg-ink-2"
     >
-      {/* The clock runs off the right edge and fades into the wall behind the
-          type, rather than sitting in a box with a label under it. */}
-      <div
-        className="mesh-left pointer-events-none absolute inset-x-0 bottom-0 h-[42%] lg:inset-y-0 lg:left-auto lg:h-auto lg:w-[48%]"
-        aria-hidden="true"
-      >
-        <img
-          src="/media/clock.webp"
-          alt=""
-          width={620}
-          height={572}
-          className="h-full w-full object-cover opacity-30 brightness-[0.6] contrast-[1.06] saturate-[0.85] lg:opacity-85"
-          loading="lazy"
-        />
-      </div>
-
-      <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[minmax(0,30rem)_1fr] lg:gap-20">
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[minmax(0,30rem)_1fr] lg:gap-20">
         <div className="lg:max-w-md">
           <p className="label text-brass">The Shop</p>
           <h2 className="display mt-5 text-5xl text-bone sm:text-6xl">
@@ -252,6 +237,24 @@ export function Shop() {
         </div>
 
       </div>
+
+      {/* John himself, comb and shears in hand — a portrait bled into the
+          page, not a headshot in a frame. On a wide screen he runs off the
+          right edge and dissolves into the wall behind the type; on a phone
+          he follows the copy, full width, fading in from the ceiling above
+          him. The crop is pinned to his face either way. */}
+      {john.photo && (
+        <div className="mesh-left pointer-events-none relative -mt-8 h-[26rem] lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:h-auto lg:w-[48%]">
+          <img
+            src={john.photo.src}
+            alt={john.photo.alt}
+            width={john.photo.width}
+            height={john.photo.height}
+            className="h-full w-full object-cover object-[58%_12%] opacity-90 brightness-[0.82] contrast-[1.04] saturate-[0.85] lg:object-[58%_22%]"
+            loading="lazy"
+          />
+        </div>
+      )}
     </section>
   );
 }
