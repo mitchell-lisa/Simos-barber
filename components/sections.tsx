@@ -414,15 +414,27 @@ export function Details() {
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-6xl px-5 py-28 text-center sm:px-8 sm:py-36">
-        <p className="label text-brass">Since 1916</p>
+      <div className="relative mx-auto max-w-6xl px-5 py-24 text-center sm:px-8 sm:py-32">
+        {/* The cast-iron sign inside the door, cut out of its wall and
+            lifted to brass so it reads on black. It hangs over the words
+            the way it hangs over the light switches. */}
+        <img
+          src="/media/sign.webp"
+          alt="Cast-iron sign reading Haircut and Shave, 25 cents"
+          width={900}
+          height={359}
+          className="mx-auto w-64 [mask-image:linear-gradient(to_bottom,#000_72%,transparent)] sm:w-80"
+          loading="lazy"
+        />
+        <p className="label mt-10 text-brass">Since 1916</p>
         <h2 className="display mx-auto mt-6 max-w-2xl text-5xl text-bone sm:text-6xl">
           The trade hasn&apos;t changed much.
         </h2>
         <p className="mx-auto mt-7 max-w-md text-[15px] leading-relaxed text-bone-2">
           Koken patented the pole in 1916. White patented the clipper three
           years later. Both drawings hang on the wall at Simo&apos;s, and both
-          tools are still the job.
+          tools are still the job. The iron sign by the door still says a
+          haircut and a shave is a quarter. That part has moved on.
         </p>
       </div>
     </section>
@@ -442,8 +454,22 @@ export function Visit() {
   return (
     <section id="visit" className="border-b border-hair bg-ink-2">
       <div className="mx-auto grid max-w-6xl lg:grid-cols-2">
-        <div className="px-5 py-20 sm:px-8 sm:py-28 lg:pr-16">
-          <p className="label text-brass">Visit</p>
+        <div className="px-5 pb-20 sm:px-8 sm:pb-28 lg:pr-16">
+          {/* The front door: the stripes painted over the entrance, the
+              downlight, and the number itself, dissolving into the page
+              just above the address it belongs to. */}
+          <div className="mesh-down -mx-5 sm:-mx-8 lg:-mr-16">
+            <img
+              src="/media/entrance.webp"
+              alt="The entrance at 240 Lancaster Ave: barber stripes painted over the door, and the number 240"
+              width={1200}
+              height={960}
+              className="w-full brightness-[0.92]"
+              loading="lazy"
+            />
+          </div>
+
+          <p className="label mt-6 text-brass">Visit</p>
           <h2 className="display mt-5 text-5xl text-bone sm:text-6xl">
             {b.address.street}
           </h2>

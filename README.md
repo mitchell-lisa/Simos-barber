@@ -112,6 +112,8 @@ Everything in `public/media/` is from the shop.
 | `patent-pole.webp` | Koken's 1916 barber pole patent, framed in the shop |
 | `patent-clipper.webp` | White's 1919 hair clipper patent, framed in the shop |
 | `logo.webp` | His mark, 256px — sized to what it is drawn at, not what was supplied |
+| `entrance.webp` | The front door: stripes painted over the entrance, the downlight, and the 240 — cropped to run down into the Visit section |
+| `sign.webp` | The cast-iron "Haircut and Shave 25¢" sign by the switches, cut out of its wall and lifted to brass so it reads on black |
 | `john.webp` | John, comb and shears in hand, in the shop — his profile picture, 1000×1333, rotated upright and stripped of the phone's GPS data |
 
 **Why the pole is an animated image and not a `<video>`.** A video has to satisfy an autoplay
