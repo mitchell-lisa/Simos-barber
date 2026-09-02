@@ -223,10 +223,9 @@
   }
 
   /* ── The hero's photographs ────────────────────────────────────────────
-     Film grain and a soft vignette over phone photographs, toned to the
-     site's ink and bone in tools: the grain gives them a texture of their
-     own so softness and compression read as intent, and the vignette
-     settles the edges into the page. */
+     Film grain and a soft vignette over phone photographs: the grain gives
+     them a texture of their own so softness and compression read as
+     intent, and the vignette settles the edges into the page. */
   .grain {
     opacity: 0.14;
     mix-blend-mode: overlay;

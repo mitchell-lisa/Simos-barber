@@ -20,17 +20,17 @@ export function Hero() {
     <section id="top" className="relative overflow-hidden border-b border-hair">
       {/* The shop, one photograph at a time, edge to edge: the room, John,
           the painted door, the shopfront, the tonics in the window. Each is
-          cut once for a phone and once for a wide screen, and toned to the
-          site's own ink and bone so five phone photographs read as one set.
+          cut once for a phone and once for a wide screen, graded a touch warm
+          so five phone photographs read as one set.
           Grain and a soft vignette over them. No words on it. */}
       <div className="relative h-[62vh] min-h-[22rem] max-h-[46rem]">
         <div className="absolute inset-0" aria-hidden="true">
           <HeroSlides
             slides={[
               { alt: "The room", tall: { src: "/media/room-tall.webp", width: 1000, height: 1348 }, wide: { src: "/media/room-wide.webp", width: 1800, height: 993 } },
-              { alt: "John, comb and shears in hand", tall: { src: "/media/john-tall.webp", width: 1000, height: 1333 }, wide: { src: "/media/john-wide.webp", width: 1800, height: 1033 } },
+              { alt: "His hands, comb and shears", tall: { src: "/media/john-tall.webp", width: 1000, height: 630 }, wide: { src: "/media/john-wide.webp", width: 1800, height: 657 } },
               { alt: "The menu painted on the door", tall: { src: "/media/door-tall.webp", width: 1000, height: 1221 }, wide: { src: "/media/door-wide.webp", width: 1800, height: 951 } },
-              { alt: "The shopfront from the sidewalk", tall: { src: "/media/front-tall.webp", width: 1000, height: 1281 }, wide: { src: "/media/front-wide.webp", width: 1800, height: 960 } },
+              { alt: "The shopfront from the sidewalk", tall: { src: "/media/front-tall.webp", width: 1000, height: 794 }, wide: { src: "/media/front-wide.webp", width: 1800, height: 1200 } },
               { alt: "Tonics in the front window", tall: { src: "/media/tonics-tall.webp", width: 1000, height: 1240 }, wide: { src: "/media/tonics-wide.webp", width: 1800, height: 1258 } },
             ]}
           />
