@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- The pole out front, on its own. Drawn, like the site's other icons.
+       Source for app/icon.png and app/apple-icon.png; render them with
+       the snippet in the README when this changes. -->
+  <defs>
+    <clipPath id="body"><rect x="21" y="15" width="22" height="34" rx="3"/></clipPath>
+  </defs>
+  <circle cx="32" cy="6.5" r="5" fill="#cba25a"/>
+  <rect x="17" y="10" width="30" height="5.5" rx="1.5" fill="#cba25a"/>
+  <g clip-path="url(#body)">
+    <rect x="21" y="15" width="22" height="34" fill="#ece7de"/>
+    <path d="M12 26l40-14M12 42l40-14M12 58l40-14" stroke="#c2573c" stroke-width="4.6"/>
+    <path d="M12 34l40-14M12 50l40-14M12 18l40-14" stroke="#3b5a9a" stroke-width="4.6"/>
+  </g>
+  <rect x="17" y="48.5" width="30" height="5.5" rx="1.5" fill="#cba25a"/>
+  <circle cx="32" cy="58" r="4" fill="#cba25a"/>
+</svg>
