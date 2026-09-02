@@ -46,8 +46,10 @@ is tied to his business ID and cannot be written by hand.
 opens a new tab on cmd/middle-click, and is crawlable — and intercepts the click to scroll to the
 embedded widget.
 
-`lib/schedule.ts` is only `hoursSummary()` and `displayTime()`. The site computes no availability
-it cannot verify.
+`lib/schedule.ts` is `hoursSummary()`, `displayTime()` and `todayHours()`. The last works out the
+shop's day in its own time zone; `components/today-hours.tsx` runs it on the visitor's device after
+load, since the page is static, and the strip above the header shows that day's hours and whether
+the shop is open at that moment. The site computes no availability it cannot verify.
 
 **The eighteen-line Vagaro services list that used to sit above the widget was removed** — it was
 the same services twice, 64% of the page. Because crawlers cannot read text inside an iframe, the
@@ -100,9 +102,9 @@ claim about his pricing we cannot support.
 - **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
 - **One photograph per section, at most.** The tonics, the razor and a hot-towel shot once
   flanked the door menu and the booking widget; they layered up and came out (git history has
-  them). Hero: the room. The Shop: John. Visit: the front door.
+  them). Hero: the room. The Shop: John.
 - **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The pole
-  runs off the right edge of the hero, the clock off the right edge of The Shop. Each is dissolved with a gradient `mask-image` (`.mesh-hero`, `.mesh-left`, `.mesh-down` in `globals.css`).
+  runs off the right edge of the hero, the clock off the right edge of The Shop. Each is dissolved with a gradient `mask-image` (`.mesh-hero`, `.mesh-left` in `globals.css`).
 
 ## Media
 
@@ -111,11 +113,14 @@ Everything in `public/media/` is from the shop.
 | File | What it is |
 |---|---|
 | `room.webp` | The room from the doorway, lights on: the chairs, the mirrors, the wallpaper and the black door — the hero, bled off the right edge |
-| `entrance.webp` | The stripes painted over the entrance — half the fascia mirrored into a seamless tile, repeated across the top of the Visit section so every row shows, dissolving into the address |
 | `pole.webp` | The pole out front, turning — **animated WebP, 226KB**. Was the hero until the room was photographed; kept, not placed |
 | `pole-still.webp` | One frame of it, for `prefers-reduced-motion` — kept with it |
 | `clock.webp` | The oak barber shop clock on the wall |
 | `logo.webp` | His round emblem, 256px — the footer |
+
+The favicon is the pole alone: `tools/icon.svg` is the drawing, and `app/icon.png` (256px,
+transparent) and `app/apple-icon.png` (180px on ink) are rendered from it. Vercel takes its project
+avatar from the deployed site's favicon, so it follows.
 | `wordmark.webp` | His wordmark, the pole for the I — cut out of a photograph of a print with real transparency; the header. Replace with the real file when it turns up |
 | `john.webp` | John, comb and shears in hand, in the shop — his profile picture, 1000×1333, rotated upright and stripped of the phone's GPS data |
 

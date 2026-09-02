@@ -145,12 +145,6 @@
     }
   }
 
-  /* A photograph that ends in the page below it. */
-  .mesh-down {
-    -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
-  }
-
   /* ── The painted door ──────────────────────────────────────────────────
      The menu section reproduces the sign John painted on the shop's back
      door: a gold rule inset on a black ground, names in hand-lettered caps,

@@ -101,6 +101,7 @@ export function Badge({ className = "" }: IconProps) {
    Lives in its own client module so Header and Footer stay server-rendered.  */
 
 import { BookButton } from "./book-button";
+import { TodayHours } from "./today-hours";
 export { BookButton };
 
 /* ───────────────────────── preview disclosure ────────────────────────────── */
@@ -127,15 +128,12 @@ const NAV = [
 ];
 
 export function Header() {
-  const today = hoursSummary()[0];
   return (
     <>
       {/* A shop puts its phone and its hours on the door, not three clicks in. */}
       <div className="hidden border-b border-hair bg-ink-2 md:block">
         <div className="mx-auto flex max-w-6xl items-center gap-6 px-8 py-2.5">
-          <p className="text-xs text-bone-3">
-            {today.days} {today.hours}
-          </p>
+          <TodayHours className="text-xs text-bone-3" />
           <p className="ml-auto text-xs text-bone-3">{b.address.oneLine}</p>
           <a
             href={`tel:${b.phone.e164}`}
@@ -244,7 +242,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-hair pt-6">
+        <div className="mt-14 flex flex-col gap-3 border-t border-hair pt-6 sm:flex-row sm:items-baseline sm:justify-between">
           <p className="text-[11px] leading-relaxed text-bone-3">
             {b.preview.active ? (
               <>
@@ -265,6 +263,9 @@ export function Footer() {
                 © {new Date().getFullYear()} {b.fullName}. All rights reserved.
               </>
             )}
+          </p>
+          <p className="text-[11px] leading-relaxed text-bone-3 sm:text-right">
+            Website by {b.preview.credit}
           </p>
         </div>
       </div>

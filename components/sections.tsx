@@ -165,20 +165,10 @@ export function Menu() {
       {/* The door sits in a white beadboard wall, so this section does too:
           the one light room on a dark page. */}
       <div className="relative mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-        <div className="text-center">
-          <p className="label text-brass">The Menu</p>
-          <h2 className="display mx-auto mt-5 max-w-xl text-5xl text-ink sm:text-6xl">
-            Painted on the door.
-          </h2>
-          <p className="mx-auto mt-7 max-w-md text-[1.0625rem] leading-relaxed text-ink/70">
-            The prices are the ones on the back door of the shop, in
-            {" "}{b.barbers[0].shortName}&apos;s own hand. Pick one and book it
-            below.
-          </p>
-        </div>
+        <h2 className="label text-center text-brass">The Menu</h2>
 
         {/* The door */}
-        <div className="casing mx-auto mt-14 max-w-[38rem]">
+        <div className="casing mx-auto mt-10 max-w-[38rem]">
         <div className="bg-ink px-3 py-3 sm:px-5 sm:py-5">
           <div className="relative border-[3px] border-brass/90 px-5 pb-9 pt-8 sm:px-9 sm:pb-11 sm:pt-10">
             <FleurDeLis className="absolute -left-1.5 -top-1.5 h-5 w-5 -rotate-45 text-brass" />
@@ -447,19 +437,8 @@ export function Visit() {
 
   return (
     <section id="visit" className="border-b border-hair bg-ink-2">
-      {/* The stripes painted over the entrance, run across the top of the
-          section like the fascia they are and dissolving into the address
-          below. The photograph holds only a few rows, so a slice of it is
-          mirrored into a seamless tile and repeated at a scale where every
-          stripe shows. */}
-      <div
-        role="img"
-        aria-label="The barber stripes painted over the entrance at 240 Lancaster Ave"
-        className="mesh-down h-[9rem] bg-[url('/media/entrance.webp')] bg-[length:auto_100%] bg-repeat-x bg-center brightness-[0.9] sm:h-[13rem] lg:h-[17rem]"
-      />
-
       <div className="mx-auto grid max-w-6xl lg:grid-cols-2">
-        <div className="px-5 pb-20 pt-4 sm:px-8 sm:pb-28 lg:pr-16">
+        <div className="px-5 py-20 sm:px-8 sm:py-28 lg:pr-16">
           <p className="label text-brass">Visit</p>
           <h2 className="display mt-5 text-4xl text-bone sm:text-5xl">
             {b.address.street}
@@ -491,7 +470,7 @@ export function Visit() {
           </div>
         </div>
 
-        <div className="px-5 pb-20 sm:px-8 sm:pb-28 lg:pl-16 lg:pt-12">
+        <div className="px-5 pb-20 sm:px-8 sm:pb-28 lg:py-28 lg:pl-16">
           {/* The map, sized to the hours beside it rather than the section. */}
           <div className="relative aspect-[4/3] w-full max-w-lg overflow-hidden border border-hair">
             {/* Sits behind the map, so a blocked embed still reads as an address. */}
