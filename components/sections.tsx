@@ -18,21 +18,23 @@ import { HeroSlides } from "./hero-slides";
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden border-b border-hair">
-      {/* The shop, one photograph at a time, edge to edge: the room, the
-          badger brush, the clipper patent, the tonics in the window, the door
-          behind the dried grass, the print of the building. Each is cut once
+      {/* The shop, one photograph at a time, edge to edge: the door behind
+          the dried grass, the room, the badger brush, the clipper patent, the
+          tonics in the window, the print of the building. Each is cut once
           for a phone and once for a wide screen, graded a touch warm so six
-          phone photographs read as one set.
+          phone photographs read as one set. The frame is never wider than
+          about 2.3 to 1, so a wide screen shows the whole brush and both
+          bottles rather than a band through their middles.
           Grain and a soft vignette over them. No words on it. */}
-      <div className="relative h-[62vh] min-h-[22rem] max-h-[46rem]">
+      <div className="relative h-[max(62vh,44vw)] min-h-[22rem] max-h-[58rem]">
         <div className="absolute inset-0" aria-hidden="true">
           <HeroSlides
             slides={[
-              { alt: "The room", tall: { src: "/media/room-tall.webp", width: 1000, height: 1348 }, wide: { src: "/media/room-wide.webp", width: 1800, height: 993 } },
-              { alt: "A badger brush against the wallpaper", tall: { src: "/media/brush-tall.webp", width: 1000, height: 1334 }, wide: { src: "/media/brush-wide.webp", width: 1800, height: 792 } },
-              { alt: "The 1894 clipper patent, framed by the mirror", tall: { src: "/media/patent-tall.webp", width: 1000, height: 1250 }, wide: { src: "/media/patent-wide.webp", width: 1800, height: 1104 } },
-              { alt: "Tonics in the front window", tall: { src: "/media/tonics-tall.webp", width: 1000, height: 1240 }, wide: { src: "/media/tonics-wide.webp", width: 1800, height: 1258 } },
               { alt: "The painted door behind the dried grass", tall: { src: "/media/grass-tall.webp", width: 1000, height: 1013 }, wide: { src: "/media/grass-wide.webp", width: 1800, height: 1104 } },
+              { alt: "The room", tall: { src: "/media/room-tall.webp", width: 1000, height: 1348 }, wide: { src: "/media/room-wide.webp", width: 1800, height: 993 } },
+              { alt: "A badger brush against the wallpaper", tall: { src: "/media/brush-tall.webp", width: 1000, height: 1334 }, wide: { src: "/media/brush-wide.webp", width: 1800, height: 833 } },
+              { alt: "The 1894 clipper patent, framed by the mirror", tall: { src: "/media/patent-tall.webp", width: 1000, height: 1250 }, wide: { src: "/media/patent-wide.webp", width: 1800, height: 1104 } },
+              { alt: "Tonics in the front window", tall: { src: "/media/tonics-tall.webp", width: 1000, height: 1240 }, wide: { src: "/media/tonics-wide.webp", width: 1800, height: 1169 } },
               { alt: "A print of the building as it stood", tall: { src: "/media/print-tall.webp", width: 1000, height: 1147 }, wide: { src: "/media/print-wide.webp", width: 1800, height: 1008 } },
             ]}
           />
