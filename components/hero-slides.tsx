@@ -12,17 +12,17 @@ export type Slide = {
 };
 
 /**
- * The hero's photographs, one at a time, each dissolving into the next and
- * drifting a little while it is up. Each photograph is cut twice, once for
- * a phone and once for a wide screen, so the best of it fits either way.
- * Anyone whose OS asks for reduced motion sees the first, still.
+ * The hero's photographs, one at a time, each dissolving into the next.
+ * Each photograph is cut twice, once for a phone and once for a wide
+ * screen, so the best of it fits either way. Anyone whose OS asks for
+ * reduced motion sees the first, still.
  */
 export function HeroSlides({ slides, className = "" }: { slides: Slide[]; className?: string }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), 7000);
+    const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), 6000);
     return () => clearInterval(id);
   }, [slides.length]);
 
@@ -32,7 +32,7 @@ export function HeroSlides({ slides, className = "" }: { slides: Slide[]; classN
         <picture
           key={s.tall.src}
           style={{ opacity: i === index ? 1 : 0 }}
-          className={`absolute inset-0 transition-opacity duration-[1800ms] ease-in-out ${i === index ? "drift" : ""}`}
+          className="absolute inset-0 transition-opacity duration-[1800ms] ease-in-out"
         >
           <source media="(min-width: 1024px)" srcSet={s.wide.src} width={s.wide.width} height={s.wide.height} />
           <img

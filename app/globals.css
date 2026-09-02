@@ -237,17 +237,6 @@
       radial-gradient(ellipse 80% 70% at 50% 45%, transparent 55%, rgb(11 10 9 / 0.55) 100%),
       linear-gradient(to bottom, rgb(11 10 9 / 0.25), transparent 22%, transparent 78%, rgb(11 10 9 / 0.45));
   }
-  /* The slide that is up drifts in a little, which hides softness the way
-     a slow camera move does. Stilled under prefers-reduced-motion by the
-     rule above. */
-  .drift img {
-    animation: drift 8s ease-out forwards;
-  }
-  @keyframes drift {
-    from { transform: scale(1); }
-    to { transform: scale(1.07); }
-  }
-
   /* Brass hairline with a diamond, used to separate major sections. */
   .divider {
     display: flex;
