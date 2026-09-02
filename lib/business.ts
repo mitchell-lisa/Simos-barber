@@ -17,7 +17,7 @@ export type MenuLine = {
   sub?: string;
   blurb: string | null;
   price: number | null;
-  /** Painted in red on the door rather than cream. */
+  /** Ringed in red on the door rather than gold. */
   accent?: boolean;
 };
 
@@ -159,19 +159,20 @@ export const business = {
   // what the Menu section draws — not the Vagaro list above, which is longer
   // and reads like a database. Order and spelling are the door's. A null
   // price is a line the door prints without one (color and wax are quoted
-  // in the chair). `accent` marks the two prices he painted in red.
-  // Beard Trim's price is hidden behind the door handle in the photo; $20 is
-  // from Vagaro, where it has always been set.
+  // in the chair). `accent` marks the three prices he ringed in red.
+  // Beard Trim reads "2" on the door, and that is what it says here. Vagaro
+  // lists it at $20, and the Vagaro line above keeps that for the schema
+  // markup; John should settle which one is the price.
   menu: {
     note: "Tax incl.",
     items: [
-      { name: "Classic Cut", blurb: "Precision cut, wash, style", price: 50 },
+      { name: "Classic Cut", blurb: "Precision cut, wash, style", price: 50, accent: true },
       { name: "New Classic", blurb: "Precision cut, wash, style w/ aroma therapy, hot towel & scalp treatment", price: 65 },
       { name: "Mainliner", blurb: "Precision cut & beard trim — the ultimate “shape up”. No frills.", price: 60 },
       { name: "Shave", sub: "beard trim incl.", blurb: "Hot towel, hot lather straight razor shave. Close & comfortable.", price: 40 },
       { name: "Head Shave", blurb: "Straight “shave” w/ post-mask", price: 40, accent: true },
       { name: "Simo’s Custom", blurb: "Custom “shave” w/ house made products, aroma therapy, exfoliation, post-mask", price: 80 },
-      { name: "Beard Trim", blurb: "All electric, detailed trimming of any and all facial hair. Super shaver finish.", price: 20 },
+      { name: "Beard Trim", blurb: "All electric, detailed trimming of any and all facial hair. Super shaver finish.", price: 2 },
       { name: "Beard Champ", blurb: null, price: 55 },
       { name: "The Shebang", blurb: "That’s right… the WHOLE one!! Inquire w/ John", price: 175, accent: true },
       { name: "Classic Kids", sub: "12 & under", blurb: "“Brother bundle” discounts", price: 40 },

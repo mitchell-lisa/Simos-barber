@@ -31,10 +31,10 @@ export function Hero() {
         <img
           src="/media/room.webp"
           alt=""
-          width={1400}
-          height={1419}
+          width={1200}
+          height={1617}
           decoding="async"
-          className="h-full w-full object-cover object-[55%_40%] opacity-30 brightness-[0.6] contrast-[1.05] saturate-[0.85] lg:opacity-85 lg:brightness-[0.72]"
+          className="h-full w-full object-cover object-[50%_45%] opacity-30 brightness-[0.6] contrast-[1.05] saturate-[0.85] lg:opacity-85 lg:brightness-[0.72]"
         />
       </div>
 
@@ -80,16 +80,63 @@ export function Hero() {
    from `business.menu`, which is the door line for line. Booking still
    happens in Vagaro; the button under the board scrolls to the widget.      */
 
-function Fleuron({ className = "" }: { className?: string }) {
-  // The little three-leaf curl he painted in each corner of the rule.
+function FleurDeLis({ className = "" }: { className?: string }) {
+  // The fleur-de-lis he painted outside the rule: one at each corner, one
+  // at the middle of each side, one above and one below.
   return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="none">
-      <path
-        d="M4 20c0-6 3-10 8-12M4 20c6 0 10-3 12-8M12 8c-1-2-1-4 1-5 2 1 2 3 1 5M16 12c2-1 4-1 5 1-1 2-3 2-5 1M8.5 11.5c-1.5-.5-2.5-2-2-3.5 1.5-.5 3 .5 3.5 2"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="currentColor">
+      <path d="M12 1.5c-2.2 3-2.6 6.2 0 10 2.6-3.8 2.2-7 0-10z" />
+      <path d="M12 11.5c-3.2-3.4-7-3.2-9.5-.6 1.8 2.6 5.8 3.2 9.5.6z" />
+      <path d="M12 11.5c3.2-3.4 7-3.2 9.5-.6-1.8 2.6-5.8 3.2-9.5.6z" />
+      <rect x="9" y="11.8" width="6" height="2.2" rx="0.6" />
+      <path d="M12 14.2c-1.9 2.4-1.9 5.4 0 8.3 1.9-2.9 1.9-5.9 0-8.3z" />
+      <path d="M9.4 14.6c-1.6 1.6-3.4 1.9-5 1 .4 1.8 2.4 2.8 5 1.9zM14.6 14.6c1.6 1.6 3.4 1.9 5 1-.4 1.8-2.4 2.8-5 1.9z" />
+    </svg>
+  );
+}
+
+function Quatrefoil({ className = "" }: { className?: string }) {
+  // The four-leaf ornament under his name.
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="currentColor">
+      <path d="M12 2.5c-2.6 2.6-2.6 6.9 0 9.5 2.6-2.6 2.6-6.9 0-9.5z" />
+      <path d="M12 21.5c-2.6-2.6-2.6-6.9 0-9.5 2.6 2.6 2.6 6.9 0 9.5z" />
+      <path d="M2.5 12c2.6-2.6 6.9-2.6 9.5 0-2.6 2.6-6.9 2.6-9.5 0z" />
+      <path d="M21.5 12c-2.6-2.6-6.9-2.6-9.5 0 2.6 2.6 6.9 2.6 9.5 0z" />
+      <circle cx="5.5" cy="5.5" r="1.1" />
+      <circle cx="18.5" cy="5.5" r="1.1" />
+      <circle cx="5.5" cy="18.5" r="1.1" />
+      <circle cx="18.5" cy="18.5" r="1.1" />
+    </svg>
+  );
+}
+
+function DoorPole({ className = "" }: { className?: string }) {
+  // The little striped pole he painted for the I in SIMO'S.
+  return (
+    <svg viewBox="0 0 14 36" className={className} aria-hidden="true">
+      <defs>
+        <clipPath id="door-pole-body">
+          <rect x="4" y="7.5" width="6" height="20" rx="1" />
+        </clipPath>
+      </defs>
+      <circle cx="7" cy="3" r="2.4" fill="currentColor" />
+      <rect x="3" y="5" width="8" height="2.5" rx="0.6" fill="currentColor" />
+      <g clipPath="url(#door-pole-body)">
+        <rect x="4" y="7.5" width="6" height="20" fill="var(--color-cream)" />
+        <path
+          d="M-2 12l18-7M-2 24l18-7M-2 36l18-7"
+          stroke="var(--color-paint-red)"
+          strokeWidth="3"
+        />
+        <path
+          d="M-2 18l18-7M-2 30l18-7"
+          stroke="#3b5a9a"
+          strokeWidth="3"
+        />
+      </g>
+      <rect x="3" y="27.5" width="8" height="2.5" rx="0.6" fill="currentColor" />
+      <circle cx="7" cy="32.5" r="1.8" fill="currentColor" />
     </svg>
   );
 }
@@ -113,17 +160,17 @@ export function Menu() {
   return (
     <section
       id="menu"
-      className="relative overflow-hidden border-b border-hair bg-ink-2"
+      className="beadboard relative overflow-hidden border-b border-hair text-ink"
     >
-      <div className="deco pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden="true" />
-
+      {/* The door sits in a white beadboard wall, so this section does too:
+          the one light room on a dark page. */}
       <div className="relative mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
         <div className="text-center">
           <p className="label text-brass">The Menu</p>
-          <h2 className="display mx-auto mt-5 max-w-xl text-5xl text-bone sm:text-6xl">
+          <h2 className="display mx-auto mt-5 max-w-xl text-5xl text-ink sm:text-6xl">
             Painted on the door.
           </h2>
-          <p className="mx-auto mt-7 max-w-md text-[1.0625rem] leading-relaxed text-bone-2">
+          <p className="mx-auto mt-7 max-w-md text-[1.0625rem] leading-relaxed text-ink/70">
             The prices are the ones on the back door of the shop, in
             {" "}{b.barbers[0].shortName}&apos;s own hand. Pick one and book it
             below.
@@ -131,33 +178,44 @@ export function Menu() {
         </div>
 
         {/* The door */}
-        <div className="mx-auto mt-14 max-w-[36rem] bg-ink px-3 py-3 shadow-2xl shadow-black/50 sm:px-5 sm:py-5">
-          <div className="relative border-[3px] border-brass/90 px-4 pb-8 pt-9 sm:px-9 sm:pb-11 sm:pt-12">
-            <Fleuron className="absolute -left-2 -top-2 h-7 w-7 text-brass" />
-            <Fleuron className="absolute -right-2 -top-2 h-7 w-7 -scale-x-100 text-brass" />
-            <Fleuron className="absolute -bottom-2 -left-2 h-7 w-7 -scale-y-100 text-brass" />
-            <Fleuron className="absolute -bottom-2 -right-2 h-7 w-7 -scale-x-100 -scale-y-100 text-brass" />
+        <div className="casing mx-auto mt-14 max-w-[38rem]">
+        <div className="bg-ink px-3 py-3 sm:px-5 sm:py-5">
+          <div className="relative border-[3px] border-brass/90 px-5 pb-9 pt-8 sm:px-9 sm:pb-11 sm:pt-10">
+            <FleurDeLis className="absolute -left-1.5 -top-1.5 h-5 w-5 -rotate-45 text-brass" />
+            <FleurDeLis className="absolute -right-1.5 -top-1.5 h-5 w-5 rotate-45 text-brass" />
+            <FleurDeLis className="absolute -bottom-1.5 -left-1.5 h-5 w-5 -rotate-[135deg] text-brass" />
+            <FleurDeLis className="absolute -bottom-1.5 -right-1.5 h-5 w-5 rotate-[135deg] text-brass" />
+            <FleurDeLis className="absolute -top-[1.35rem] left-1/2 h-5 w-5 -translate-x-1/2 text-brass" />
+            <FleurDeLis className="absolute -bottom-[1.35rem] left-1/2 h-5 w-5 -translate-x-1/2 rotate-180 text-brass" />
+            <FleurDeLis className="absolute -left-[1.35rem] top-1/2 h-5 w-5 -translate-y-1/2 -rotate-90 text-brass" />
+            <FleurDeLis className="absolute -right-[1.35rem] top-1/2 h-5 w-5 -translate-y-1/2 rotate-90 text-brass" />
 
-            {/* His wordmark, the pole for the I, as the door has it — cut out
-                of a photograph of a print. "Tax incl." sits under it, where
-                the door tucks it beside the S. */}
-            <img
-              src="/media/wordmark.webp"
-              alt={b.signName}
-              width={1000}
-              height={556}
-              className="mx-auto w-64 sm:w-80"
-            />
-            <p className="hand mt-1 text-right text-[0.8rem] text-cream">
-              {b.menu.note}
-            </p>
+            {/* His name as he painted it: gold, the little pole for the I,
+                the four-leaf ornament under it, "Tax incl." tucked in at
+                the right. */}
+            <div className="relative">
+              <p
+                className="sign flex items-end justify-center gap-[0.05em] text-[2.6rem] leading-none text-brass-2 sm:text-[3.3rem]"
+                aria-label={b.signName}
+              >
+                <span aria-hidden="true">S</span>
+                <DoorPole className="mb-[0.04em] h-[0.92em] w-auto" />
+                <span aria-hidden="true">MO&apos;S</span>
+              </p>
+              <Quatrefoil className="mx-auto mt-2 h-7 w-7 text-brass-2" />
+              <p className="hand absolute right-0 top-[58%] text-right text-[0.75rem] leading-tight text-cream">
+                {b.menu.note.split(" ").map((w) => (
+                  <span key={w} className="block">{w}</span>
+                ))}
+              </p>
+            </div>
 
             <ul className="mt-8 space-y-5 sm:mt-10 sm:space-y-6">
               {b.menu.items.map((line) => (
                 <li key={line.name} className="flex items-start gap-3 sm:gap-4">
                   <Pointer className="mt-[0.55em] h-3.5 w-5 shrink-0 text-brass sm:h-4 sm:w-6" />
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-baseline justify-between gap-4">
+                    <div className="flex items-end justify-between gap-4">
                       <h3 className="sign text-[1.15rem] tracking-[0.06em] text-brass-2 sm:text-[1.6rem] sm:tracking-[0.1em]">
                         {line.name}
                         {line.sub && (
@@ -176,7 +234,7 @@ export function Menu() {
                       )}
                     </div>
                     {line.blurb && (
-                      <p className="hand mt-1 max-w-[26rem] text-[0.78rem] text-cream/85 sm:text-[0.85rem]">
+                      <p className="hand mt-1 max-w-[26rem] text-[0.85rem] text-cream/85 sm:text-[0.95rem]">
                         {line.blurb}
                       </p>
                     )}
@@ -186,10 +244,11 @@ export function Menu() {
             </ul>
           </div>
         </div>
+        </div>
 
         <div className="mt-12 flex flex-col items-center gap-4 text-center">
           <BookButton>Book a chair</BookButton>
-          <p className="max-w-sm text-sm text-bone-3">
+          <p className="max-w-sm text-sm text-ink/60">
             Booking is through {b.booking.provider}. Color and wax are quoted
             in the chair.
           </p>
@@ -388,24 +447,21 @@ export function Visit() {
 
   return (
     <section id="visit" className="border-b border-hair bg-ink-2">
-      <div className="mx-auto grid max-w-6xl lg:grid-cols-2">
-        <div className="px-5 pb-20 sm:px-8 sm:pb-28 lg:pr-16">
-          {/* The front door: the stripes painted over the entrance, the
-              downlight, and the number itself, dissolving into the page
-              just above the address it belongs to. */}
-          <div className="mesh-down -mx-5 sm:-mx-8 lg:-mr-16">
-            <img
-              src="/media/entrance.webp"
-              alt="The entrance at 240 Lancaster Ave: barber stripes painted over the door, and the number 240"
-              width={1200}
-              height={960}
-              className="w-full brightness-[0.92]"
-              loading="lazy"
-            />
-          </div>
+      {/* The stripes painted over the entrance, run across the top of the
+          section like the fascia they are and dissolving into the address
+          below. The photograph holds only a few rows, so a slice of it is
+          mirrored into a seamless tile and repeated at a scale where every
+          stripe shows. */}
+      <div
+        role="img"
+        aria-label="The barber stripes painted over the entrance at 240 Lancaster Ave"
+        className="mesh-down h-[9rem] bg-[url('/media/entrance.webp')] bg-[length:auto_100%] bg-repeat-x bg-center brightness-[0.9] sm:h-[13rem] lg:h-[17rem]"
+      />
 
-          <p className="label mt-6 text-brass">Visit</p>
-          <h2 className="display mt-5 text-5xl text-bone sm:text-6xl">
+      <div className="mx-auto grid max-w-6xl lg:grid-cols-2">
+        <div className="px-5 pb-20 pt-4 sm:px-8 sm:pb-28 lg:pr-16">
+          <p className="label text-brass">Visit</p>
+          <h2 className="display mt-5 text-4xl text-bone sm:text-5xl">
             {b.address.street}
           </h2>
           <p className="mt-4 text-lg text-bone-2">
@@ -435,28 +491,31 @@ export function Visit() {
           </div>
         </div>
 
-        <div className="relative min-h-[360px] border-t border-hair lg:min-h-full lg:border-l lg:border-t-0">
-          {/* Sits behind the map, so a blocked embed still reads as an address. */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
-            <PinIcon className="h-7 w-7 text-brass" />
-            <p className="display text-xl text-bone">{b.address.oneLine}</p>
-            <a
-              href={directions}
-              target="_blank"
-              rel="noreferrer"
-              className="label text-brass-2 underline underline-offset-4"
-            >
-              Open in Maps
-            </a>
+        <div className="px-5 pb-20 sm:px-8 sm:pb-28 lg:pl-16 lg:pt-12">
+          {/* The map, sized to the hours beside it rather than the section. */}
+          <div className="relative aspect-[4/3] w-full max-w-lg overflow-hidden border border-hair">
+            {/* Sits behind the map, so a blocked embed still reads as an address. */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
+              <PinIcon className="h-7 w-7 text-brass" />
+              <p className="display text-xl text-bone">{b.address.oneLine}</p>
+              <a
+                href={directions}
+                target="_blank"
+                rel="noreferrer"
+                className="label text-brass-2 underline underline-offset-4"
+              >
+                Open in Maps
+              </a>
+            </div>
+            <iframe
+              title={`Map showing ${b.address.oneLine}`}
+              src={mapSrc}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 h-full w-full"
+              style={{ border: 0 }}
+            />
           </div>
-          <iframe
-            title={`Map showing ${b.address.oneLine}`}
-            src={mapSrc}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="absolute inset-0 h-full w-full"
-            style={{ border: 0 }}
-          />
         </div>
       </div>
     </section>

@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import {
   Archivo,
   Bodoni_Moda,
-  Fredericka_the_Great,
-  Walter_Turncoat,
+  Berkshire_Swash,
+  Patrick_Hand,
 } from "next/font/google";
 import { business } from "@/lib/business";
 import "./globals.css";
@@ -22,18 +22,18 @@ const archivo = Archivo({
   display: "swap",
 });
 
-// The two faces of the painted door menu. Fredericka is the hand-lettered
-// caps the service names are painted in; Walter Turncoat is the quick
-// brush-printed caps of the descriptions underneath. Used in the Menu
-// section only — the rest of the site keeps the Didone and the grotesque.
-const fredericka = Fredericka_the_Great({
+// The two faces of the painted door menu, picked against a photograph of
+// the door. Berkshire Swash has the brush-painted caps with curled terminals
+// and flourished feet he lettered the service names in; Patrick Hand is the neat
+// printed caps of the lines under them. Used in the Menu section only.
+const berkshire = Berkshire_Swash({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-sign",
   display: "swap",
 });
 
-const walter = Walter_Turncoat({
+const patrick = Patrick_Hand({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-hand",
@@ -152,7 +152,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bodoni.variable} ${archivo.variable} ${fredericka.variable} ${walter.variable}`}
+      className={`${bodoni.variable} ${archivo.variable} ${berkshire.variable} ${patrick.variable}`}
     >
       <body>
         {children}
