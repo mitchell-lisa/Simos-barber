@@ -18,20 +18,20 @@ import { HeroSlides } from "./hero-slides";
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden border-b border-hair">
-      {/* The shop, one photograph at a time, edge to edge: the room, the
-          tonics in the window, the painted door, and the church across the
-          street. Each is cut once for a phone and once for a wide screen.
-          A grain and a soft vignette sit over them, so four phone
-          photographs read as one set. No words on it. */}
+      {/* The shop, one photograph at a time, edge to edge: the room, John,
+          the painted door, the shopfront, the tonics in the window. Each is
+          cut once for a phone and once for a wide screen, and toned to the
+          site's own ink and bone so five phone photographs read as one set.
+          Grain and a soft vignette over them. No words on it. */}
       <div className="relative h-[62vh] min-h-[22rem] max-h-[46rem]">
         <div className="absolute inset-0" aria-hidden="true">
           <HeroSlides
-            className="brightness-[0.9] contrast-[1.03]"
             slides={[
               { alt: "The room", tall: { src: "/media/room-tall.webp", width: 1000, height: 1348 }, wide: { src: "/media/room-wide.webp", width: 1800, height: 993 } },
-              { alt: "Tonics in the front window", tall: { src: "/media/tonics-tall.webp", width: 1000, height: 1240 }, wide: { src: "/media/tonics-wide.webp", width: 1800, height: 1286 } },
+              { alt: "John, comb and shears in hand", tall: { src: "/media/john-tall.webp", width: 1000, height: 1333 }, wide: { src: "/media/john-wide.webp", width: 1800, height: 1033 } },
               { alt: "The menu painted on the door", tall: { src: "/media/door-tall.webp", width: 1000, height: 1221 }, wide: { src: "/media/door-wide.webp", width: 1800, height: 951 } },
-              { alt: "The church across the street", tall: { src: "/media/church-tall.webp", width: 1000, height: 1613 }, wide: { src: "/media/church-wide.webp", width: 1800, height: 912 } },
+              { alt: "The shopfront from the sidewalk", tall: { src: "/media/front-tall.webp", width: 1000, height: 1281 }, wide: { src: "/media/front-wide.webp", width: 1800, height: 960 } },
+              { alt: "Tonics in the front window", tall: { src: "/media/tonics-tall.webp", width: 1000, height: 1240 }, wide: { src: "/media/tonics-wide.webp", width: 1800, height: 1258 } },
             ]}
           />
         </div>

@@ -102,10 +102,10 @@ claim about his pricing we cannot support.
 - **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
 - **One photograph per section, at most.** The tonics, the razor and a hot-towel shot once
   flanked the door menu and the booking widget; they layered up and came out (git history has
-  them). Hero: four photographs in rotation, edge to edge (`components/hero-slides.tsx`, seven seconds
-  each, each cut once for a phone and once for a wide screen, with film grain, a vignette and a
-  slow drift over them; none of the motion under `prefers-reduced-motion`), no words on it; a
-  short Welcome section sits under it. The Shop: John.
+  them). Hero: five photographs in rotation, edge to edge (`components/hero-slides.tsx`, six seconds
+  each, each cut once for a phone and once for a wide screen and toned to the site's ink and bone,
+  with film grain and a vignette over them; no rotation under `prefers-reduced-motion`), no words
+  on it; a short Welcome section sits under it. The Shop: John.
 - **No em dashes in anything the page prints.** Commas, colons and full stops instead.
 - **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The pole
   runs off the right edge of the hero, the clock off the right edge of The Shop. Each is dissolved with a gradient `mask-image` (`.mesh-hero`, `.mesh-left` in `globals.css`).
@@ -117,9 +117,10 @@ Everything in `public/media/` is from the shop.
 | File | What it is |
 |---|---|
 | `room-wide.webp`, `room-tall.webp` | The room from the doorway, cut for a wide screen and for a phone — first in the hero |
-| `tonics-wide.webp`, `tonics-tall.webp` | The tonics on the front sill, flowers behind — second in the hero |
+| `john-wide.webp`, `john-tall.webp` | John, comb and shears in hand — second in the hero |
 | `door-wide.webp`, `door-tall.webp` | The painted menu on the back door in its white wall — third in the hero |
-| `church-wide.webp`, `church-tall.webp` | The church across the street — fourth in the hero |
+| `front-wide.webp`, `front-tall.webp` | The shopfront from the sidewalk: transoms, sign and pole in the glass — fourth in the hero |
+| `tonics-wide.webp`, `tonics-tall.webp` | The tonics on the front sill, flowers behind — fifth in the hero |
 | `pole.webp` | The pole out front, turning — **animated WebP, 226KB**. Was the hero until the room was photographed; kept, not placed |
 | `pole-still.webp` | One frame of it, for `prefers-reduced-motion` — kept with it |
 | `clock.webp` | The oak barber shop clock on the wall |
