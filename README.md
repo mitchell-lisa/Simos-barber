@@ -100,7 +100,7 @@ claim about his pricing we cannot support.
 - **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
 - **One photograph per section, at most.** The tonics, the razor and a hot-towel shot once
   flanked the door menu and the booking widget; they layered up and came out (git history has
-  them). Hero: the room. The Shop: John. Visit: the shopfront.
+  them). Hero: the room. The Shop: John. Visit: the front door.
 - **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The pole
   runs off the right edge of the hero, the clock off the right edge of The Shop. Each is dissolved with a gradient `mask-image` (`.mesh-hero`, `.mesh-left`, `.mesh-down` in `globals.css`).
 
@@ -111,7 +111,7 @@ Everything in `public/media/` is from the shop.
 | File | What it is |
 |---|---|
 | `room.webp` | The room from the doorway, lights on: the chairs, the mirrors, the wallpaper and the black door — the hero, bled off the right edge |
-| `storefront.webp` | The shopfront from the sidewalk: black frame, leaded transoms, the pole and his sign in the glass — across the top of the Visit section, dissolving into the address |
+| `entrance.webp` | The stripes painted over the entrance, with the downlight — a band across the top of the Visit section, dissolving into the address |
 | `pole.webp` | The pole out front, turning — **animated WebP, 226KB**. Was the hero until the room was photographed; kept, not placed |
 | `pole-still.webp` | One frame of it, for `prefers-reduced-motion` — kept with it |
 | `clock.webp` | The oak barber shop clock on the wall |

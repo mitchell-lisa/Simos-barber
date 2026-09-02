@@ -445,16 +445,16 @@ export function Visit() {
 
   return (
     <section id="visit" className="border-b border-hair bg-ink-2">
-      {/* The top of the shopfront from the sidewalk — the leaded transoms,
-          the sign and the pole in the glass — across the top of the section,
-          dissolving into the address it belongs to. */}
+      {/* The stripes painted over the entrance, with the downlight, run
+          across the top of the section like the fascia they are and dissolve
+          into the address below. */}
       <div className="mesh-down">
         <img
-          src="/media/storefront.webp"
-          alt="The shopfront at 240 Lancaster Ave: a black frame, leaded transom windows, the pole and his sign in the glass"
-          width={1400}
-          height={758}
-          className="h-[13rem] w-full object-cover object-[50%_70%] brightness-[0.9] sm:h-[18rem] lg:h-[24rem]"
+          src="/media/entrance.webp"
+          alt="The barber stripes painted over the entrance at 240 Lancaster Ave"
+          width={1600}
+          height={960}
+          className="h-[9rem] w-full object-cover object-[50%_45%] brightness-[0.9] sm:h-[14rem] lg:h-[22rem]"
           loading="lazy"
         />
       </div>
