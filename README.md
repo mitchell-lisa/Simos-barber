@@ -108,7 +108,7 @@ Everything in `public/media/` is from the shop.
 | File | What it is |
 |---|---|
 | `room.webp` | The room from the doorway, lights on: the chairs, the mirrors, the wallpaper and the black door — the hero, bled off the right edge |
-| `storefront.webp` | The shopfront from the sidewalk: black frame, leaded transoms, the pole and his sign in the glass — runs down into the Visit section |
+| `storefront.webp` | The shopfront from the sidewalk: black frame, leaded transoms, the pole and his sign in the glass — across the top of the Visit section, dissolving into the address |
 | `pole.webp` | The pole out front, turning — **animated WebP, 226KB**. Was the hero until the room was photographed; kept, not placed |
 | `pole-still.webp` | One frame of it, for `prefers-reduced-motion` — kept with it |
 | `clock.webp` | The oak barber shop clock on the wall |

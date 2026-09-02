@@ -445,23 +445,23 @@ export function Visit() {
 
   return (
     <section id="visit" className="border-b border-hair bg-ink-2">
-      <div className="mx-auto grid max-w-6xl lg:grid-cols-2">
-        <div className="px-5 pb-20 sm:px-8 sm:pb-28 lg:pr-16">
-          {/* The shopfront from the sidewalk, dissolving into the page just
-              above the address it belongs to. */}
-          <div className="mesh-down -mx-5 sm:-mx-8 lg:-mr-16">
-            <img
-              src="/media/storefront.webp"
-              alt="The shopfront at 240 Lancaster Ave: a black frame, leaded transom windows, the pole and his sign in the glass"
-              width={1200}
-              height={1166}
-              className="w-full brightness-[0.92]"
-              loading="lazy"
-            />
-          </div>
+      {/* The shopfront from the sidewalk, across the top of the section,
+          dissolving into the address it belongs to. */}
+      <div className="mesh-down">
+        <img
+          src="/media/storefront.webp"
+          alt="The shopfront at 240 Lancaster Ave: a black frame, leaded transom windows, the pole and his sign in the glass"
+          width={1200}
+          height={1166}
+          className="h-[20rem] w-full object-cover object-[50%_58%] brightness-[0.9] sm:h-[26rem] lg:h-[30rem]"
+          loading="lazy"
+        />
+      </div>
 
-          <p className="label mt-6 text-brass">Visit</p>
-          <h2 className="display mt-5 text-5xl text-bone sm:text-6xl">
+      <div className="mx-auto grid max-w-6xl lg:grid-cols-2">
+        <div className="px-5 pb-20 pt-4 sm:px-8 sm:pb-28 lg:pr-16">
+          <p className="label text-brass">Visit</p>
+          <h2 className="display mt-5 text-4xl text-bone sm:text-5xl">
             {b.address.street}
           </h2>
           <p className="mt-4 text-lg text-bone-2">
