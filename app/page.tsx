@@ -5,6 +5,7 @@ import {
   Shop,
   TrustStrip,
   Visit,
+  Welcome,
 } from "@/components/sections";
 import { Footer, Header, PreviewNotice } from "@/components/site";
 
@@ -15,6 +16,7 @@ export default function Page() {
       <Header />
       <main>
         <Hero />
+        <Welcome />
         <TrustStrip />
         <Menu />
         <Book />

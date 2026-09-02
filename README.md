@@ -102,8 +102,8 @@ claim about his pricing we cannot support.
 - **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
 - **One photograph per section, at most.** The tonics, the razor and a hot-towel shot once
   flanked the door menu and the booking widget; they layered up and came out (git history has
-  them). Hero: four photographs in rotation (`components/hero-slides.tsx`, six seconds each, none under
-  `prefers-reduced-motion`). The Shop: John.
+  them). Hero: four photographs in rotation, edge to edge (`components/hero-slides.tsx`, six seconds each,
+  none under `prefers-reduced-motion`), no words on it; a short Welcome section sits under it. The Shop: John.
 - **No em dashes in anything the page prints.** Commas, colons and full stops instead.
 - **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The pole
   runs off the right edge of the hero, the clock off the right edge of The Shop. Each is dissolved with a gradient `mask-image` (`.mesh-hero`, `.mesh-left` in `globals.css`).

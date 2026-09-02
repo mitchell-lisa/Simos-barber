@@ -18,58 +18,51 @@ import { HeroSlides } from "./hero-slides";
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden border-b border-hair">
-      {/* The shop's own wallpaper, redrawn — barely there, but it is his room. */}
-      <div className="deco pointer-events-none absolute inset-0 opacity-[0.05]" aria-hidden="true" />
-
-      {/* The shop, one photograph at a time, dissolved into the page: full
-          bleed behind the type on a phone, running off the right edge on a
-          wide screen. The room, the tonics in the window, the painted door,
-          and the church across the street. */}
-      <div
-        className="mesh-hero pointer-events-none absolute inset-0 opacity-30 lg:left-auto lg:w-[46%] lg:opacity-85"
-        aria-hidden="true"
-      >
-        <HeroSlides
-          className="brightness-[0.6] contrast-[1.05] saturate-[0.85] lg:brightness-[0.72]"
-          slides={[
-            { src: "/media/room.webp", alt: "The room", width: 1200, height: 1617, position: "50% 45%" },
-            { src: "/media/tonics.webp", alt: "Tonics in the front window", width: 1200, height: 1488, position: "50% 50%" },
-            { src: "/media/door.webp", alt: "The menu painted on the door", width: 1200, height: 1466, position: "50% 45%" },
-            { src: "/media/church.webp", alt: "The church across the street", width: 1200, height: 1936, position: "50% 35%" },
-          ]}
-        />
-      </div>
-
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[minmax(0,38rem)_1fr] lg:py-32">
-        <div className="min-w-0">
-          <p className="label text-brass">
-            {b.address.street} · {b.address.city}, Pennsylvania
-          </p>
-
-          <h1 className="display mt-6 text-[3.25rem] text-bone sm:text-[4.5rem] lg:text-[4.75rem]">
-            Sit down.
-            <br />
-            Take your time.
-          </h1>
-
-          <p className="mt-8 max-w-md text-[1.0625rem] leading-relaxed text-bone-2">
-            A traditional barbershop on Lancaster Avenue. Clippers, shears and a
-            straight razor, and a barber who takes the time to get it right.
-            Opening {b.opensOnLabel}.
-          </p>
-
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <BookButton />
-            <a
-              href={`tel:${b.phone.e164}`}
-              className="label inline-flex items-center justify-center gap-2.5 border border-hair-2 px-7 py-4 text-bone transition-colors hover:border-brass hover:text-brass-2"
-            >
-              <PhoneIcon className="h-4 w-4" />
-              {b.phone.display}
-            </a>
-          </div>
+      {/* The shop, one photograph at a time, edge to edge: the room, the
+          tonics in the window, the painted door, and the church across the
+          street. No words on it. */}
+      <div className="relative h-[62vh] min-h-[22rem] max-h-[46rem]">
+        <div className="absolute inset-0" aria-hidden="true">
+          <HeroSlides
+            className="brightness-[0.88] contrast-[1.04] saturate-[0.95]"
+            slides={[
+              { src: "/media/room.webp", alt: "The room", width: 1200, height: 1617, position: "50% 45%" },
+              { src: "/media/tonics.webp", alt: "Tonics in the front window", width: 1200, height: 1488, position: "50% 55%" },
+              { src: "/media/door.webp", alt: "The menu painted on the door", width: 1200, height: 1466, position: "50% 40%" },
+              { src: "/media/church.webp", alt: "The church across the street", width: 1200, height: 1936, position: "50% 30%" },
+            ]}
+          />
         </div>
+      </div>
+    </section>
+  );
+}
 
+/* ───────────────────────── welcome ───────────────────────────────────────
+   Short, and under the photographs rather than over them.                  */
+
+export function Welcome() {
+  return (
+    <section className="border-b border-hair bg-ink-2">
+      <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
+        <h1 className="display text-3xl text-bone sm:text-4xl">
+          Welcome to {b.fullName}
+        </h1>
+        <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-bone-2">
+          A traditional barbershop at {b.address.street} in {b.address.city},
+          Pennsylvania. Cuts, beards and straight-razor shaves with{" "}
+          {b.barbers[0].name}. Walk-ins welcome, open seven days.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <BookButton className="px-6 py-3.5" />
+          <a
+            href={`tel:${b.phone.e164}`}
+            className="label inline-flex items-center justify-center gap-2.5 border border-hair-2 px-6 py-3.5 text-bone transition-colors hover:border-brass hover:text-brass-2"
+          >
+            <PhoneIcon className="h-4 w-4" />
+            {b.phone.display}
+          </a>
+        </div>
       </div>
     </section>
   );
