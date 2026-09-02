@@ -102,7 +102,9 @@ claim about his pricing we cannot support.
 - **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
 - **One photograph per section, at most.** The tonics, the razor and a hot-towel shot once
   flanked the door menu and the booking widget; they layered up and came out (git history has
-  them). Hero: the room. The Shop: John.
+  them). Hero: four photographs in rotation (`components/hero-slides.tsx`, six seconds each, none under
+  `prefers-reduced-motion`). The Shop: John.
+- **No em dashes in anything the page prints.** Commas, colons and full stops instead.
 - **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The pole
   runs off the right edge of the hero, the clock off the right edge of The Shop. Each is dissolved with a gradient `mask-image` (`.mesh-hero`, `.mesh-left` in `globals.css`).
 
@@ -112,7 +114,10 @@ Everything in `public/media/` is from the shop.
 
 | File | What it is |
 |---|---|
-| `room.webp` | The room from the doorway, lights on: the chairs, the mirrors, the wallpaper and the black door — the hero, bled off the right edge |
+| `room.webp` | The room from the doorway, lights on: the chairs, the mirrors, the wallpaper and the black door — first of the hero's four, bled off the right edge |
+| `tonics.webp` | Two tonics in apothecary pumps on the front sill, flowers behind and the wallpaper below — second in the hero |
+| `door.webp` | The painted menu on the back door, straight on, in its white wall — third in the hero |
+| `church.webp` | The church across the street — fourth in the hero |
 | `pole.webp` | The pole out front, turning — **animated WebP, 226KB**. Was the hero until the room was photographed; kept, not placed |
 | `pole-still.webp` | One frame of it, for `prefers-reduced-motion` — kept with it |
 | `clock.webp` | The oak barber shop clock on the wall |

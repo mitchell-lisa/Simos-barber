@@ -11,6 +11,7 @@ import {
   ScissorsIcon,
 } from "./site";
 import { VagaroWidget } from "./vagaro";
+import { HeroSlides } from "./hero-slides";
 
 /* ───────────────────────── hero ──────────────────────────────────────────── */
 
@@ -20,21 +21,22 @@ export function Hero() {
       {/* The shop's own wallpaper, redrawn — barely there, but it is his room. */}
       <div className="deco pointer-events-none absolute inset-0 opacity-[0.05]" aria-hidden="true" />
 
-      {/* The room, dissolved into the page: full bleed behind the type on a
-          phone, running off the right edge on a wide screen. The chairs,
-          the mirrors, the wallpaper and the black door — "Sit down" is
-          written over the thing it means. */}
+      {/* The shop, one photograph at a time, dissolved into the page: full
+          bleed behind the type on a phone, running off the right edge on a
+          wide screen. The room, the tonics in the window, the painted door,
+          and the church across the street. */}
       <div
-        className="mesh-hero pointer-events-none absolute inset-0 lg:left-auto lg:w-[46%]"
+        className="mesh-hero pointer-events-none absolute inset-0 opacity-30 lg:left-auto lg:w-[46%] lg:opacity-85"
         aria-hidden="true"
       >
-        <img
-          src="/media/room.webp"
-          alt=""
-          width={1200}
-          height={1617}
-          decoding="async"
-          className="h-full w-full object-cover object-[50%_45%] opacity-30 brightness-[0.6] contrast-[1.05] saturate-[0.85] lg:opacity-85 lg:brightness-[0.72]"
+        <HeroSlides
+          className="brightness-[0.6] contrast-[1.05] saturate-[0.85] lg:brightness-[0.72]"
+          slides={[
+            { src: "/media/room.webp", alt: "The room", width: 1200, height: 1617, position: "50% 45%" },
+            { src: "/media/tonics.webp", alt: "Tonics in the front window", width: 1200, height: 1488, position: "50% 50%" },
+            { src: "/media/door.webp", alt: "The menu painted on the door", width: 1200, height: 1466, position: "50% 45%" },
+            { src: "/media/church.webp", alt: "The church across the street", width: 1200, height: 1936, position: "50% 35%" },
+          ]}
         />
       </div>
 
@@ -51,7 +53,7 @@ export function Hero() {
           </h1>
 
           <p className="mt-8 max-w-md text-[1.0625rem] leading-relaxed text-bone-2">
-            A traditional barbershop on Lancaster Avenue — clippers, shears and a
+            A traditional barbershop on Lancaster Avenue. Clippers, shears and a
             straight razor, and a barber who takes the time to get it right.
             Opening {b.opensOnLabel}.
           </p>
@@ -378,7 +380,7 @@ export function Shop() {
           </h2>
           <div className="mt-8 space-y-5 text-[1.0625rem] leading-relaxed text-bone-2">
             <p>
-              Simo&apos;s is {b.barbers[0].shortName}&apos;s shop — his name on
+              Simo&apos;s is {b.barbers[0].shortName}&apos;s shop: his name on
               the door and his hands on the clippers, with {b.reviews.count} five-star
               reviews behind him before he ever opened it.
             </p>
