@@ -102,9 +102,9 @@ claim about his pricing we cannot support.
 - **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
 - **One photograph per section, at most.** The tonics, the razor and a hot-towel shot once
   flanked the door menu and the booking widget; they layered up and came out (git history has
-  them). Hero: five photographs in rotation, edge to edge (`components/hero-slides.tsx`, six seconds
+  them). Hero: six photographs in rotation, edge to edge (`components/hero-slides.tsx`, six seconds
   each, each cut once for a phone and once for a wide screen and graded a touch warm, with film grain
-  and a vignette over them; no rotation under `prefers-reduced-motion`), no words
+  and a vignette over them; no rotation under `prefers-reduced-motion`; the frame is held to about 2.3 to 1 on wide screens so tall subjects stay whole), no words
   on it; a short Welcome section sits under it. The Shop: John.
 - **No em dashes in anything the page prints.** Commas, colons and full stops instead.
 - **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The pole
@@ -116,11 +116,12 @@ Everything in `public/media/` is from the shop.
 
 | File | What it is |
 |---|---|
-| `room-wide.webp`, `room-tall.webp` | The room from the doorway, cut for a wide screen and for a phone — first in the hero |
-| `john-wide.webp`, `john-tall.webp` | His hands, comb and shears — second in the hero |
-| `door-wide.webp`, `door-tall.webp` | The painted menu on the back door in its white wall — third in the hero |
-| `front-wide.webp`, `front-tall.webp` | The shop through the front window, from the sidewalk — fourth in the hero |
-| `tonics-wide.webp`, `tonics-tall.webp` | The tonics on the front sill, flowers behind — fifth in the hero |
+| `grass-wide.webp`, `grass-tall.webp` | The painted door seen past a vase of dried grass, the head of the sign sharp — first in the hero |
+| `room-wide.webp`, `room-tall.webp` | The room from the doorway, cut for a wide screen and for a phone — second in the hero |
+| `brush-wide.webp`, `brush-tall.webp` | The badger brush on the counter against the sunburst wallpaper, the wallpaper mirrored out to either side on the wide cut so the whole brush stays in frame — third in the hero |
+| `patent-wide.webp`, `patent-tall.webp` | The framed 1894 Priest clipper patent beside the mirror sconce — fourth in the hero |
+| `tonics-wide.webp`, `tonics-tall.webp` | The tonics on the front sill, flowers behind; the wide cut carries the window casing mirrored out to the right so both bottles stay whole — fifth in the hero |
+| `print-wide.webp`, `print-tall.webp` | The framed print of 240 Lancaster as it stood a century ago — sixth in the hero |
 | `pole.webp` | The pole out front, turning — **animated WebP, 226KB**. Was the hero until the room was photographed; kept, not placed |
 | `pole-still.webp` | One frame of it, for `prefers-reduced-motion` — kept with it |
 | `clock.webp` | The oak barber shop clock on the wall |
