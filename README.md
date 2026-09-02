@@ -38,7 +38,13 @@ future client has no booking software, the form and notification route are in gi
 `2bf81c6`.)
 
 `components/vagaro.tsx` injects `business.booking.embedHtml` and **re-creates any `<script>` it
-carries** — React will not execute one that arrives through `innerHTML`. The embed code is
+carries** — React will not execute one that arrives through `innerHTML`. It does not inject on
+mount: Vagaro's iframe focuses something inside itself when it finishes loading, and the browser
+scrolls the page to it, which on a fresh visit yanked the reader from the hero down to the widget a
+second or two later. So the widget waits until the Book section is about to scroll into view, and
+for six seconds after injection any scroll the visitor did not cause (no wheel, touch, key or
+pointer behind it) is put straight back. If the visitor was already scrolling when it landed (on
+the way down from the Book button, say), the hold is skipped. The embed code is
 generated inside John's Vagaro account (Settings → Booking Widget → "In Website" → Copy Code); it
 is tied to his business ID and cannot be written by hand.
 
