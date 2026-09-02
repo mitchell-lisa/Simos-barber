@@ -89,7 +89,7 @@ export function Badge({ className = "" }: IconProps) {
   return (
     <img
       src="/media/logo.webp"
-      alt={`${b.signName} — ${b.motto}`}
+      alt={`${b.signName}. ${b.motto}`}
       width={256}
       height={256}
       className={className}
@@ -111,7 +111,7 @@ export function PreviewNotice() {
   return (
     <div className="bg-ink-3">
       <p className="mx-auto max-w-6xl px-5 py-2 text-center text-[11px] leading-relaxed text-bone-2 sm:px-8">
-        Private preview built by {b.preview.builtBy} for {b.fullName} — not yet
+        Private preview built by {b.preview.builtBy} for {b.fullName}, not yet
         the shop&apos;s official website.
       </p>
     </div>
@@ -265,7 +265,15 @@ export function Footer() {
             )}
           </p>
           <p className="text-[11px] leading-relaxed text-bone-3 sm:text-right">
-            Website by {b.preview.credit}
+            Website by{" "}
+            <a
+              href={b.preview.creditUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="underline underline-offset-2 transition-colors hover:text-bone"
+            >
+              {b.preview.credit}
+            </a>
           </p>
         </div>
       </div>

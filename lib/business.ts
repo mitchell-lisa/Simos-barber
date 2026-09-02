@@ -168,7 +168,7 @@ export const business = {
     items: [
       { name: "Classic Cut", blurb: "Precision cut, wash, style", price: 50, accent: true },
       { name: "New Classic", blurb: "Precision cut, wash, style w/ aroma therapy, hot towel & scalp treatment", price: 65 },
-      { name: "Mainliner", blurb: "Precision cut & beard trim — the ultimate “shape up”. No frills.", price: 60 },
+      { name: "Mainliner", blurb: "Precision cut & beard trim. The ultimate “shape up”, no frills.", price: 60 },
       { name: "Shave", sub: "beard trim incl.", blurb: "Hot towel, hot lather straight razor shave. Close & comfortable.", price: 40 },
       { name: "Head Shave", blurb: "Straight “shave” w/ post-mask", price: 40, accent: true },
       { name: "Simo’s Custom", blurb: "Custom “shave” w/ house made products, aroma therapy, exfoliation, post-mask", price: 80 },
@@ -224,7 +224,7 @@ export const business = {
   },
 
   seo: {
-    title: "Simo's Barbering — Barbershop in Wayne, PA",
+    title: "Simo's Barbering, Barbershop in Wayne, PA",
     description:
       "Simo's Barbering is a traditional barbershop at 240 Lancaster Ave in Wayne, Pennsylvania. Haircuts, beard work and straight-razor shaves with John Simonton. Walk-ins welcome, open seven days. Book online.",
   },
@@ -238,8 +238,9 @@ export const business = {
     active: false,
     builtBy: "Mitchell Lisa",
     builtByEmail: "meetme@cornerof.com",
-    // The credit at the foot of every page.
+    // The credit at the foot of every page, and where it links.
     credit: "MJL Collective",
+    creditUrl: "https://mjlcollective.com",
   },
 } as const;
 
