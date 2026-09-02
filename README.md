@@ -46,8 +46,10 @@ is tied to his business ID and cannot be written by hand.
 opens a new tab on cmd/middle-click, and is crawlable — and intercepts the click to scroll to the
 embedded widget.
 
-`lib/schedule.ts` is only `hoursSummary()` and `displayTime()`. The site computes no availability
-it cannot verify.
+`lib/schedule.ts` is `hoursSummary()`, `displayTime()` and `todayHours()`. The last works out the
+shop's day in its own time zone; `components/today-hours.tsx` runs it on the visitor's device after
+load, since the page is static, and the strip above the header shows that day's hours and whether
+the shop is open at that moment. The site computes no availability it cannot verify.
 
 **The eighteen-line Vagaro services list that used to sit above the widget was removed** — it was
 the same services twice, 64% of the page. Because crawlers cannot read text inside an iframe, the

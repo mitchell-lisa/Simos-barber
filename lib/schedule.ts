@@ -48,3 +48,34 @@ export function hoursSummary(): { days: string; hours: string }[] {
   }
   return rows;
 }
+
+/**
+ * The hours for whatever day it is at the shop right now — worked out in the
+ * shop's own time zone, so a visitor in another one still sees Wayne's day.
+ */
+export function todayHours(now: Date = new Date()): {
+  day: string;
+  hours: string;
+  isOpen: boolean;
+} {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: b.timeZone,
+    weekday: "long",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(now);
+  const get = (type: string) => parts.find((p) => p.type === type)?.value ?? "";
+  const dayIndex = Math.max(0, DAY_LONG.indexOf(get("weekday")));
+  const minutes = (Number(get("hour")) % 24) * 60 + Number(get("minute"));
+  const h = b.hours[dayIndex];
+  const toMinutes = (hhmm: string) => {
+    const [hh, mm] = hhmm.split(":").map(Number);
+    return hh * 60 + mm;
+  };
+  return {
+    day: DAY_LONG[dayIndex],
+    hours: h ? `${displayTime(h.open)} – ${displayTime(h.close)}` : "Closed",
+    isOpen: !!h && minutes >= toMinutes(h.open) && minutes < toMinutes(h.close),
+  };
+}

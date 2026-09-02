@@ -238,6 +238,8 @@ export const business = {
     active: false,
     builtBy: "Mitchell Lisa",
     builtByEmail: "meetme@cornerof.com",
+    // The credit at the foot of every page.
+    credit: "MJL Collective",
   },
 } as const;
 
