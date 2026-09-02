@@ -178,7 +178,8 @@ export function Menu() {
         </div>
 
         {/* The door */}
-        <div className="mx-auto mt-14 max-w-[36rem] bg-ink px-3 py-3 shadow-2xl shadow-black/35 sm:px-5 sm:py-5">
+        <div className="casing mx-auto mt-14 max-w-[38rem]">
+        <div className="bg-ink px-3 py-3 sm:px-5 sm:py-5">
           <div className="relative border-[3px] border-brass/90 px-5 pb-9 pt-8 sm:px-9 sm:pb-11 sm:pt-10">
             <FleurDeLis className="absolute -left-1.5 -top-1.5 h-5 w-5 -rotate-45 text-brass" />
             <FleurDeLis className="absolute -right-1.5 -top-1.5 h-5 w-5 rotate-45 text-brass" />
@@ -242,6 +243,7 @@ export function Menu() {
               ))}
             </ul>
           </div>
+        </div>
         </div>
 
         <div className="mt-12 flex flex-col items-center gap-4 text-center">
@@ -445,19 +447,16 @@ export function Visit() {
 
   return (
     <section id="visit" className="border-b border-hair bg-ink-2">
-      {/* The stripes painted over the entrance, with the downlight, run
-          across the top of the section like the fascia they are and dissolve
-          into the address below. */}
-      <div className="mesh-down">
-        <img
-          src="/media/entrance.webp"
-          alt="The barber stripes painted over the entrance at 240 Lancaster Ave"
-          width={1600}
-          height={960}
-          className="h-[9rem] w-full object-cover object-[50%_45%] brightness-[0.9] sm:h-[14rem] lg:h-[22rem]"
-          loading="lazy"
-        />
-      </div>
+      {/* The stripes painted over the entrance, run across the top of the
+          section like the fascia they are and dissolving into the address
+          below. The photograph holds only a few rows, so a slice of it is
+          mirrored into a seamless tile and repeated at a scale where every
+          stripe shows. */}
+      <div
+        role="img"
+        aria-label="The barber stripes painted over the entrance at 240 Lancaster Ave"
+        className="mesh-down h-[9rem] bg-[url('/media/entrance.webp')] bg-[length:auto_100%] bg-repeat-x bg-center brightness-[0.9] sm:h-[13rem] lg:h-[17rem]"
+      />
 
       <div className="mx-auto grid max-w-6xl lg:grid-cols-2">
         <div className="px-5 pb-20 pt-4 sm:px-8 sm:pb-28 lg:pr-16">
@@ -492,28 +491,31 @@ export function Visit() {
           </div>
         </div>
 
-        <div className="relative min-h-[360px] border-t border-hair lg:min-h-full lg:border-l lg:border-t-0">
-          {/* Sits behind the map, so a blocked embed still reads as an address. */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
-            <PinIcon className="h-7 w-7 text-brass" />
-            <p className="display text-xl text-bone">{b.address.oneLine}</p>
-            <a
-              href={directions}
-              target="_blank"
-              rel="noreferrer"
-              className="label text-brass-2 underline underline-offset-4"
-            >
-              Open in Maps
-            </a>
+        <div className="px-5 pb-20 sm:px-8 sm:pb-28 lg:pl-16 lg:pt-12">
+          {/* The map, sized to the hours beside it rather than the section. */}
+          <div className="relative aspect-[4/3] w-full max-w-lg overflow-hidden border border-hair">
+            {/* Sits behind the map, so a blocked embed still reads as an address. */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
+              <PinIcon className="h-7 w-7 text-brass" />
+              <p className="display text-xl text-bone">{b.address.oneLine}</p>
+              <a
+                href={directions}
+                target="_blank"
+                rel="noreferrer"
+                className="label text-brass-2 underline underline-offset-4"
+              >
+                Open in Maps
+              </a>
+            </div>
+            <iframe
+              title={`Map showing ${b.address.oneLine}`}
+              src={mapSrc}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 h-full w-full"
+              style={{ border: 0 }}
+            />
           </div>
-          <iframe
-            title={`Map showing ${b.address.oneLine}`}
-            src={mapSrc}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="absolute inset-0 h-full w-full"
-            style={{ border: 0 }}
-          />
         </div>
       </div>
     </section>

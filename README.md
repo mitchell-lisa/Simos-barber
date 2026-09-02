@@ -86,7 +86,7 @@ claim about his pricing we cannot support.
   them in, in brass)
   and Patrick Hand for the lines under them (his neat printed caps, in the door's cream), both
   picked against a photograph of the door. The section sits on `.beadboard`, the painted white
-  wall the door is set in — the one light room on a dark page. Prices sit in `.oval`, a CSS oval with
+  wall the door is set in, with the door in its white `.casing` — the one light room on a dark page. Prices sit in `.oval`, a CSS oval with
   uneven radii tilted four degrees so it reads as painted, not as a pill; the three he ringed in red
   are `accent: true`. The flourishes in the corners of the rule and the "≻" that starts each line
   are drawn, like the other icons.
@@ -111,7 +111,7 @@ Everything in `public/media/` is from the shop.
 | File | What it is |
 |---|---|
 | `room.webp` | The room from the doorway, lights on: the chairs, the mirrors, the wallpaper and the black door — the hero, bled off the right edge |
-| `entrance.webp` | The stripes painted over the entrance, with the downlight — a band across the top of the Visit section, dissolving into the address |
+| `entrance.webp` | The stripes painted over the entrance — half the fascia mirrored into a seamless tile, repeated across the top of the Visit section so every row shows, dissolving into the address |
 | `pole.webp` | The pole out front, turning — **animated WebP, 226KB**. Was the hero until the room was photographed; kept, not placed |
 | `pole-still.webp` | One frame of it, for `prefers-reduced-motion` — kept with it |
 | `clock.webp` | The oak barber shop clock on the wall |
