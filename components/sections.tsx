@@ -20,19 +20,23 @@ export function Hero() {
     <section id="top" className="relative overflow-hidden border-b border-hair">
       {/* The shop, one photograph at a time, edge to edge: the room, the
           tonics in the window, the painted door, and the church across the
-          street. No words on it. */}
+          street. Each is cut once for a phone and once for a wide screen.
+          A grain and a soft vignette sit over them, so four phone
+          photographs read as one set. No words on it. */}
       <div className="relative h-[62vh] min-h-[22rem] max-h-[46rem]">
         <div className="absolute inset-0" aria-hidden="true">
           <HeroSlides
-            className="brightness-[0.88] contrast-[1.04] saturate-[0.95]"
+            className="brightness-[0.9] contrast-[1.03]"
             slides={[
-              { src: "/media/room.webp", alt: "The room", width: 1200, height: 1617, position: "50% 45%" },
-              { src: "/media/tonics.webp", alt: "Tonics in the front window", width: 1200, height: 1488, position: "50% 55%" },
-              { src: "/media/door.webp", alt: "The menu painted on the door", width: 1200, height: 1466, position: "50% 40%" },
-              { src: "/media/church.webp", alt: "The church across the street", width: 1200, height: 1936, position: "50% 30%" },
+              { alt: "The room", tall: { src: "/media/room-tall.webp", width: 1000, height: 1348 }, wide: { src: "/media/room-wide.webp", width: 1800, height: 993 } },
+              { alt: "Tonics in the front window", tall: { src: "/media/tonics-tall.webp", width: 1000, height: 1240 }, wide: { src: "/media/tonics-wide.webp", width: 1800, height: 1286 } },
+              { alt: "The menu painted on the door", tall: { src: "/media/door-tall.webp", width: 1000, height: 1221 }, wide: { src: "/media/door-wide.webp", width: 1800, height: 951 } },
+              { alt: "The church across the street", tall: { src: "/media/church-tall.webp", width: 1000, height: 1613 }, wide: { src: "/media/church-wide.webp", width: 1800, height: 912 } },
             ]}
           />
         </div>
+        <div className="grain pointer-events-none absolute inset-0" aria-hidden="true" />
+        <div className="vignette pointer-events-none absolute inset-0" aria-hidden="true" />
       </div>
     </section>
   );
