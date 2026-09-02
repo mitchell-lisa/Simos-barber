@@ -20,12 +20,13 @@
   --font-body: var(--font-archivo), system-ui, -apple-system, sans-serif;
   /* The painted door: hand-lettered caps for the names, brush-printed caps
      for the lines underneath. Only the Menu section uses them. */
-  --font-sign: var(--font-sign), "Fredericka the Great", Georgia, serif;
-  --font-hand: var(--font-hand), "Walter Turncoat", "Comic Sans MS", cursive;
+  --font-sign: var(--font-sign), "Fontdiner Swanky", Georgia, serif;
+  --font-hand: var(--font-hand), "Patrick Hand", "Comic Sans MS", cursive;
 
   /* The door's own colours: the cream the descriptions and price ovals are
      painted in, and the red he used on two of the prices. */
   --color-cream: #e6dcc3;
+  --color-wall: #ebe7df;
   --color-paint-red: #c2573c;
 }
 
@@ -159,15 +160,30 @@
     font-family: var(--font-sign);
     font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.07em;
     line-height: 1.05;
   }
   .hand {
     font-family: var(--font-hand);
     font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    line-height: 1.3;
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+  }
+  /* The wall the door is set in: painted beadboard, warm white, a groove
+     every few inches. */
+  .beadboard {
+    background-color: #ebe7df;
+    background-image:
+      repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent 62px,
+        rgb(0 0 0 / 0.07) 62px,
+        rgb(0 0 0 / 0.07) 64px,
+        rgb(255 255 255 / 0.6) 64px,
+        rgb(255 255 255 / 0.6) 66px
+      );
   }
   /* A painted oval, not a pill: the radii are uneven so no two edges match,
      and it sits a few degrees off level the way a brushed one would. */

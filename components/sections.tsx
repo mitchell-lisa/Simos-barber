@@ -160,17 +160,17 @@ export function Menu() {
   return (
     <section
       id="menu"
-      className="relative overflow-hidden border-b border-hair bg-ink-2"
+      className="beadboard relative overflow-hidden border-b border-hair text-ink"
     >
-      <div className="deco pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden="true" />
-
+      {/* The door sits in a white beadboard wall, so this section does too:
+          the one light room on a dark page. */}
       <div className="relative mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
         <div className="text-center">
           <p className="label text-brass">The Menu</p>
-          <h2 className="display mx-auto mt-5 max-w-xl text-5xl text-bone sm:text-6xl">
+          <h2 className="display mx-auto mt-5 max-w-xl text-5xl text-ink sm:text-6xl">
             Painted on the door.
           </h2>
-          <p className="mx-auto mt-7 max-w-md text-[1.0625rem] leading-relaxed text-bone-2">
+          <p className="mx-auto mt-7 max-w-md text-[1.0625rem] leading-relaxed text-ink/70">
             The prices are the ones on the back door of the shop, in
             {" "}{b.barbers[0].shortName}&apos;s own hand. Pick one and book it
             below.
@@ -178,7 +178,7 @@ export function Menu() {
         </div>
 
         {/* The door */}
-        <div className="mx-auto mt-14 max-w-[36rem] bg-ink px-3 py-3 shadow-2xl shadow-black/50 sm:px-5 sm:py-5">
+        <div className="mx-auto mt-14 max-w-[36rem] bg-ink px-3 py-3 shadow-2xl shadow-black/35 sm:px-5 sm:py-5">
           <div className="relative border-[3px] border-brass/90 px-5 pb-9 pt-8 sm:px-9 sm:pb-11 sm:pt-10">
             <FleurDeLis className="absolute -left-1.5 -top-1.5 h-5 w-5 -rotate-45 text-brass" />
             <FleurDeLis className="absolute -right-1.5 -top-1.5 h-5 w-5 rotate-45 text-brass" />
@@ -233,7 +233,7 @@ export function Menu() {
                       )}
                     </div>
                     {line.blurb && (
-                      <p className="hand mt-1 max-w-[26rem] text-[0.78rem] text-cream/85 sm:text-[0.85rem]">
+                      <p className="hand mt-1 max-w-[26rem] text-[0.85rem] text-cream/85 sm:text-[0.95rem]">
                         {line.blurb}
                       </p>
                     )}
@@ -246,7 +246,7 @@ export function Menu() {
 
         <div className="mt-12 flex flex-col items-center gap-4 text-center">
           <BookButton>Book a chair</BookButton>
-          <p className="max-w-sm text-sm text-bone-3">
+          <p className="max-w-sm text-sm text-ink/60">
             Booking is through {b.booking.provider}. Color and wax are quoted
             in the chair.
           </p>
@@ -445,15 +445,16 @@ export function Visit() {
 
   return (
     <section id="visit" className="border-b border-hair bg-ink-2">
-      {/* The shopfront from the sidewalk, across the top of the section,
+      {/* The top of the shopfront from the sidewalk — the leaded transoms,
+          the sign and the pole in the glass — across the top of the section,
           dissolving into the address it belongs to. */}
       <div className="mesh-down">
         <img
           src="/media/storefront.webp"
           alt="The shopfront at 240 Lancaster Ave: a black frame, leaded transom windows, the pole and his sign in the glass"
-          width={1200}
-          height={1166}
-          className="h-[20rem] w-full object-cover object-[50%_58%] brightness-[0.9] sm:h-[26rem] lg:h-[30rem]"
+          width={1400}
+          height={758}
+          className="h-[13rem] w-full object-cover object-[50%_70%] brightness-[0.9] sm:h-[18rem] lg:h-[24rem]"
           loading="lazy"
         />
       </div>
