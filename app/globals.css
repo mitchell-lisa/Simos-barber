@@ -20,7 +20,7 @@
   --font-body: var(--font-archivo), system-ui, -apple-system, sans-serif;
   /* The painted door: hand-lettered caps for the names, brush-printed caps
      for the lines underneath. Only the Menu section uses them. */
-  --font-sign: var(--font-sign), "Fontdiner Swanky", Georgia, serif;
+  --font-sign: var(--font-sign), "Berkshire Swash", Georgia, serif;
   --font-hand: var(--font-hand), "Patrick Hand", "Comic Sans MS", cursive;
 
   /* The door's own colours: the cream the descriptions and price ovals are
@@ -160,7 +160,7 @@
     font-family: var(--font-sign);
     font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.06em;
     line-height: 1.05;
   }
   .hand {

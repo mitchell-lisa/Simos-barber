@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import {
   Archivo,
   Bodoni_Moda,
-  Fontdiner_Swanky,
+  Berkshire_Swash,
   Patrick_Hand,
 } from "next/font/google";
 import { business } from "@/lib/business";
@@ -23,10 +23,10 @@ const archivo = Archivo({
 });
 
 // The two faces of the painted door menu, picked against a photograph of
-// the door. Fontdiner Swanky has the wide, brush-painted caps with curled
-// terminals he lettered the service names in; Patrick Hand is the neat
+// the door. Berkshire Swash has the brush-painted caps with curled terminals
+// and flourished feet he lettered the service names in; Patrick Hand is the neat
 // printed caps of the lines under them. Used in the Menu section only.
-const swanky = Fontdiner_Swanky({
+const berkshire = Berkshire_Swash({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-sign",
@@ -152,7 +152,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bodoni.variable} ${archivo.variable} ${swanky.variable} ${patrick.variable}`}
+      className={`${bodoni.variable} ${archivo.variable} ${berkshire.variable} ${patrick.variable}`}
     >
       <body>
         {children}

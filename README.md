@@ -81,8 +81,9 @@ claim about his pricing we cannot support.
   fans on near-black with brass mirror frames, so the site is warm near-black, bone, and a single
   brass accent used on the booking action and almost nowhere else.
 - **Type:** Bodoni Moda for headlines only, set large and tight; Archivo for everything functional.
-  The Menu section alone adds two more, to match the painted door: Fontdiner Swanky for the
-  service names (the wide, brush-painted caps with curled terminals he lettered them in, in brass)
+  The Menu section alone adds two more, to match the painted door: Berkshire Swash for the
+  service names (the brush-painted caps with curled terminals and flourished feet he lettered
+  them in, in brass)
   and Patrick Hand for the lines under them (his neat printed caps, in the door's cream), both
   picked against a photograph of the door. The section sits on `.beadboard`, the painted white
   wall the door is set in — the one light room on a dark page. Prices sit in `.oval`, a CSS oval with
