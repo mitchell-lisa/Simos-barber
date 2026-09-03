@@ -70,8 +70,8 @@ Booking is still only ever Vagaro.
 `business.menu` and `business.serviceGroups` are two lists on purpose: the door is what
 customers see, the Vagaro list is what Google reads. Where the door prices a service the Vagaro
 list also carries, the price was copied across on 2026-09-01, so the JSON-LD no longer says a
-Mainliner has no price. Beard Trim's price is hidden behind the door handle in the photo; $20 is
-from Vagaro, where it has always been set.
+Mainliner has no price. Beard Trim is $20 on both: the door's "2" is the 0 hidden behind the
+handle in the photo, and John confirmed the price on 2026-09-02.
 
 ## Reputation
 
