@@ -45,7 +45,7 @@ export const business = {
   opensOnLabel: "Tuesday, September 1",
 
   // ── Contact ───────────────────────────────────────────────────────────────
-  phone: { e164: "+14846789232", display: "(484) 678-9232" },
+  phone: { e164: "+14842521039", display: "(484) 252-1039" },
 
   address: {
     street: "240 Lancaster Ave",
@@ -160,9 +160,8 @@ export const business = {
   // and reads like a database. Order and spelling are the door's. A null
   // price is a line the door prints without one (color and wax are quoted
   // in the chair). `accent` marks the three prices he ringed in red.
-  // Beard Trim reads "2" on the door, and that is what it says here. Vagaro
-  // lists it at $20, and the Vagaro line above keeps that for the schema
-  // markup; John should settle which one is the price.
+  // Beard Trim is 20: the door's "2" is the 0 hidden behind the handle, and
+  // John confirmed it.
   menu: {
     note: "Tax incl.",
     items: [
@@ -172,7 +171,7 @@ export const business = {
       { name: "Shave", sub: "beard trim incl.", blurb: "Hot towel, hot lather straight razor shave. Close & comfortable.", price: 40 },
       { name: "Head Shave", blurb: "Straight “shave” w/ post-mask", price: 40, accent: true },
       { name: "Simo’s Custom", blurb: "Custom “shave” w/ house made products, aroma therapy, exfoliation, post-mask", price: 80 },
-      { name: "Beard Trim", blurb: "All electric, detailed trimming of any and all facial hair. Super shaver finish.", price: 2 },
+      { name: "Beard Trim", blurb: "All electric, detailed trimming of any and all facial hair. Super shaver finish.", price: 20 },
       { name: "Beard Champ", blurb: null, price: 55 },
       { name: "The Shebang", blurb: "That’s right… the WHOLE one!! Inquire w/ John", price: 175, accent: true },
       { name: "Classic Kids", sub: "12 & under", blurb: "“Brother bundle” discounts", price: 40 },
