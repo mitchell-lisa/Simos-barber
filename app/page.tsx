@@ -3,6 +3,7 @@ import {
   Hero,
   Menu,
   Shop,
+  ShopGallery,
   TrustStrip,
   Visit,
   Welcome,
@@ -21,6 +22,7 @@ export default function Page() {
         <Menu />
         <Book />
         <Shop />
+        <ShopGallery />
         <Visit />
       </main>
       <Footer />

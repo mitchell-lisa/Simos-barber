@@ -106,15 +106,15 @@ claim about his pricing we cannot support.
   at one-seventh steps along the upper edges. The docstring in the script has the details; rerun
   it after changing anything there.
 - **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
-- **One photograph per section, at most.** The tonics, the razor and a hot-towel shot once
+- **One photograph per section, except the shop grid.** The tonics, the razor and a hot-towel shot once
   flanked the door menu and the booking widget; they layered up and came out (git history has
-  them). Hero: six photographs in rotation, edge to edge (`components/hero-slides.tsx`, six seconds
-  each, each cut once for a phone and once for a wide screen and graded a touch warm, with film grain
-  and a vignette over them; no rotation under `prefers-reduced-motion`; the frame is held to about 2.3 to 1 on wide screens so tall subjects stay whole), no words
-  on it; a short Welcome section sits under it. The Shop: John.
+  them). Hero: five photographs of the shop in rotation, edge to edge (`components/hero-slides.tsx`, six seconds
+  each, each cut once for a phone (3:4) and once for a wide screen (2.5:1), with film grain
+  and a vignette over them; no rotation under `prefers-reduced-motion`; the first photograph, the waiting area, is what reduced motion holds on), no words
+  on it; a short Welcome section sits under it. The Shop: John cutting a client's hair, with a second photograph of him working under it, both shown whole up to 600px wide. Directly under that, The shop is a grid of the room. The waiting photograph is the largest tile. The hot-towel shave is a regular tile in that grid.
 - **No em dashes in anything the page prints.** Commas, colons and full stops instead.
-- **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The pole
-  runs off the right edge of the hero, the clock off the right edge of The Shop. Each is dissolved with a gradient `mask-image` (`.mesh-hero`, `.mesh-left` in `globals.css`).
+- **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The hero
+  runs edge to edge under a vignette. Older placements (the pole, the clock) used a gradient `mask-image` (`.mesh-hero`, `.mesh-left` in `globals.css`).
 
 ## Media
 
@@ -122,12 +122,11 @@ Everything in `public/media/` is from the shop.
 
 | File | What it is |
 |---|---|
-| `grass-wide.webp`, `grass-tall.webp` | The painted door seen past a vase of dried grass, the head of the sign sharp — first in the hero |
-| `room-wide.webp`, `room-tall.webp` | The room from the doorway, cut for a wide screen and for a phone — second in the hero |
-| `brush-wide.webp`, `brush-tall.webp` | The badger brush on the counter against the sunburst wallpaper, the wallpaper mirrored out to either side on the wide cut so the whole brush stays in frame — third in the hero |
-| `patent-wide.webp`, `patent-tall.webp` | The framed 1894 Priest clipper patent beside the mirror sconce — fourth in the hero |
-| `tonics-wide.webp`, `tonics-tall.webp` | The tonics on the front sill, flowers behind; the wide cut carries the window casing mirrored out to the right so both bottles stay whole — fifth in the hero |
-| `print-wide.webp`, `print-tall.webp` | The framed print of 240 Lancaster as it stood a century ago — sixth in the hero |
+| `hero-waiting-wide.webp`, `hero-waiting-tall.webp` | Waiting area with the tin ceiling and the Simo's price board. First in the hero, 2400×960 and 1200×1600. Location data stripped |
+| `hero-pole-wide.webp`, `hero-pole-tall.webp` | Barber pole by the door, with a Shave & Haircut 2 Bits sign. Second in the hero |
+| `hero-history-wide.webp`, `hero-history-tall.webp` | Framed historic photos and articles on the wall. Third in the hero |
+| `hero-wash-wide.webp`, `hero-wash-tall.webp` | Tea Tree products at the wash station, gold art-deco wall. Fourth in the hero |
+| `hero-shears-wide.webp`, `hero-shears-tall.webp` | Scissors with gold handles in a drawer. Fifth in the hero |
 | `pole.webp` | The pole out front, turning — **animated WebP, 226KB**. Was the hero until the room was photographed; kept, not placed |
 | `pole-still.webp` | One frame of it, for `prefers-reduced-motion` — kept with it |
 | `clock.webp` | The oak barber shop clock on the wall |
@@ -137,7 +136,15 @@ The favicon is the pole alone: `tools/icon.svg` is the drawing, and `app/icon.pn
 transparent) and `app/apple-icon.png` (180px on ink) are rendered from it. Vercel takes its project
 avatar from the deployed site's favicon, so it follows.
 | `wordmark.webp` | His wordmark, the pole for the I — cut out of a photograph of a print with real transparency; the header. Replace with the real file when it turns up |
-| `john.webp` | John, comb and shears in hand, in the shop — his profile picture, 1000×1333, rotated upright and stripped of the phone's GPS data |
+| `john-cutting.webp` | John cutting a client's hair, 1179×812. The Shop portrait (`business.barbers[0].photo`), shown whole up to about 600px wide |
+| `john-sepia.webp` | John working in the shop, 1179×823. Second photograph in The Shop, under the cutting portrait |
+| `shop-waiting.webp` | Tin ceiling, the history wall, and the Simo's price board door, 1500×2000. Largest tile in The shop |
+| `shop-history-wall.webp` | Framed historic photos and articles on the wall, 1500×2000 |
+| `historic-wayne.webp` | Historic Wayne booklet, 100 Block East Lancaster Avenue, Wayne, Pa., 1884, 1500×2000 |
+| `shop-pole.webp` | Barber pole by the door, with a Shave & Haircut 2 Bits sign, 1500×2000 |
+| `shop-wash.webp` | Tea Tree products at the wash station, gold art-deco wall, 1500×2000 |
+| `shop-shears.webp` | Scissors with gold handles in a drawer, 1500×2000 |
+| `john-shave.webp` | John giving a hot-towel shave, 1179×1507. A regular tile in The shop gallery |
 
 **Why the pole is an animated image and not a `<video>`** (it is no longer on the page, but the reasoning holds for any footage that goes back in). A video has to satisfy an autoplay
 policy: muted, `playsInline`, and even then iOS Low Power Mode and Safari's per-site autoplay
@@ -176,8 +183,10 @@ lands as a preview and has to be promoted by hand.
 - Vagaro still shows $0.00 for most services. The door has prices for ten of them and the site
   now prints those; he should set the same numbers in Vagaro so the widget agrees with the door
 - Color and wax services have no price on the door or in Vagaro
-- The hero now carries the room and The Shop carries John's portrait
-  (`business.barbers[0].photo`). The pole footage and the clock are no longer placed on the page
+- The hero is five photographs of the shop, waiting area first. The Shop carries John cutting a client's hair
+  (`business.barbers[0].photo`, `john-cutting.webp`), with `john-sepia.webp` under it.
+  The shop grid includes the hot-towel shave (`john-shave.webp`).
+  The pole footage and the clock are no longer placed on the page
   but stay in `public/media/`
 - Whether he is solo, or staff should be added to `business.barbers`
 - A Google Business Profile, which he still does not have

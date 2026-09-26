@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { business as b } from "@/lib/business";
 import { hoursSummary } from "@/lib/schedule";
 import {
@@ -18,24 +19,41 @@ import { HeroSlides } from "./hero-slides";
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden border-b border-hair">
-      {/* The shop, one photograph at a time, edge to edge: the door behind
-          the dried grass, the room, the badger brush, the clipper patent, the
-          tonics in the window, the print of the building. Each is cut once
-          for a phone and once for a wide screen, graded a touch warm so six
-          phone photographs read as one set. The frame is never wider than
-          about 2.3 to 1, so a wide screen shows the whole brush and both
-          bottles rather than a band through their middles.
-          Grain and a soft vignette over them. No words on it. */}
+      {/* The shop, one photograph at a time, edge to edge. The waiting
+          area is first, so reduced motion holds on the tin ceiling and the
+          price board. Then the pole, the history wall, the wash station,
+          and the shears. Each is cut once for a phone (3:4) and once for a
+          wide screen (2.5:1). Grain and a vignette over them. */}
       <div className="relative h-[max(62vh,44vw)] min-h-[22rem] max-h-[58rem]">
-        <div className="absolute inset-0" aria-hidden="true">
+        <div className="absolute inset-0">
           <HeroSlides
             slides={[
-              { alt: "The painted door behind the dried grass", tall: { src: "/media/grass-tall.webp", width: 1000, height: 1013 }, wide: { src: "/media/grass-wide.webp", width: 1800, height: 1104 } },
-              { alt: "The room", tall: { src: "/media/room-tall.webp", width: 1000, height: 1348 }, wide: { src: "/media/room-wide.webp", width: 1800, height: 993 } },
-              { alt: "A badger brush against the wallpaper", tall: { src: "/media/brush-tall.webp", width: 1000, height: 1334 }, wide: { src: "/media/brush-wide.webp", width: 1800, height: 833 } },
-              { alt: "The 1894 clipper patent, framed by the mirror", tall: { src: "/media/patent-tall.webp", width: 1000, height: 1250 }, wide: { src: "/media/patent-wide.webp", width: 1800, height: 1104 } },
-              { alt: "Tonics in the front window", tall: { src: "/media/tonics-tall.webp", width: 1000, height: 1240 }, wide: { src: "/media/tonics-wide.webp", width: 1800, height: 1169 } },
-              { alt: "A print of the building as it stood", tall: { src: "/media/print-tall.webp", width: 1000, height: 1147 }, wide: { src: "/media/print-wide.webp", width: 1800, height: 1008 } },
+              {
+                alt: "Waiting area with the tin ceiling and the Simo's price board",
+                tall: { src: "/media/hero-waiting-tall.webp", width: 1200, height: 1600 },
+                wide: { src: "/media/hero-waiting-wide.webp", width: 2400, height: 960 },
+              },
+              {
+                alt: "Barber pole by the door, with a Shave & Haircut 2 Bits sign",
+                tall: { src: "/media/hero-pole-tall.webp", width: 1200, height: 1600 },
+                wide: { src: "/media/hero-pole-wide.webp", width: 2400, height: 960 },
+                position: "object-[22%_center]",
+              },
+              {
+                alt: "Framed historic photos and articles on the wall",
+                tall: { src: "/media/hero-history-tall.webp", width: 1200, height: 1600 },
+                wide: { src: "/media/hero-history-wide.webp", width: 2400, height: 960 },
+              },
+              {
+                alt: "Tea Tree products at the wash station, against the gold art-deco wall",
+                tall: { src: "/media/hero-wash-tall.webp", width: 1200, height: 1600 },
+                wide: { src: "/media/hero-wash-wide.webp", width: 2400, height: 960 },
+              },
+              {
+                alt: "Scissors with gold handles in a drawer",
+                tall: { src: "/media/hero-shears-tall.webp", width: 1200, height: 1600 },
+                wide: { src: "/media/hero-shears-wide.webp", width: 2400, height: 960 },
+              },
             ]}
           />
         </div>
@@ -371,8 +389,8 @@ export function Shop() {
       id="shop"
       className="relative overflow-hidden border-b border-hair bg-ink-2"
     >
-      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[minmax(0,30rem)_1fr] lg:gap-20">
-        <div className="lg:max-w-md">
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[minmax(16rem,26rem)_minmax(0,600px)] lg:justify-between lg:gap-x-12">
+        <div>
           <p className="label text-brass">The Shop</p>
           <h2 className="display mt-5 text-5xl text-bone sm:text-6xl">
             His name
@@ -405,25 +423,173 @@ export function Shop() {
           </div>
         </div>
 
-      </div>
-
-      {/* John himself, comb and shears in hand — a portrait bled into the
-          page, not a headshot in a frame. On a wide screen he runs off the
-          right edge and dissolves into the wall behind the type; on a phone
-          he follows the copy, full width, fading in from the ceiling above
-          him. The crop is pinned to his face either way. */}
-      {john.photo && (
-        <div className="mesh-left pointer-events-none relative -mt-8 h-[26rem] lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:h-auto lg:w-[48%]">
+        {/* Both photographs are landscape and shown whole, up to 600px
+            wide, so his face and his hands are not cropped out. object-position
+            holds the middle of the cut if a box is ever a touch taller
+            than the frame. The sepia sits under the cutting photograph. */}
+        <div className="grid w-full max-w-[600px] gap-1.5 sm:gap-2 lg:justify-self-end">
+          {john.photo && (
+            <img
+              src={john.photo.src}
+              alt={john.photo.alt}
+              width={john.photo.width}
+              height={john.photo.height}
+              className="h-auto w-full object-cover object-[center_42%]"
+              loading="lazy"
+            />
+          )}
           <img
-            src={john.photo.src}
-            alt={john.photo.alt}
-            width={john.photo.width}
-            height={john.photo.height}
-            className="h-full w-full object-cover object-[58%_12%] opacity-90 brightness-[0.82] contrast-[1.04] saturate-[0.85] lg:object-[58%_22%]"
+            src="/media/john-sepia.webp"
+            alt="John working in the shop"
+            width={1179}
+            height={823}
+            className="h-auto w-full object-cover object-center"
             loading="lazy"
           />
         </div>
-      )}
+      </div>
+    </section>
+  );
+}
+
+/* ───────────────────────── the shop, the room ─────────────────────────────
+   Photographs of the room. The hot-towel shave is a regular tile here.
+   John's cutting and sepia photographs live in the section above.        */
+
+type ShopShot = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
+const SHOP_SHOTS = {
+  waiting: {
+    src: "/media/shop-waiting.webp",
+    alt: "Tin ceiling, the history wall, and the Simo's price board door",
+    width: 1500,
+    height: 2000,
+  },
+  history: {
+    src: "/media/shop-history-wall.webp",
+    alt: "Framed historic photos and articles on the wall",
+    width: 1500,
+    height: 2000,
+  },
+  wayne: {
+    src: "/media/historic-wayne.webp",
+    alt: "Historic Wayne booklet, 100 Block East Lancaster Avenue, Wayne, Pa., 1884",
+    width: 1500,
+    height: 2000,
+  },
+  pole: {
+    src: "/media/shop-pole.webp",
+    alt: "Barber pole by the door, with a Shave & Haircut 2 Bits sign",
+    width: 1500,
+    height: 2000,
+  },
+  wash: {
+    src: "/media/shop-wash.webp",
+    alt: "Tea Tree products at the wash station, against the gold art-deco wall",
+    width: 1500,
+    height: 2000,
+  },
+  shears: {
+    src: "/media/shop-shears.webp",
+    alt: "Scissors with gold handles in a drawer",
+    width: 1500,
+    height: 2000,
+  },
+  shave: {
+    src: "/media/john-shave.webp",
+    alt: "John giving a hot-towel shave",
+    width: 1179,
+    height: 1507,
+  },
+} as const satisfies Record<string, ShopShot>;
+
+function ShopPhoto({
+  shot,
+  className,
+  sizes,
+}: {
+  shot: ShopShot;
+  className: string;
+  sizes: string;
+}) {
+  return (
+    <div className={`relative overflow-hidden bg-ink-3 ${className}`}>
+      <Image
+        src={shot.src}
+        alt={shot.alt}
+        width={shot.width}
+        height={shot.height}
+        sizes={sizes}
+        loading="lazy"
+        className="object-cover object-center"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          maxWidth: "none",
+        }}
+      />
+    </div>
+  );
+}
+
+export function ShopGallery() {
+  const wide = "(min-width: 1024px) 34vw, 50vw";
+  const tile = "(min-width: 1024px) 25vw, 50vw";
+  return (
+    <section className="border-b border-hair bg-ink-2" aria-labelledby="the-shop-heading">
+      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        <h2 id="the-shop-heading" className="display text-4xl text-bone sm:text-5xl">
+          The shop
+        </h2>
+        <p className="mt-4 max-w-xl text-[1.0625rem] leading-relaxed text-bone-2">
+          The room at {b.address.street} in {b.address.city}.
+        </p>
+
+        <div className="mt-10 grid grid-cols-2 gap-1 sm:gap-1.5 lg:grid-cols-12">
+          <ShopPhoto
+            shot={SHOP_SHOTS.waiting}
+            sizes="(min-width: 1024px) 66vw, 100vw"
+            className="col-span-2 aspect-[3/4] lg:col-span-8 lg:row-span-2 lg:aspect-auto"
+          />
+          <ShopPhoto
+            shot={SHOP_SHOTS.history}
+            sizes={wide}
+            className="aspect-[3/4] lg:col-span-4"
+          />
+          <ShopPhoto
+            shot={SHOP_SHOTS.wayne}
+            sizes={wide}
+            className="aspect-[3/4] lg:col-span-4"
+          />
+          <ShopPhoto
+            shot={SHOP_SHOTS.pole}
+            sizes={tile}
+            className="aspect-[3/4] lg:col-span-3"
+          />
+          <ShopPhoto
+            shot={SHOP_SHOTS.wash}
+            sizes={tile}
+            className="aspect-[3/4] lg:col-span-3"
+          />
+          <ShopPhoto
+            shot={SHOP_SHOTS.shears}
+            sizes={tile}
+            className="aspect-[3/4] lg:col-span-3"
+          />
+          <ShopPhoto
+            shot={SHOP_SHOTS.shave}
+            sizes={tile}
+            className="aspect-[3/4] lg:col-span-3"
+          />
+        </div>
+      </div>
     </section>
   );
 }
