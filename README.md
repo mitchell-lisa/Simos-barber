@@ -111,7 +111,7 @@ claim about his pricing we cannot support.
   them). Hero: six photographs in rotation, edge to edge (`components/hero-slides.tsx`, six seconds
   each, each cut once for a phone and once for a wide screen and graded a touch warm, with film grain
   and a vignette over them; no rotation under `prefers-reduced-motion`; the frame is held to about 2.3 to 1 on wide screens so tall subjects stay whole), no words
-  on it; a short Welcome section sits under it. The Shop: John giving a hot-towel shave. Directly under that, The shop is a grid of the room. The waiting photograph is the largest tile. Two low-resolution photographs of John stay small.
+  on it; a short Welcome section sits under it. The Shop: John cutting a client's hair, with a second photograph of him working under it, both shown whole up to 600px wide. Directly under that, The shop is a grid of the room. The waiting photograph is the largest tile. The hot-towel shave is a regular tile in that grid.
 - **No em dashes in anything the page prints.** Commas, colons and full stops instead.
 - **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The pole
   runs off the right edge of the hero, the clock off the right edge of The Shop. Each is dissolved with a gradient `mask-image` (`.mesh-hero`, `.mesh-left` in `globals.css`).
@@ -137,15 +137,15 @@ The favicon is the pole alone: `tools/icon.svg` is the drawing, and `app/icon.pn
 transparent) and `app/apple-icon.png` (180px on ink) are rendered from it. Vercel takes its project
 avatar from the deployed site's favicon, so it follows.
 | `wordmark.webp` | His wordmark, the pole for the I — cut out of a photograph of a print with real transparency; the header. Replace with the real file when it turns up |
-| `john-shave.webp` | John giving a hot-towel shave, 1179×1507. The Shop portrait. Location data stripped with the rest of this set |
+| `john-cutting.webp` | John cutting a client's hair, 1179×812. The Shop portrait (`business.barbers[0].photo`), shown whole up to about 600px wide |
+| `john-sepia.webp` | John working in the shop, 1179×823. Second photograph in The Shop, under the cutting portrait |
 | `shop-waiting.webp` | Tin ceiling, the history wall, and the Simo's price board door, 1500×2000. Largest tile in The shop |
 | `shop-history-wall.webp` | Framed historic photos and articles on the wall, 1500×2000 |
 | `historic-wayne.webp` | Historic Wayne booklet, 100 Block East Lancaster Avenue, Wayne, Pa., 1884, 1500×2000 |
 | `shop-pole.webp` | Barber pole by the door, with a Shave & Haircut 2 Bits sign, 1500×2000 |
 | `shop-wash.webp` | Tea Tree products at the wash station, gold art-deco wall, 1500×2000 |
 | `shop-shears.webp` | Scissors with gold handles in a drawer, 1500×2000 |
-| `john-sepia.webp` | Sepia photograph of John, 1179×823. Small tile only: the file is low resolution |
-| `john-cutting.webp` | John cutting hair, 1179×812. Small tile only: the file is low resolution |
+| `john-shave.webp` | John giving a hot-towel shave, 1179×1507. A regular tile in The shop gallery |
 
 **Why the pole is an animated image and not a `<video>`** (it is no longer on the page, but the reasoning holds for any footage that goes back in). A video has to satisfy an autoplay
 policy: muted, `playsInline`, and even then iOS Low Power Mode and Safari's per-site autoplay
@@ -184,8 +184,9 @@ lands as a preview and has to be promoted by hand.
 - Vagaro still shows $0.00 for most services. The door has prices for ten of them and the site
   now prints those; he should set the same numbers in Vagaro so the widget agrees with the door
 - Color and wax services have no price on the door or in Vagaro
-- The hero carries the room. The Shop carries the hot-towel shave
-  (`business.barbers[0].photo`, `john-shave.webp`). The shop, under that, shows the room.
+- The hero carries the room. The Shop carries John cutting a client's hair
+  (`business.barbers[0].photo`, `john-cutting.webp`), with `john-sepia.webp` under it.
+  The shop grid includes the hot-towel shave (`john-shave.webp`).
   The pole footage and the clock are no longer placed on the page
   but stay in `public/media/`
 - Whether he is solo, or staff should be added to `business.barbers`

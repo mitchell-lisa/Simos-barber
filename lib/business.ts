@@ -89,13 +89,13 @@ export const business = {
       name: "John Simonton",
       shortName: "John",
       role: "Owner · Master Barber",
-      // Hot-towel shave in the shop. Location data stripped before it went
-      // in. Null renders nothing.
+      // John cutting a client's hair. Location data stripped before it
+      // went in. Null renders nothing.
       photo: {
-        src: "/media/john-shave.webp",
-        alt: "John giving a hot-towel shave",
+        src: "/media/john-cutting.webp",
+        alt: "John cutting a client's hair",
         width: 1179,
-        height: 1507,
+        height: 812,
       } as BarberPhoto | null,
     },
   ],

@@ -372,8 +372,8 @@ export function Shop() {
       id="shop"
       className="relative overflow-hidden border-b border-hair bg-ink-2"
     >
-      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[minmax(0,30rem)_1fr] lg:gap-20">
-        <div className="lg:max-w-md">
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[minmax(16rem,26rem)_minmax(0,600px)] lg:justify-between lg:gap-x-12">
+        <div>
           <p className="label text-brass">The Shop</p>
           <h2 className="display mt-5 text-5xl text-bone sm:text-6xl">
             His name
@@ -406,31 +406,38 @@ export function Shop() {
           </div>
         </div>
 
-      </div>
-
-      {/* John giving a hot-towel shave, bled into the page rather than
-          framed. On a wide screen the photograph runs off the right edge
-          and dissolves into the wall behind the type. On a phone it follows
-          the copy, full width, fading in from above. */}
-      {john.photo && (
-        <div className="mesh-left pointer-events-none relative -mt-8 h-[26rem] lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:h-auto lg:w-[48%]">
+        {/* Both photographs are landscape and shown whole, up to 600px
+            wide, so his face and his hands are not cropped out. object-position
+            holds the middle of the cut if a box is ever a touch taller
+            than the frame. The sepia sits under the cutting photograph. */}
+        <div className="grid w-full max-w-[600px] gap-1.5 sm:gap-2 lg:justify-self-end">
+          {john.photo && (
+            <img
+              src={john.photo.src}
+              alt={john.photo.alt}
+              width={john.photo.width}
+              height={john.photo.height}
+              className="h-auto w-full object-cover object-[center_42%]"
+              loading="lazy"
+            />
+          )}
           <img
-            src={john.photo.src}
-            alt={john.photo.alt}
-            width={john.photo.width}
-            height={john.photo.height}
-            className="h-full w-full object-cover object-[center_42%] opacity-90 brightness-[0.82] contrast-[1.04] saturate-[0.85] lg:object-[62%_38%]"
+            src="/media/john-sepia.webp"
+            alt="John working in the shop"
+            width={1179}
+            height={823}
+            className="h-auto w-full object-cover object-center"
             loading="lazy"
           />
         </div>
-      )}
+      </div>
     </section>
   );
 }
 
 /* ───────────────────────── the shop, the room ─────────────────────────────
-   Photographs only. The two older files are small on purpose: they are
-   low resolution and go soft if they are asked to fill a large tile.     */
+   Photographs of the room. The hot-towel shave is a regular tile here.
+   John's cutting and sepia photographs live in the section above.        */
 
 type ShopShot = {
   src: string;
@@ -476,17 +483,11 @@ const SHOP_SHOTS = {
     width: 1500,
     height: 2000,
   },
-  sepia: {
-    src: "/media/john-sepia.webp",
-    alt: "Sepia photograph of John",
+  shave: {
+    src: "/media/john-shave.webp",
+    alt: "John giving a hot-towel shave",
     width: 1179,
-    height: 823,
-  },
-  cutting: {
-    src: "/media/john-cutting.webp",
-    alt: "John cutting hair",
-    width: 1179,
-    height: 812,
+    height: 1507,
   },
 } as const satisfies Record<string, ShopShot>;
 
@@ -508,7 +509,7 @@ function ShopPhoto({
         height={shot.height}
         sizes={sizes}
         loading="lazy"
-        className="object-cover"
+        className="object-cover object-center"
         style={{
           position: "absolute",
           inset: 0,
@@ -523,6 +524,7 @@ function ShopPhoto({
 
 export function ShopGallery() {
   const wide = "(min-width: 1024px) 34vw, 50vw";
+  const tile = "(min-width: 1024px) 25vw, 50vw";
   return (
     <section className="border-b border-hair bg-ink-2" aria-labelledby="the-shop-heading">
       <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
@@ -533,49 +535,41 @@ export function ShopGallery() {
           The room at {b.address.street} in {b.address.city}.
         </p>
 
-        <div className="mt-10 grid grid-cols-2 gap-1 sm:gap-1.5 lg:grid-cols-6">
+        <div className="mt-10 grid grid-cols-2 gap-1 sm:gap-1.5 lg:grid-cols-12">
           <ShopPhoto
             shot={SHOP_SHOTS.waiting}
-            sizes="(min-width: 1024px) 68vw, 100vw"
-            className="col-span-2 aspect-[3/4] lg:col-span-4 lg:row-span-2 lg:aspect-auto"
+            sizes="(min-width: 1024px) 66vw, 100vw"
+            className="col-span-2 aspect-[3/4] lg:col-span-8 lg:row-span-2 lg:aspect-auto"
           />
           <ShopPhoto
             shot={SHOP_SHOTS.history}
             sizes={wide}
-            className="aspect-[3/4] lg:col-span-2"
+            className="aspect-[3/4] lg:col-span-4"
           />
           <ShopPhoto
             shot={SHOP_SHOTS.wayne}
             sizes={wide}
-            className="aspect-[3/4] lg:col-span-2"
+            className="aspect-[3/4] lg:col-span-4"
           />
           <ShopPhoto
             shot={SHOP_SHOTS.pole}
-            sizes={wide}
-            className="aspect-[3/4] lg:col-span-2"
+            sizes={tile}
+            className="aspect-[3/4] lg:col-span-3"
           />
           <ShopPhoto
             shot={SHOP_SHOTS.wash}
-            sizes={wide}
-            className="aspect-[3/4] lg:col-span-2"
+            sizes={tile}
+            className="aspect-[3/4] lg:col-span-3"
           />
           <ShopPhoto
             shot={SHOP_SHOTS.shears}
-            sizes="(min-width: 1024px) 34vw, 100vw"
-            className="col-span-2 aspect-[3/2] lg:col-span-2 lg:aspect-[3/4]"
-          />
-        </div>
-
-        <div className="mx-auto mt-1 grid w-full max-w-md grid-cols-2 gap-1 sm:mt-1.5 sm:gap-1.5">
-          <ShopPhoto
-            shot={SHOP_SHOTS.sepia}
-            sizes="(min-width: 640px) 220px, 42vw"
-            className="aspect-[1179/823]"
+            sizes={tile}
+            className="aspect-[3/4] lg:col-span-3"
           />
           <ShopPhoto
-            shot={SHOP_SHOTS.cutting}
-            sizes="(min-width: 640px) 220px, 42vw"
-            className="aspect-[1179/812]"
+            shot={SHOP_SHOTS.shave}
+            sizes={tile}
+            className="aspect-[3/4] lg:col-span-3"
           />
         </div>
       </div>
