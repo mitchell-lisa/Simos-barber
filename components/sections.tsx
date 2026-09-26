@@ -566,7 +566,7 @@ export function ShopGallery() {
           />
         </div>
 
-        <div className="mt-1 grid max-w-md grid-cols-2 gap-1 sm:mt-1.5 sm:gap-1.5">
+        <div className="mx-auto mt-1 grid w-full max-w-md grid-cols-2 gap-1 sm:mt-1.5 sm:gap-1.5">
           <ShopPhoto
             shot={SHOP_SHOTS.sepia}
             sizes="(min-width: 640px) 220px, 42vw"
