@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { business as b } from "@/lib/business";
 import { hoursSummary } from "@/lib/schedule";
 import {
@@ -407,11 +408,10 @@ export function Shop() {
 
       </div>
 
-      {/* John himself, comb and shears in hand — a portrait bled into the
-          page, not a headshot in a frame. On a wide screen he runs off the
-          right edge and dissolves into the wall behind the type; on a phone
-          he follows the copy, full width, fading in from the ceiling above
-          him. The crop is pinned to his face either way. */}
+      {/* John giving a hot-towel shave, bled into the page rather than
+          framed. On a wide screen the photograph runs off the right edge
+          and dissolves into the wall behind the type. On a phone it follows
+          the copy, full width, fading in from above. */}
       {john.photo && (
         <div className="mesh-left pointer-events-none relative -mt-8 h-[26rem] lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:h-auto lg:w-[48%]">
           <img
@@ -419,11 +419,166 @@ export function Shop() {
             alt={john.photo.alt}
             width={john.photo.width}
             height={john.photo.height}
-            className="h-full w-full object-cover object-[58%_12%] opacity-90 brightness-[0.82] contrast-[1.04] saturate-[0.85] lg:object-[58%_22%]"
+            className="h-full w-full object-cover object-[center_42%] opacity-90 brightness-[0.82] contrast-[1.04] saturate-[0.85] lg:object-[62%_38%]"
             loading="lazy"
           />
         </div>
       )}
+    </section>
+  );
+}
+
+/* ───────────────────────── the shop, the room ─────────────────────────────
+   Photographs only. The two older files are small on purpose: they are
+   low resolution and go soft if they are asked to fill a large tile.     */
+
+type ShopShot = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
+const SHOP_SHOTS = {
+  waiting: {
+    src: "/media/shop-waiting.webp",
+    alt: "Tin ceiling, the history wall, and the Simo's price board door",
+    width: 1500,
+    height: 2000,
+  },
+  history: {
+    src: "/media/shop-history-wall.webp",
+    alt: "Framed historic photos and articles on the wall",
+    width: 1500,
+    height: 2000,
+  },
+  wayne: {
+    src: "/media/historic-wayne.webp",
+    alt: "Historic Wayne booklet, 100 Block East Lancaster Avenue, Wayne, Pa., 1884",
+    width: 1500,
+    height: 2000,
+  },
+  pole: {
+    src: "/media/shop-pole.webp",
+    alt: "Barber pole by the door, with a Shave & Haircut 2 Bits sign",
+    width: 1500,
+    height: 2000,
+  },
+  wash: {
+    src: "/media/shop-wash.webp",
+    alt: "Tea Tree products at the wash station, against the gold art-deco wall",
+    width: 1500,
+    height: 2000,
+  },
+  shears: {
+    src: "/media/shop-shears.webp",
+    alt: "Scissors with gold handles in a drawer",
+    width: 1500,
+    height: 2000,
+  },
+  sepia: {
+    src: "/media/john-sepia.webp",
+    alt: "Sepia photograph of John",
+    width: 1179,
+    height: 823,
+  },
+  cutting: {
+    src: "/media/john-cutting.webp",
+    alt: "John cutting hair",
+    width: 1179,
+    height: 812,
+  },
+} as const satisfies Record<string, ShopShot>;
+
+function ShopPhoto({
+  shot,
+  className,
+  sizes,
+}: {
+  shot: ShopShot;
+  className: string;
+  sizes: string;
+}) {
+  return (
+    <div className={`relative overflow-hidden bg-ink-3 ${className}`}>
+      <Image
+        src={shot.src}
+        alt={shot.alt}
+        width={shot.width}
+        height={shot.height}
+        sizes={sizes}
+        loading="lazy"
+        className="object-cover"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          maxWidth: "none",
+        }}
+      />
+    </div>
+  );
+}
+
+export function ShopGallery() {
+  const wide = "(min-width: 1024px) 34vw, 50vw";
+  return (
+    <section className="border-b border-hair bg-ink-2" aria-labelledby="the-shop-heading">
+      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+        <h2 id="the-shop-heading" className="display text-4xl text-bone sm:text-5xl">
+          The shop
+        </h2>
+        <p className="mt-4 max-w-xl text-[1.0625rem] leading-relaxed text-bone-2">
+          The room at {b.address.street} in {b.address.city}.
+        </p>
+
+        <div className="mt-10 grid grid-cols-2 gap-1 sm:gap-1.5 lg:grid-cols-6">
+          <ShopPhoto
+            shot={SHOP_SHOTS.waiting}
+            sizes="(min-width: 1024px) 68vw, 100vw"
+            className="col-span-2 aspect-[3/4] lg:col-span-4 lg:row-span-2 lg:aspect-auto"
+          />
+          <ShopPhoto
+            shot={SHOP_SHOTS.history}
+            sizes={wide}
+            className="aspect-[3/4] lg:col-span-2"
+          />
+          <ShopPhoto
+            shot={SHOP_SHOTS.wayne}
+            sizes={wide}
+            className="aspect-[3/4] lg:col-span-2"
+          />
+          <ShopPhoto
+            shot={SHOP_SHOTS.pole}
+            sizes={wide}
+            className="aspect-[3/4] lg:col-span-2"
+          />
+          <ShopPhoto
+            shot={SHOP_SHOTS.wash}
+            sizes={wide}
+            className="aspect-[3/4] lg:col-span-2"
+          />
+          <ShopPhoto
+            shot={SHOP_SHOTS.shears}
+            sizes="(min-width: 1024px) 34vw, 100vw"
+            className="col-span-2 aspect-[3/2] lg:col-span-2 lg:aspect-[3/4]"
+          />
+        </div>
+
+        <div className="mt-1 grid max-w-md grid-cols-2 gap-1 sm:mt-1.5 sm:gap-1.5">
+          <ShopPhoto
+            shot={SHOP_SHOTS.sepia}
+            sizes="(min-width: 640px) 220px, 42vw"
+            className="aspect-[1179/823]"
+          />
+          <ShopPhoto
+            shot={SHOP_SHOTS.cutting}
+            sizes="(min-width: 640px) 220px, 42vw"
+            className="aspect-[1179/812]"
+          />
+        </div>
+      </div>
     </section>
   );
 }

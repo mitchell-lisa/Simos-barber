@@ -89,14 +89,13 @@ export const business = {
       name: "John Simonton",
       shortName: "John",
       role: "Owner · Master Barber",
-      // His own photo, taken in the shop 2026-09-01 — comb and shears in
-      // hand, the tin ceiling behind him. Rotated upright and stripped of
-      // the phone's location data before it went in. Null renders nothing.
+      // Hot-towel shave in the shop. Location data stripped before it went
+      // in. Null renders nothing.
       photo: {
-        src: "/media/john.webp",
-        alt: "John Simonton, comb and shears in hand, in the shop at 240 Lancaster Ave",
-        width: 1000,
-        height: 1333,
+        src: "/media/john-shave.webp",
+        alt: "John giving a hot-towel shave",
+        width: 1179,
+        height: 1507,
       } as BarberPhoto | null,
     },
   ],
