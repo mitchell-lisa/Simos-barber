@@ -108,13 +108,13 @@ claim about his pricing we cannot support.
 - **Icons are drawn, not borrowed** — scissors, straight razor, comb, pole.
 - **One photograph per section, except the shop grid.** The tonics, the razor and a hot-towel shot once
   flanked the door menu and the booking widget; they layered up and came out (git history has
-  them). Hero: six photographs in rotation, edge to edge (`components/hero-slides.tsx`, six seconds
-  each, each cut once for a phone and once for a wide screen and graded a touch warm, with film grain
-  and a vignette over them; no rotation under `prefers-reduced-motion`; the frame is held to about 2.3 to 1 on wide screens so tall subjects stay whole), no words
+  them). Hero: five photographs of the shop in rotation, edge to edge (`components/hero-slides.tsx`, six seconds
+  each, each cut once for a phone (3:4) and once for a wide screen (2.5:1), with film grain
+  and a vignette over them; no rotation under `prefers-reduced-motion`; the first photograph, the waiting area, is what reduced motion holds on), no words
   on it; a short Welcome section sits under it. The Shop: John cutting a client's hair, with a second photograph of him working under it, both shown whole up to 600px wide. Directly under that, The shop is a grid of the room. The waiting photograph is the largest tile. The hot-towel shave is a regular tile in that grid.
 - **No em dashes in anything the page prints.** Commas, colons and full stops instead.
-- **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The pole
-  runs off the right edge of the hero, the clock off the right edge of The Shop. Each is dissolved with a gradient `mask-image` (`.mesh-hero`, `.mesh-left` in `globals.css`).
+- **Photographs are bled, not framed.** Nothing sits in a bordered box with a caption. The hero
+  runs edge to edge under a vignette. Older placements (the pole, the clock) used a gradient `mask-image` (`.mesh-hero`, `.mesh-left` in `globals.css`).
 
 ## Media
 
@@ -122,12 +122,11 @@ Everything in `public/media/` is from the shop.
 
 | File | What it is |
 |---|---|
-| `grass-wide.webp`, `grass-tall.webp` | The painted door seen past a vase of dried grass, the head of the sign sharp — first in the hero |
-| `room-wide.webp`, `room-tall.webp` | The room from the doorway, cut for a wide screen and for a phone — second in the hero |
-| `brush-wide.webp`, `brush-tall.webp` | The badger brush on the counter against the sunburst wallpaper, the wallpaper mirrored out to either side on the wide cut so the whole brush stays in frame — third in the hero |
-| `patent-wide.webp`, `patent-tall.webp` | The framed 1894 Priest clipper patent beside the mirror sconce — fourth in the hero |
-| `tonics-wide.webp`, `tonics-tall.webp` | The tonics on the front sill, flowers behind; the wide cut carries the window casing mirrored out to the right so both bottles stay whole — fifth in the hero |
-| `print-wide.webp`, `print-tall.webp` | The framed print of 240 Lancaster as it stood a century ago — sixth in the hero |
+| `hero-waiting-wide.webp`, `hero-waiting-tall.webp` | Waiting area with the tin ceiling and the Simo's price board. First in the hero, 2400×960 and 1200×1600. Location data stripped |
+| `hero-pole-wide.webp`, `hero-pole-tall.webp` | Barber pole by the door, with a Shave & Haircut 2 Bits sign. Second in the hero |
+| `hero-history-wide.webp`, `hero-history-tall.webp` | Framed historic photos and articles on the wall. Third in the hero |
+| `hero-wash-wide.webp`, `hero-wash-tall.webp` | Tea Tree products at the wash station, gold art-deco wall. Fourth in the hero |
+| `hero-shears-wide.webp`, `hero-shears-tall.webp` | Scissors with gold handles in a drawer. Fifth in the hero |
 | `pole.webp` | The pole out front, turning — **animated WebP, 226KB**. Was the hero until the room was photographed; kept, not placed |
 | `pole-still.webp` | One frame of it, for `prefers-reduced-motion` — kept with it |
 | `clock.webp` | The oak barber shop clock on the wall |
@@ -184,7 +183,7 @@ lands as a preview and has to be promoted by hand.
 - Vagaro still shows $0.00 for most services. The door has prices for ten of them and the site
   now prints those; he should set the same numbers in Vagaro so the widget agrees with the door
 - Color and wax services have no price on the door or in Vagaro
-- The hero carries the room. The Shop carries John cutting a client's hair
+- The hero is five photographs of the shop, waiting area first. The Shop carries John cutting a client's hair
   (`business.barbers[0].photo`, `john-cutting.webp`), with `john-sepia.webp` under it.
   The shop grid includes the hot-towel shave (`john-shave.webp`).
   The pole footage and the clock are no longer placed on the page

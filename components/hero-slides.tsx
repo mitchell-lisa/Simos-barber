@@ -9,6 +9,8 @@ export type Slide = {
   tall: Cut;
   /** Cropped for a wide screen: about two and a half to one. */
   wide: Cut;
+  /** Keeps a subject at the edge of a wide crop inside the frame. */
+  position?: string;
 };
 
 /**
@@ -33,16 +35,17 @@ export function HeroSlides({ slides, className = "" }: { slides: Slide[]; classN
           key={s.tall.src}
           style={{ opacity: i === index ? 1 : 0 }}
           className="absolute inset-0 transition-opacity duration-[1800ms] ease-in-out"
+          aria-hidden={i === index ? undefined : true}
         >
           <source media="(min-width: 1024px)" srcSet={s.wide.src} width={s.wide.width} height={s.wide.height} />
           <img
             src={s.tall.src}
-            alt=""
+            alt={i === index ? s.alt : ""}
             width={s.tall.width}
             height={s.tall.height}
             decoding="async"
             loading={i === 0 ? "eager" : "lazy"}
-            className={`h-full w-full object-cover object-center ${className}`}
+            className={`h-full w-full object-cover ${s.position ?? "object-center"} ${className}`}
           />
         </picture>
       ))}

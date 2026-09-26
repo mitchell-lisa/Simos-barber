@@ -19,24 +19,41 @@ import { HeroSlides } from "./hero-slides";
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden border-b border-hair">
-      {/* The shop, one photograph at a time, edge to edge: the door behind
-          the dried grass, the room, the badger brush, the clipper patent, the
-          tonics in the window, the print of the building. Each is cut once
-          for a phone and once for a wide screen, graded a touch warm so six
-          phone photographs read as one set. The frame is never wider than
-          about 2.3 to 1, so a wide screen shows the whole brush and both
-          bottles rather than a band through their middles.
-          Grain and a soft vignette over them. No words on it. */}
+      {/* The shop, one photograph at a time, edge to edge. The waiting
+          area is first, so reduced motion holds on the tin ceiling and the
+          price board. Then the pole, the history wall, the wash station,
+          and the shears. Each is cut once for a phone (3:4) and once for a
+          wide screen (2.5:1). Grain and a vignette over them. */}
       <div className="relative h-[max(62vh,44vw)] min-h-[22rem] max-h-[58rem]">
-        <div className="absolute inset-0" aria-hidden="true">
+        <div className="absolute inset-0">
           <HeroSlides
             slides={[
-              { alt: "The painted door behind the dried grass", tall: { src: "/media/grass-tall.webp", width: 1000, height: 1013 }, wide: { src: "/media/grass-wide.webp", width: 1800, height: 1104 } },
-              { alt: "The room", tall: { src: "/media/room-tall.webp", width: 1000, height: 1348 }, wide: { src: "/media/room-wide.webp", width: 1800, height: 993 } },
-              { alt: "A badger brush against the wallpaper", tall: { src: "/media/brush-tall.webp", width: 1000, height: 1334 }, wide: { src: "/media/brush-wide.webp", width: 1800, height: 833 } },
-              { alt: "The 1894 clipper patent, framed by the mirror", tall: { src: "/media/patent-tall.webp", width: 1000, height: 1250 }, wide: { src: "/media/patent-wide.webp", width: 1800, height: 1104 } },
-              { alt: "Tonics in the front window", tall: { src: "/media/tonics-tall.webp", width: 1000, height: 1240 }, wide: { src: "/media/tonics-wide.webp", width: 1800, height: 1169 } },
-              { alt: "A print of the building as it stood", tall: { src: "/media/print-tall.webp", width: 1000, height: 1147 }, wide: { src: "/media/print-wide.webp", width: 1800, height: 1008 } },
+              {
+                alt: "Waiting area with the tin ceiling and the Simo's price board",
+                tall: { src: "/media/hero-waiting-tall.webp", width: 1200, height: 1600 },
+                wide: { src: "/media/hero-waiting-wide.webp", width: 2400, height: 960 },
+              },
+              {
+                alt: "Barber pole by the door, with a Shave & Haircut 2 Bits sign",
+                tall: { src: "/media/hero-pole-tall.webp", width: 1200, height: 1600 },
+                wide: { src: "/media/hero-pole-wide.webp", width: 2400, height: 960 },
+                position: "object-[22%_center]",
+              },
+              {
+                alt: "Framed historic photos and articles on the wall",
+                tall: { src: "/media/hero-history-tall.webp", width: 1200, height: 1600 },
+                wide: { src: "/media/hero-history-wide.webp", width: 2400, height: 960 },
+              },
+              {
+                alt: "Tea Tree products at the wash station, against the gold art-deco wall",
+                tall: { src: "/media/hero-wash-tall.webp", width: 1200, height: 1600 },
+                wide: { src: "/media/hero-wash-wide.webp", width: 2400, height: 960 },
+              },
+              {
+                alt: "Scissors with gold handles in a drawer",
+                tall: { src: "/media/hero-shears-tall.webp", width: 1200, height: 1600 },
+                wide: { src: "/media/hero-shears-wide.webp", width: 2400, height: 960 },
+              },
             ]}
           />
         </div>
