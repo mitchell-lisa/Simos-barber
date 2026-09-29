@@ -237,10 +237,12 @@
       radial-gradient(ellipse 80% 70% at 50% 45%, transparent 55%, rgb(11 10 9 / 0.55) 100%),
       linear-gradient(to bottom, rgb(11 10 9 / 0.25), transparent 22%, transparent 78%, rgb(11 10 9 / 0.45));
   }
-  /* Phone and tablet: tall enough for a 3:4 cut. The old desktop rule, the
-     wider of 62vh and 44vw, filled most of a 1440–1920 screen and cover
-     zoomed the wide cuts until they went soft. From 900px the stage is
-     about half of that: 50vh, and never taller than 520px. */
+  /* Phone and tablet: tall enough for a 3:4 cut, edge to edge. From 900px
+     the stage sits in the same column as the header (max-w-6xl) on the
+     page's dark ground. The wide cuts are 2400×960, five by two, so the
+     stage uses that ratio and cover shows the photograph whole. If five
+     by two would be taller than 80vh, the width shrinks and the ratio
+     holds. */
   .hero-stage {
     height: max(62vh, 44vw);
     min-height: 22rem;
@@ -248,9 +250,12 @@
   }
   @media (min-width: 900px) {
     .hero-stage {
-      height: min(50vh, 520px);
+      width: min(72rem, 100%, calc(80vh * 5 / 2));
+      height: auto;
+      aspect-ratio: 5 / 2;
       min-height: 0;
-      max-height: 520px;
+      max-height: 80vh;
+      margin-inline: auto;
     }
   }
   /* Brass hairline with a diamond, used to separate major sections. */

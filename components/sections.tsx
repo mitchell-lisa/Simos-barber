@@ -19,13 +19,13 @@ import { HeroSlides } from "./hero-slides";
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden border-b border-hair">
-      {/* The shop, one photograph at a time, edge to edge. The waiting
-          area is first, so reduced motion holds on the tin ceiling and the
-          price board. Then the pole, the history wall, the wash station,
-          and the shears. Each is cut once for a phone (3:4) and once for a
-          wide screen (2.5:1). On a desktop the stage is short (see
-          .hero-stage) so those wide cuts stay sharp. Grain and a vignette
-          over them. */}
+      {/* The shop, one photograph at a time. The waiting area is first, so
+          reduced motion holds on the tin ceiling and the price board. Then
+          the pole, the history wall, the wash station, and the shears.
+          Each is cut once for a phone (3:4, edge to edge) and once for a
+          wide screen (5:2). On a desktop the 5:2 cut sits in the header's
+          column, so the whole photograph shows. Grain and a vignette over
+          them. */}
       <div className="hero-stage relative">
         <div className="absolute inset-0">
           <HeroSlides
