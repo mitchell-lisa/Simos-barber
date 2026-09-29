@@ -23,8 +23,10 @@ export function Hero() {
           area is first, so reduced motion holds on the tin ceiling and the
           price board. Then the pole, the history wall, the wash station,
           and the shears. Each is cut once for a phone (3:4) and once for a
-          wide screen (2.5:1). Grain and a vignette over them. */}
-      <div className="relative h-[max(62vh,44vw)] min-h-[22rem] max-h-[58rem]">
+          wide screen (2.5:1). On a desktop the stage is short (see
+          .hero-stage) so those wide cuts stay sharp. Grain and a vignette
+          over them. */}
+      <div className="hero-stage relative">
         <div className="absolute inset-0">
           <HeroSlides
             slides={[
@@ -37,7 +39,7 @@ export function Hero() {
                 alt: "Barber pole by the door, with a Shave & Haircut 2 Bits sign",
                 tall: { src: "/media/hero-pole-tall.webp", width: 1200, height: 1600 },
                 wide: { src: "/media/hero-pole-wide.webp", width: 2400, height: 960 },
-                position: "object-[22%_center]",
+                position: "object-[22%_center] min-[900px]:object-[22%_30%]",
               },
               {
                 alt: "Framed historic photos and articles on the wall",
@@ -48,6 +50,7 @@ export function Hero() {
                 alt: "Tea Tree products at the wash station, against the gold art-deco wall",
                 tall: { src: "/media/hero-wash-tall.webp", width: 1200, height: 1600 },
                 wide: { src: "/media/hero-wash-wide.webp", width: 2400, height: 960 },
+                position: "object-center min-[900px]:object-[center_40%]",
               },
               {
                 alt: "Scissors with gold handles in a drawer",
