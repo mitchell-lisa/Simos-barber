@@ -16,16 +16,40 @@ import { HeroSlides } from "./hero-slides";
 
 /* ───────────────────────── hero ──────────────────────────────────────────── */
 
+function WelcomeCopy() {
+  return (
+    <>
+      <h1 className="display text-3xl text-bone sm:text-4xl">
+        Welcome to {b.fullName}
+      </h1>
+      <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-bone-2">
+        A traditional barbershop at {b.address.street} in {b.address.city},
+        Pennsylvania. Cuts, beards and straight-razor shaves with{" "}
+        {b.barbers[0].name}. Walk-ins welcome, open seven days.
+      </p>
+      <div className="mt-6 flex flex-wrap gap-3">
+        <BookButton className="px-6 py-3.5" />
+        <a
+          href={`tel:${b.phone.e164}`}
+          className="label inline-flex items-center justify-center gap-2.5 border border-hair-2 px-6 py-3.5 text-bone transition-colors hover:border-brass hover:text-brass-2"
+        >
+          <PhoneIcon className="h-4 w-4" />
+          {b.phone.display}
+        </a>
+      </div>
+    </>
+  );
+}
+
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden border-b border-hair">
       {/* The shop, one photograph at a time. The waiting area is first, so
           reduced motion holds on the tin ceiling and the price board. Then
           the pole, the history wall, the wash station, and the shears.
-          Each is cut once for a phone (3:4, edge to edge) and once for a
-          wide screen (5:2). On a desktop the 5:2 cut sits in the header's
-          column, so the whole photograph shows. Grain and a vignette over
-          them. */}
+          Each is cut once for a phone (3:4) and once for a wide screen.
+          On a desktop the stage is full-bleed and tall, and the welcome
+          copy sits on the photograph. Grain, a vignette, and a scrim. */}
       <div className="hero-stage relative">
         <div className="absolute inset-0">
           <HeroSlides
@@ -62,36 +86,28 @@ export function Hero() {
         </div>
         <div className="grain pointer-events-none absolute inset-0" aria-hidden="true" />
         <div className="vignette pointer-events-none absolute inset-0" aria-hidden="true" />
+        <div className="hero-scrim pointer-events-none absolute inset-0" aria-hidden="true" />
+        {/* Same words as the block under the photo. Hidden below 900px,
+            where that block is the one on the page. */}
+        <div className="absolute inset-x-0 bottom-0 z-10 hidden min-[900px]:block">
+          <div className="mx-auto max-w-6xl px-5 pb-12 sm:px-8 sm:pb-16">
+            <WelcomeCopy />
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
 /* ───────────────────────── welcome ───────────────────────────────────────
-   Short, and under the photographs rather than over them.                  */
+   Under the photographs on a phone or tablet. From 900px the same copy
+   is overlaid on the hero, so this block is not shown.                     */
 
 export function Welcome() {
   return (
-    <section className="border-b border-hair bg-ink-2">
+    <section className="border-b border-hair bg-ink-2 min-[900px]:hidden">
       <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
-        <h1 className="display text-3xl text-bone sm:text-4xl">
-          Welcome to {b.fullName}
-        </h1>
-        <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-bone-2">
-          A traditional barbershop at {b.address.street} in {b.address.city},
-          Pennsylvania. Cuts, beards and straight-razor shaves with{" "}
-          {b.barbers[0].name}. Walk-ins welcome, open seven days.
-        </p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <BookButton className="px-6 py-3.5" />
-          <a
-            href={`tel:${b.phone.e164}`}
-            className="label inline-flex items-center justify-center gap-2.5 border border-hair-2 px-6 py-3.5 text-bone transition-colors hover:border-brass hover:text-brass-2"
-          >
-            <PhoneIcon className="h-4 w-4" />
-            {b.phone.display}
-          </a>
-        </div>
+        <WelcomeCopy />
       </div>
     </section>
   );

@@ -238,24 +238,35 @@
       linear-gradient(to bottom, rgb(11 10 9 / 0.25), transparent 22%, transparent 78%, rgb(11 10 9 / 0.45));
   }
   /* Phone and tablet: tall enough for a 3:4 cut, edge to edge. From 900px
-     the stage sits in the same column as the header (max-w-6xl) on the
-     page's dark ground. The wide cuts are 2400×960, five by two, so the
-     stage uses that ratio and cover shows the photograph whole. If five
-     by two would be taller than 80vh, the width shrinks and the ratio
-     holds. */
+     the stage is full-bleed again and fills most of the screen, with the
+     welcome copy laid over the bottom. The scrim is darkest at the lower
+     left, where that copy sits, so a bright wall still leaves it readable. */
   .hero-stage {
     height: max(62vh, 44vw);
     min-height: 22rem;
     max-height: 58rem;
   }
+  .hero-scrim {
+    display: none;
+  }
   @media (min-width: 900px) {
     .hero-stage {
-      width: min(72rem, 100%, calc(80vh * 5 / 2));
-      height: auto;
-      aspect-ratio: 5 / 2;
-      min-height: 0;
-      max-height: 80vh;
-      margin-inline: auto;
+      width: 100%;
+      height: max(600px, 88vh);
+      min-height: 600px;
+      max-height: none;
+      aspect-ratio: auto;
+      margin-inline: 0;
+    }
+    .hero-scrim {
+      display: block;
+      background: linear-gradient(
+        to top right,
+        rgb(0 0 0 / 0.78) 0%,
+        rgb(0 0 0 / 0.62) 22%,
+        rgb(0 0 0 / 0.28) 48%,
+        transparent 72%
+      );
     }
   }
   /* Brass hairline with a diamond, used to separate major sections. */
