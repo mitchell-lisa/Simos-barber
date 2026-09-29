@@ -16,8 +16,9 @@ export type Slide = {
 /**
  * The hero's photographs, one at a time, each dissolving into the next.
  * Each photograph is cut twice, once for a phone and once for a wide
- * screen, so the best of it fits either way. Anyone whose OS asks for
- * reduced motion sees the first, still.
+ * screen, so the best of it fits either way. The wide cut is the larger
+ * file, and it is what a desktop (900px and up) shows. Anyone whose OS
+ * asks for reduced motion sees the first, still.
  */
 export function HeroSlides({ slides, className = "" }: { slides: Slide[]; className?: string }) {
   const [index, setIndex] = useState(0);
@@ -37,7 +38,7 @@ export function HeroSlides({ slides, className = "" }: { slides: Slide[]; classN
           className="absolute inset-0 transition-opacity duration-[1800ms] ease-in-out"
           aria-hidden={i === index ? undefined : true}
         >
-          <source media="(min-width: 1024px)" srcSet={s.wide.src} width={s.wide.width} height={s.wide.height} />
+          <source media="(min-width: 900px)" srcSet={s.wide.src} width={s.wide.width} height={s.wide.height} />
           <img
             src={s.tall.src}
             alt={i === index ? s.alt : ""}
